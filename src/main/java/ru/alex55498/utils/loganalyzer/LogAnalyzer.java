@@ -1,7 +1,5 @@
 package ru.alex55498.utils.loganalyzer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalTime;
@@ -14,6 +12,7 @@ import org.apache.commons.cli.Options;
 
 import ru.alex55498.useful.helpers.OptionsHelper;
 import ru.alex55498.useful.helpers.OptionsInitializer;
+import ru.alex55498.utils.loganalyzer.ui.LogAnalyzerConsole;
 import ru.alfabank.useful.utils.SafeTypes;
 
 /**
@@ -34,6 +33,7 @@ public class LogAnalyzer implements OptionsInitializer {
         public static final String FILTER = "f";
         public static final String LIMIT = "l";
         public static final String CATEGORY = "c";
+        public static final String GUI = "gui";
     }
 
     /**
@@ -66,45 +66,51 @@ public class LogAnalyzer implements OptionsInitializer {
             return;
         }
 
+        if (options.isOption(Opts.GUI)) {
+            LogAnalyzerConsole.main(args);
+            return;
+        }
+
         if (!options.isOption(Opts.SOURCE)) {
             throw new Exception("Option " + Opts.SOURCE + " is not set.");
         }
 
-        BufferedReader rdr = Files.newBufferedReader(Paths.get(options.getOption(Opts.SOURCE)));
-        Stream<String> s = Stream.generate(() -> {
-            try {
-                return rdr.readLine();
-            } catch (IOException e) {
-                return "";
+        Stream<String> s = null;
+        try {
+            s = Files.lines(Paths.get(options.getOption(Opts.SOURCE)));
+
+            Predicate<String> main = x -> x != null;
+            String tsPattern = options.getOption(Opts.TIMESTAMP_PATTERN, "HH:mm:ss,SSS");
+
+            if (options.isOption(Opts.TIME_FROM)) {
+                main = main.and(applyOptionTimeFrom(options.getOption(Opts.TIME_FROM), tsPattern));
             }
-        });
 
-        Predicate<String> main = x -> x != null;
-        String tsPattern = options.getOption(Opts.TIMESTAMP_PATTERN, "HH:mm:ss,SSS");
+            if (options.isOption(Opts.TIME_TILL)) {
+                main = main.and(applyOptionTimeTill(options.getOption(Opts.TIME_TILL), tsPattern));
+            }
+            s = s.filter(main);
 
-        if (options.isOption(Opts.TIME_FROM)) {
-            main = main.and(applyOptionTimeFrom(options.getOption(Opts.TIME_FROM), tsPattern));
+            if (options.isOption(Opts.FILTER)) {
+                final String filter = options.getOption(Opts.FILTER);
+                System.out.println("filter={" + filter + "}");
+                LogicParser lp = new LogicParser();
+                Queue<String> tokens = lp.toTokens(filter);
+                Predicate<String> p = lp.makePredicate(tokens).getPredicate();
+                s = s.filter(p);
+            }
+
+            if (options.isOption(Opts.LIMIT)) {
+                int limit = SafeTypes.parseSafeInt(options.getOption(Opts.LIMIT), 0);
+                s = applyOptionLimit(s, limit);
+            }
+
+            s.forEach(System.out::println);
+        } finally {
+            if (s != null) {
+                s.close();
+            }
         }
-
-        if (options.isOption(Opts.TIME_TILL)) {
-            main = main.and(applyOptionTimeTill(options.getOption(Opts.TIME_TILL), tsPattern));
-        }
-        s = s.filter(main);
-
-        if (options.isOption(Opts.FILTER)) {
-            final String filter = options.getOption(Opts.FILTER);
-            LogicParser lp = new LogicParser();
-            Queue<String> tokens = lp.toTokens(filter);
-            Predicate<String> p = lp.makePredicate(tokens).getPredicate();
-            s = s.filter(p);
-        }
-
-        if (options.isOption(Opts.LIMIT)) {
-            int limit = SafeTypes.parseSafeInt(options.getOption(Opts.LIMIT), 0);
-            s = applyOptionLimit(s, limit);
-        }
-
-        s.forEach(System.out::println);
     }
 
     /**
@@ -183,5 +189,6 @@ public class LogAnalyzer implements OptionsInitializer {
         opt.addOption(Opts.FILTER, "filter", true, "Filter condition.");
         opt.addOption(Opts.LIMIT, "limit", true, "Output limit value in lines of log. 0 - unlimited, By-default is unlimited.");
         opt.addOption(Opts.CATEGORY, "category", true, "Category package.");
+        opt.addOption(Opts.GUI, false, "Show JavaFX User console.");
     }
 }
