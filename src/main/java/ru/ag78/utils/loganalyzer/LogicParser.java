@@ -1,4 +1,4 @@
-package ru.alex55498.utils.loganalyzer;
+package ru.ag78.utils.loganalyzer;
 
 import java.util.Deque;
 import java.util.LinkedList;

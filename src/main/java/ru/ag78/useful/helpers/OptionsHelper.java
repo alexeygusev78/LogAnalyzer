@@ -1,4 +1,4 @@
-package ru.alex55498.useful.helpers;
+package ru.ag78.useful.helpers;
 
 import java.io.PrintWriter;
 
@@ -33,76 +33,11 @@ public class OptionsHelper {
         this.oi = oi;
 
         options = new Options();
-        options.addOption("?", "Show help information");
+        options.addOption("h", "help", false, "Show this help information");
         oi.initOptions(options);
 
         cmd = parseCommandLine(options, args);
     }
-
-    //    {
-    //
-    //        Options opt = new Options();
-    //
-    //        // -h
-    //        opt.addOption("h", "show help information");
-    //
-    //        // -host <hostname> 
-    //        Option host = Option.builder("host")
-    //                        .desc("Host")
-    //                        .argName("host")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(host);
-    //
-    //        // -port <port> 
-    //        Option port = Option.builder("port")
-    //                        .desc("Port")
-    //                        .argName("port")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(port);
-    //
-    //        // -login <login> 
-    //        Option login = Option.builder("login")
-    //                        .desc("Login")
-    //                        .argName("login")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(login);
-    //
-    //        // -password <password> 
-    //        Option password = Option.builder("password")
-    //                        .desc("password")
-    //                        .argName("password")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(password);
-    //
-    //        // -mode { BL_SEND } 
-    //        Option mode = Option.builder("mode")
-    //                        .desc("Mode { BL_SEND }")
-    //                        .argName("mode")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(mode);
-    //
-    //        // -target  
-    //        Option target = Option.builder("target")
-    //                        .desc("Target name of AFX module")
-    //                        .argName("target")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(target);
-    //
-    //        // -mps  
-    //        Option mps = Option.builder("mps")
-    //                        .desc("Messages per second. By-default 10.")
-    //                        .longOpt("messages-per-second")
-    //                        .argName("mps")
-    //                        .hasArg(true)
-    //                        .build();
-    //        opt.addOption(mps);
-    //    }
 
     private CommandLine parseCommandLine(Options options, String[] args) throws Exception {
 
@@ -164,6 +99,6 @@ public class OptionsHelper {
 
     public boolean isHelp() {
 
-        return cmd.hasOption("?");
+        return cmd.hasOption("h");
     }
 }

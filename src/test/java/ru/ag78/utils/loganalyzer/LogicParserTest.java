@@ -1,10 +1,13 @@
-package ru.alex55498.utils.loganalyzer;
+package ru.ag78.utils.loganalyzer;
 
 import java.util.Queue;
 import java.util.function.Predicate;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import ru.ag78.utils.loganalyzer.LogicParser;
+import ru.ag78.utils.loganalyzer.PredicateWrapper;
 
 public class LogicParserTest {
 

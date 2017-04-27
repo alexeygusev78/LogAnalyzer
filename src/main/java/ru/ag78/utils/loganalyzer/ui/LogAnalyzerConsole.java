@@ -1,4 +1,4 @@
-package ru.alex55498.utils.loganalyzer.ui;
+package ru.ag78.utils.loganalyzer.ui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

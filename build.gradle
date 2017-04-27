@@ -12,7 +12,6 @@ repositories {
     mavenLocal();
 	mavenCentral();
     maven { url "http://mvn/artifactory/list/public/" };
-    maven { url "http://mvn/artifactory/list/Alfaforex/" };
 }
 
 buildscript {
@@ -30,7 +29,7 @@ jar {
     manifest.attributes(
         'Version': version, 
         'Title': "$title",
-		'Main-Class': 'ru.alex55498.utils.loganalyzer.LogAnalyzer',
+		'Main-Class': 'ru.ag78.utils.loganalyzer.LogAnalyzer',
         'Created-By': 'Gradle ' + project.gradle.gradleVersion)
     archiveName("loganalyzer.$jar.extension")
 }
@@ -39,7 +38,7 @@ fatJar {
     manifest.attributes(
         'Version': version,
         'Title': "$title",
-		'Main-Class': 'ru.alex55498.utils.loganalyzer.LogAnalyzer',
+		'Main-Class': 'ru.ag78.utils.loganalyzer.LogAnalyzer',
         'Created-By': 'Gradle ' + project.gradle.gradleVersion)
 	archiveName("loganalyzer.$jar.extension")
 }

@@ -1,4 +1,4 @@
-package ru.alex55498.utils.loganalyzer;
+package ru.ag78.utils.loganalyzer;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 
 import org.apache.commons.cli.Options;
 
-import ru.alex55498.useful.helpers.OptionsHelper;
-import ru.alex55498.useful.helpers.OptionsInitializer;
-import ru.alex55498.utils.loganalyzer.ui.LogAnalyzerConsole;
+import ru.ag78.useful.helpers.OptionsHelper;
+import ru.ag78.useful.helpers.OptionsInitializer;
+import ru.ag78.utils.loganalyzer.ui.LogAnalyzerConsole;
 import ru.alfabank.useful.utils.SafeTypes;
 
 /**
