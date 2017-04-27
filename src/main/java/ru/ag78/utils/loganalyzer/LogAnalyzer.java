@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 import org.apache.commons.cli.Options;
 
+import ru.ag78.api.utils.SafeTypes;
 import ru.ag78.useful.helpers.OptionsHelper;
 import ru.ag78.useful.helpers.OptionsInitializer;
 import ru.ag78.utils.loganalyzer.ui.LogAnalyzerConsole;
-import ru.alfabank.useful.utils.SafeTypes;
 
 /**
  * Command-line tool to analyze log-files.
