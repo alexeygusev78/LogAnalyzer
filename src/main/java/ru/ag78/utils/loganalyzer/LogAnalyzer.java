@@ -1,5 +1,6 @@
 package ru.ag78.utils.loganalyzer;
 
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalTime;
@@ -9,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.cli.Options;
+import org.apache.log4j.Logger;
 
 import ru.ag78.api.utils.SafeTypes;
 import ru.ag78.useful.helpers.OptionsHelper;
@@ -22,6 +24,7 @@ import ru.ag78.utils.loganalyzer.ui.LogAnalyzerConsole;
  */
 public class LogAnalyzer implements OptionsInitializer {
 
+    private static final Logger log = Logger.getLogger(LogAnalyzer.class);
     private OptionsHelper options;
 
     public class Opts {
@@ -62,7 +65,13 @@ public class LogAnalyzer implements OptionsInitializer {
 
         options = new OptionsHelper(args, this);
         if (options.isHelp()) {
-            options.showHelp("loganalyzer [<option>...]", "LogAnalyzer command-line utility.", "Alexey Gusev 2017");
+            StringBuilder header = new StringBuilder();
+            header.append("LogAnalyzer command-line utility.").append(System.lineSeparator());
+            // header.append("Use -Dfile.encoding=<encoding_name> for set up encoding of the source file.");
+
+            StringBuilder synt = new StringBuilder("loganalyzer [<option>...]");
+            synt.append(" [-Dfile.encoding=<encoding_name>]");
+            options.showHelp(synt.toString(), header.toString(), "Alexey Gusev 2017");
             return;
         }
 
@@ -77,7 +86,7 @@ public class LogAnalyzer implements OptionsInitializer {
 
         Stream<String> s = null;
         try {
-            s = Files.lines(Paths.get(options.getOption(Opts.SOURCE)));
+            s = Files.lines(Paths.get(options.getOption(Opts.SOURCE)), Charset.defaultCharset());
 
             Predicate<String> main = x -> x != null;
             String tsPattern = options.getOption(Opts.TIMESTAMP_PATTERN, "HH:mm:ss,SSS");
@@ -189,6 +198,6 @@ public class LogAnalyzer implements OptionsInitializer {
         opt.addOption(Opts.FILTER, "filter", true, "Filter condition.");
         opt.addOption(Opts.LIMIT, "limit", true, "Output limit value in lines of log. 0 - unlimited, By-default is unlimited.");
         opt.addOption(Opts.CATEGORY, "category", true, "Category package.");
-        opt.addOption(Opts.GUI, false, "Show JavaFX User console.");
+        opt.addOption(Opts.GUI, false, "Show user console.");
     }
 }
