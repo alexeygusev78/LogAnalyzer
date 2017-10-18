@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 import ru.ag78.api.utils.SafeTypes;
 import ru.ag78.useful.helpers.OptionsHelper;
 import ru.ag78.useful.helpers.OptionsInitializer;
-import ru.ag78.utils.loganalyzer.ui.LogAnalyzerConsole;
+import ru.ag78.utils.loganalyzer.ui.LogAnalyzerGUI;
 
 /**
  * Command-line tool to analyze log-files.
@@ -29,6 +29,7 @@ public class LogAnalyzer implements OptionsInitializer {
 
     public class Opts {
 
+        public static final String INFO = "i";
         public static final String SOURCE = "s";
         public static final String TIME_FROM = "tf";
         public static final String TIME_TILL = "tt";
@@ -75,8 +76,13 @@ public class LogAnalyzer implements OptionsInitializer {
             return;
         }
 
+        if (options.isOption(Opts.INFO)) {
+            showInfo();
+            return;
+        }
+
         if (options.isOption(Opts.GUI)) {
-            LogAnalyzerConsole.main(args);
+            LogAnalyzerGUI.main(args);
             return;
         }
 
@@ -120,6 +126,22 @@ public class LogAnalyzer implements OptionsInitializer {
                 s.close();
             }
         }
+    }
+
+    private void showInfo() {
+
+        for (Object key: System.getProperties().keySet()) {
+            System.out.println(key.toString() + "=" + System.getProperty(key.toString()));
+        }
+
+        //        try (InputStream in = getClass().getResourceAsStream("/main.css"); BufferedReader reader = new BufferedReader(new InputStreamReader(in));) {
+        //            String line = "";
+        //            while ((line = reader.readLine()) != null) {
+        //                System.out.println(">" + line);
+        //            }
+        //        } catch (Exception e) {
+        //            e.printStackTrace();
+        //        }
     }
 
     /**
@@ -191,6 +213,7 @@ public class LogAnalyzer implements OptionsInitializer {
     @Override
     public void initOptions(Options opt) {
 
+        opt.addOption(Opts.INFO, "info", false, "Show system information.");
         opt.addOption(Opts.SOURCE, "source", true, "Source file name intended to analyze.");
         opt.addOption(Opts.TIME_FROM, "time_from", true, "Timestamp from by pattern HH:mm:ss. By default from time is open.");
         opt.addOption(Opts.TIME_TILL, "time_till", true, "Timestamp till by pattern HH:mm:ss. By default till time is open.");

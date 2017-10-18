@@ -1,0 +1,20 @@
+#label1 .text{
+    -fx-effect: dropshadow(one-pass-box , white, 0, 1 , 0, 1);
+}
+#label1 {
+    -fx-background-color: linear-gradient(
+        to bottom, #dbdcdd 0%, #a9a9ab 100%);
+    -fx-padding: 6px;
+    -fx-font-size: 1.2em;
+}
+
+.pane {
+	-fx-background-color: #8fbc8f;
+}
+
+.vbox {
+	-fx-border-color: #2e8b57;
+	-fx-border-width: 2px;
+	-fx-padding: 0;
+	-fx-spacing: 0;
+}
