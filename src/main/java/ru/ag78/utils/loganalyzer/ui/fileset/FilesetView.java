@@ -8,9 +8,6 @@ public class FilesetView {
 
     private FilesetController ctrl;
 
-    // mount CSS
-    String css;
-
     // UI controls
     private Label title;
 
@@ -42,17 +39,12 @@ public class FilesetView {
 
     public Node initView() {
 
-        String css = getClass().getResource("/main.css").toExternalForm();
-        System.out.println("css={" + css + "}");
-
         VBox vLayout = new VBox();
         vLayout.setId("fileset_bar");
         vLayout.getStyleClass().add("vbox");
-        vLayout.getStylesheets().add(css);
 
         title = new Label("Наборы файлов");
         title.setId("label1");
-        title.getStylesheets().add(css);
 
         vLayout.getChildren().add(title);
 

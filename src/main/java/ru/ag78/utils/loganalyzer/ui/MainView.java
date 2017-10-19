@@ -50,12 +50,15 @@ public class MainView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        String css = getClass().getResource("/main.css").toExternalForm();
+
         // init controller & view
         model = new MainModel();
         ctrl = new MainController(this, model);
 
         mainLayout = new BorderPane();
         Scene scene = new Scene(mainLayout, 1200, 800);
+        scene.getStylesheets().add(css);
         Node topBar = initTop();
 
         // init fileset panel & data
