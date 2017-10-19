@@ -1,20 +1,36 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
+import java.util.List;
+
+import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 
+/**
+ * Вьюха для панели Fileset
+ * @author alexey
+ *
+ */
 public class FilesetView {
 
-    private FilesetController ctrl;
+    private Events eventListener;
+
+    // local data
+    private String title;
 
     // UI controls
-    private Label title;
+    private Node root;
+    private Label labelTitle;
+    private ListView<LogFile> listView;
 
     /**
-     * Default ctor
+     * События вьюхи Fileset
+     * @author alexey
+     *
      */
-    public FilesetView() {
+    public static interface Events {
 
     }
 
@@ -22,32 +38,56 @@ public class FilesetView {
      * Ctor with parameters
      * @param ctrl
      */
-    public FilesetView(FilesetController ctrl) {
+    public FilesetView(FilesetView.Events eventListener, String title) {
 
-        this.ctrl = ctrl;
+        this.eventListener = eventListener;
+        this.title = title;
     }
 
-    public FilesetController getCtrl() {
+    public Node getRoot() {
 
-        return ctrl;
+        if (root == null) {
+            root = initView();
+        }
+
+        return root;
     }
 
-    public void setCtrl(FilesetController ctrl) {
-
-        this.ctrl = ctrl;
-    }
-
-    public Node initView() {
+    private Node initView() {
 
         VBox vLayout = new VBox();
         vLayout.setId("fileset_bar");
         vLayout.getStyleClass().add("vbox");
 
-        title = new Label("Наборы файлов");
-        title.setId("label1");
+        // title
+        labelTitle = new Label(title);
+        labelTitle.setId("title");
 
-        vLayout.getChildren().add(title);
+        // listView
+        listView = new ListView<LogFile>();
+
+        vLayout.getChildren().add(labelTitle);
+        vLayout.getChildren().add(listView);
 
         return vLayout;
+    }
+
+    /**
+     * Установить имя файлсета.
+     * @param title
+     */
+    public void setTitle(String title) {
+
+        this.title = title;
+        labelTitle.setText(title);
+    }
+
+    /**
+     * Установить коллекцию файлов для отображения в списке.
+     * @param fileList
+     */
+    public void setFileList(List<LogFile> fileList) {
+
+        listView.setItems(FXCollections.observableArrayList(fileList));
     }
 }

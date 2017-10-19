@@ -1,6 +1,6 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
-public class FilesetController {
+public class FilesetController implements FilesetView.Events {
 
     private FilesetView view;
     private FilesetModel model;
@@ -10,13 +10,11 @@ public class FilesetController {
      * @param view
      * @param model
      */
-    public FilesetController(FilesetView view, FilesetModel model) {
+    public FilesetController() {
 
         super();
-        this.view = view;
-        this.model = model;
-
-        view.setCtrl(this);
+        this.view = new FilesetView(this, "default");
+        this.model = new FilesetModel();
 
         model.addFile(new LogFile(true, "~/dev/logs/20171009/blog1.log"));
         model.addFile(new LogFile(true, "~/dev/logs/20171009/blog2.log"));
