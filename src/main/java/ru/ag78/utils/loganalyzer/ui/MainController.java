@@ -1,5 +1,8 @@
 package ru.ag78.utils.loganalyzer.ui;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
@@ -19,6 +22,8 @@ public class MainController implements MainViewEvents {
     private MainView view;
     private MainModel model;
 
+    private List<FilesetController> filesets = new LinkedList<>();
+
     /**
      * Ctor with params
      * @param view
@@ -29,6 +34,26 @@ public class MainController implements MainViewEvents {
         super();
         this.view = view;
         this.model = new MainModel();
+
+        init();
+    }
+
+    /**
+     * Initialize controller.
+     * We assume that the MainView already initialized.
+     */
+    private void init() {
+
+    }
+
+    /**
+     * Add fileset to fileset collection.
+     * @param fsc
+     */
+    private void addFileset(FilesetController fsc) {
+
+        filesets.add(fsc);
+        view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName());
     }
 
     @Override
@@ -42,8 +67,8 @@ public class MainController implements MainViewEvents {
     public void onNewFileset() {
 
         log.debug(".onNewFileset");
-        FilesetController ctrl = new FilesetController();
 
-        view.addFileSet(ctrl.getView().getRoot(), "default");
+        FilesetController fsc = new FilesetController(model.getNextFilesetName());
+        addFileset(fsc);
     }
 }

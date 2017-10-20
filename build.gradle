@@ -5,7 +5,7 @@ apply plugin: 'java'
 apply plugin: 'eu.appsatori.fatjar'
 
 group = 'ru.ag78.utils'
-version = '1.3.0'
+version = '1.3.1'
 String title = 'LogAnalyzer utility'
 
 repositories {
