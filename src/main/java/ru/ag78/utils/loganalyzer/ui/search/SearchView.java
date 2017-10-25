@@ -1,5 +1,7 @@
 package ru.ag78.utils.loganalyzer.ui.search;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import javafx.geometry.Insets;
@@ -21,6 +23,7 @@ public class SearchView {
     // UI controls
     private Node root;
     private Label labelTitle;
+    private ChoiceBox<String> cbSource;
 
     /**
      * SearchView events interface
@@ -32,6 +35,8 @@ public class SearchView {
         public void onSearch(String source, String filter);
 
         public void onBreak();
+
+        public void onSelectFileset(String name);
     }
 
     /**
@@ -69,10 +74,10 @@ public class SearchView {
 
         // Source
         toolbar.getChildren().add(new Label("Source:"));
-        ChoiceBox<String> cbSource = new ChoiceBox<String>();
-        cbSource.getItems().add("fileset1");
-        cbSource.getItems().add("fileset2");
-        cbSource.getItems().add("fileset3");
+        cbSource = new ChoiceBox<String>();
+        cbSource.setOnAction(t -> {
+            eventListener.onSelectFileset(cbSource.getSelectionModel().getSelectedItem());
+        });
         toolbar.getChildren().add(cbSource);
 
         // Filter
@@ -101,5 +106,12 @@ public class SearchView {
         vLayout.getChildren().addAll(labelTitle, toolbar, textSearchResults);
 
         return vLayout;
+    }
+
+    public void setFilesets(List<String> filesets) {
+
+        cbSource.getItems().clear();
+        filesets.stream().forEach(fs -> cbSource.getItems().add(fs));
+        cbSource.getSelectionModel().selectFirst();
     }
 }

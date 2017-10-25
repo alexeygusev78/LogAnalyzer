@@ -3,6 +3,7 @@ package ru.ag78.utils.loganalyzer.ui.search;
 public class SearchModel {
 
     private String name;
+    private String selectedFileset;
 
     /**
      * Ctor using fields
@@ -22,5 +23,15 @@ public class SearchModel {
     public void setName(String name) {
 
         this.name = name;
+    }
+
+    public String getSelectedFileset() {
+
+        return selectedFileset;
+    }
+
+    public void setSelectedFileset(String selectedFileset) {
+
+        this.selectedFileset = selectedFileset;
     }
 }

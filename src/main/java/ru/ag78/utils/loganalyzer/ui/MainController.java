@@ -2,6 +2,7 @@ package ru.ag78.utils.loganalyzer.ui;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -56,6 +57,18 @@ public class MainController implements MainViewEvents {
 
         filesets.add(fsc);
         view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName());
+
+        List<String> fsNames = getFilesetNames();
+
+        // обновить во всех SearchView список доступных Fileset'ов
+        for (SearchController sc: searches) {
+            sc.setFilesets(fsNames);
+        }
+    }
+
+    private List<String> getFilesetNames() {
+
+        return filesets.stream().map(f -> f.getModel().getName()).collect(Collectors.toList());
     }
 
     /**
@@ -88,7 +101,8 @@ public class MainController implements MainViewEvents {
     public void onNewSearch() {
 
         log.debug(".onNewSearch");
-        SearchController sc = new SearchController(model.getNextSearchName());
+        SearchController sc = new SearchController(this, model.getNextSearchName());
         addSearch(sc);
+        sc.setFilesets(getFilesetNames());
     }
 }
