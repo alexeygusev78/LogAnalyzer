@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
+import ru.ag78.utils.loganalyzer.ui.search.SearchController;
 
 /**
  * Responsible for:
@@ -23,6 +24,7 @@ public class MainController implements MainViewEvents {
     private MainModel model;
 
     private List<FilesetController> filesets = new LinkedList<>();
+    private List<SearchController> searches = new LinkedList<>();
 
     /**
      * Ctor with params
@@ -56,6 +58,16 @@ public class MainController implements MainViewEvents {
         view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName());
     }
 
+    /**
+     * Add search view to searches collection.
+     * @param sc
+     */
+    private void addSearch(SearchController sc) {
+
+        searches.add(sc);
+        view.addSearch(sc.getView().getRoot(), sc.getModel().getName());
+    }
+
     @Override
     public void onClose() {
 
@@ -70,5 +82,13 @@ public class MainController implements MainViewEvents {
 
         FilesetController fsc = new FilesetController(model.getNextFilesetName());
         addFileset(fsc);
+    }
+
+    @Override
+    public void onNewSearch() {
+
+        log.debug(".onNewSearch");
+        SearchController sc = new SearchController(model.getNextSearchName());
+        addSearch(sc);
     }
 }

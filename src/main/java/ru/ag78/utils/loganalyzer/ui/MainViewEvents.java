@@ -4,5 +4,7 @@ public interface MainViewEvents {
 
     public void onNewFileset();
 
+    public void onNewSearch();
+
     public void onClose();
 }

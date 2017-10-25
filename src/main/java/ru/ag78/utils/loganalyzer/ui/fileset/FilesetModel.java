@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 
 public class FilesetModel {
 
-    // private List<LogFile> files = new ArrayList<>();
     private ObservableList<LogFile> files = FXCollections.observableArrayList(new ArrayList<LogFile>());
     private String name;
 

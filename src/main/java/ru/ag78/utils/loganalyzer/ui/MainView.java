@@ -16,7 +16,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -39,6 +38,7 @@ public class MainView extends Application {
     private BorderPane mainLayout;
     private CheckMenuItem mnuShowFileset;
     private TabPane filesetPane;
+    private TabPane searchPane;
 
     /**
      * Default ctor, invoked from JavaFX.
@@ -65,19 +65,14 @@ public class MainView extends Application {
         // init menu & toolbar
         Node topBar = initTop();
 
-        // init fileset panel & data
-        //        FilesetModel fsm = model.getFilesetModel();
-        //        fsc = new FilesetController(new FilesetView(), fsm);
-        //        FilesetView fsv = fsc.getView();
-
         // init Fileset Pane
-        Node filesetPane = initFilesetPane();
+        filesetPane = new TabPane();
 
-        // init SearchView
-        Node searchView = initSearchView();
+        // init Search Pane
+        searchPane = new TabPane();
 
         // set layout
-        splitPane.getItems().addAll(filesetPane, searchView);
+        splitPane.getItems().addAll(filesetPane, searchPane);
         mainLayout.setTop(topBar);
         mainLayout.setCenter(splitPane);
 
@@ -90,16 +85,11 @@ public class MainView extends Application {
         return mainStage;
     }
 
-    private Region initFilesetPane() {
+    private Node initSearchPane() {
 
-        filesetPane = new TabPane();
+        searchPane = new TabPane();
 
-        return filesetPane;
-    }
-
-    private Node initSearchView() {
-
-        return new Region();
+        return searchPane;
     }
 
     /**
@@ -121,15 +111,21 @@ public class MainView extends Application {
 
         // File
         Menu mnuFile = new Menu("File");
-        MenuItem mnuFileset = new MenuItem("New fileset...");
-        mnuFileset.setOnAction(t -> {
+        MenuItem mnuNewFileset = new MenuItem("New fileset...");
+        mnuNewFileset.setOnAction(t -> {
             eventListener.onNewFileset();
         });
+
+        MenuItem mnuNewSearch = new MenuItem("New search");
+        mnuNewSearch.setOnAction(t -> {
+            eventListener.onNewSearch();
+        });
+
         MenuItem mnuExit = new MenuItem("Exit");
         mnuExit.setOnAction(t -> {
             eventListener.onClose();
         });
-        mnuFile.getItems().addAll(mnuFileset, mnuExit);
+        mnuFile.getItems().addAll(mnuNewFileset, mnuNewSearch, mnuExit);
 
         // View
         Menu mnuView = new Menu("View");
@@ -148,11 +144,19 @@ public class MainView extends Application {
         hbox.setPadding(new Insets(2, 2, 2, 2)); // new Insets(15, 12, 15, 12)
         // hbox.setSpacing(10);
         // hbox.setStyle("-fx-background-color: #336699;");
-        Button btnShowFileset = new Button("Fileset");
-        btnShowFileset.setPrefSize(100, 20);
-        Button buttonProjected = new Button("Projected");
-        buttonProjected.setPrefSize(100, 20);
-        hbox.getChildren().addAll(btnShowFileset, buttonProjected);
+        Button btnNewFileset = new Button("New Fileset");
+        btnNewFileset.setPrefSize(100, 20);
+        btnNewFileset.setOnAction(t -> {
+            eventListener.onNewFileset();
+        });
+
+        Button btnNewSearch = new Button("New Search");
+        btnNewSearch.setPrefSize(100, 20);
+        btnNewSearch.setOnAction(t -> {
+            eventListener.onNewSearch();
+        });
+
+        hbox.getChildren().addAll(btnNewFileset, btnNewSearch);
         return hbox;
     }
 
@@ -168,6 +172,20 @@ public class MainView extends Application {
         tab.setText(name);
 
         filesetPane.getTabs().add(tab);
+    }
+
+    /**
+     * Добавить вьюху Search
+     * @param sv
+     * @param name
+     */
+    public void addSearch(Node sv, String name) {
+
+        Tab tab = new Tab();
+        tab.setContent(sv);
+        tab.setText(name);
+
+        searchPane.getTabs().add(tab);
     }
 
     /**

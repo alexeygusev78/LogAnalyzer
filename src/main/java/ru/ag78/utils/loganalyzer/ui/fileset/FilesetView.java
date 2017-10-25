@@ -1,7 +1,8 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -105,7 +106,7 @@ public class FilesetView {
 
         // listView
         listView = new ListView<LogFile>();
-        listView.setOnMouseClicked();
+        // listView.setOnMouseClicked();
 
         vLayout.getChildren().addAll(labelTitle, toolbar, listView);
 
@@ -141,11 +142,13 @@ public class FilesetView {
     }
 
     /**
-     * Requeset file path from UI
+     * Requeset file objects.
+     * Never returns null.
      * @return
      */
-    public String requestFile() {
+    public List<File> requestFile() {
 
+        List<File> files = new LinkedList<>();
         try {
             Stage mainStage = MainView.getMainStage();
 
@@ -154,15 +157,13 @@ public class FilesetView {
             fileChooser.getExtensionFilters().addAll(
                             new ExtensionFilter("Log Files", "*.log", "*log*.*"),
                             new ExtensionFilter("All Files", "*.*"));
-            File selectedFile = fileChooser.showOpenDialog(mainStage);
-            if (selectedFile == null) {
-                return "";
+            List<File> selectedFiles = fileChooser.showOpenMultipleDialog(mainStage);
+            if (selectedFiles != null && !selectedFiles.isEmpty()) {
+                files.addAll(selectedFiles);
             }
-
-            return selectedFile.getCanonicalPath();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e);
-            return "";
         }
+        return files;
     }
 }

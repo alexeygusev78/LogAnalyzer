@@ -1,5 +1,9 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 public class FilesetController implements FilesetView.Events {
@@ -68,9 +72,13 @@ public class FilesetController implements FilesetView.Events {
 
         log.debug(".onAddFile");
 
-        String newFile = view.requestFile();
-        if (newFile != null && !newFile.isEmpty()) {
-            model.addFile(new LogFile(true, newFile));
+        List<File> files = view.requestFile();
+        for (File f: files) {
+            try {
+                model.addFile(new LogFile(true, f.getCanonicalPath()));
+            } catch (IOException e) {
+                log.warn(e);
+            }
         }
     }
 
