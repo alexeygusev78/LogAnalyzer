@@ -10,10 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -32,7 +31,6 @@ public class FilesetView {
 
     // UI controls
     private Node root;
-    private Label labelTitle;
     private ListView<LogFile> listView;
 
     /**
@@ -71,13 +69,9 @@ public class FilesetView {
 
     private Node initView() {
 
-        VBox vLayout = new VBox();
-        vLayout.setId("fileset_bar");
-        vLayout.getStyleClass().add("vbox");
-
-        // title
-        labelTitle = new Label();
-        labelTitle.setId("title");
+        BorderPane layout = new BorderPane();
+        layout.setId("fileset_bar");
+        layout.getStyleClass().add("vbox");
 
         HBox toolbar = new HBox();
         toolbar.setPadding(new Insets(2, 2, 2, 2)); // new Insets(15, 12, 15, 12)
@@ -106,11 +100,11 @@ public class FilesetView {
 
         // listView
         listView = new ListView<LogFile>();
-        // listView.setOnMouseClicked();
 
-        vLayout.getChildren().addAll(labelTitle, toolbar, listView);
+        layout.setTop(toolbar);
+        layout.setCenter(listView);
 
-        return vLayout;
+        return layout;
     }
 
     /**
@@ -119,7 +113,7 @@ public class FilesetView {
      */
     public void setTitle(String title) {
 
-        labelTitle.setText(title);
+        // labelTitle.setText(title);
     }
 
     /**
