@@ -67,12 +67,17 @@ public class FilesetController implements FilesetView.Events {
     public void onAddFile() {
 
         log.debug(".onAddFile");
-        model.addFile(new LogFile(false, view.requestFile()));
+
+        String newFile = view.requestFile();
+        if (newFile != null && !newFile.isEmpty()) {
+            model.addFile(new LogFile(true, newFile));
+        }
     }
 
     @Override
-    public void onDeleteFile(String filename) {
+    public void onDeleteFile(LogFile item) {
 
-        log.debug(".onDeleteFile filename=" + filename);
+        log.debug(".onDeleteFile item=" + item);
+        model.deleteFile(item);
     }
 }

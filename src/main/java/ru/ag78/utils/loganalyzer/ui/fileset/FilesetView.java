@@ -1,8 +1,10 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
-import javafx.collections.FXCollections;
+import org.apache.log4j.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -11,6 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import ru.ag78.utils.loganalyzer.ui.MainView;
 
 /**
  * Вьюха для панели Fileset
@@ -18,6 +24,8 @@ import javafx.scene.layout.VBox;
  *
  */
 public class FilesetView {
+
+    private static final Logger log = Logger.getLogger(FilesetView.class);
 
     private Events eventListener;
 
@@ -37,7 +45,7 @@ public class FilesetView {
 
         public void onAddFile();
 
-        public void onDeleteFile(String filename);
+        public void onDeleteFile(LogFile item);
     }
 
     /**
@@ -87,13 +95,17 @@ public class FilesetView {
 
         Button btnDel = new Button("Delete");
         btnDel.setOnAction(t -> {
-            eventListener.onDeleteFile("file");
+            LogFile selected = listView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                eventListener.onDeleteFile(selected);
+            }
         });
         // buttonProjected.setPrefSize(100, 20);
         toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel);
 
         // listView
         listView = new ListView<LogFile>();
+        listView.setOnMouseClicked();
 
         vLayout.getChildren().addAll(labelTitle, toolbar, listView);
 
@@ -113,11 +125,10 @@ public class FilesetView {
      * Установить коллекцию файлов для отображения в списке.
      * @param fileList
      */
-    public void setFileList(List<LogFile> fileList) {
+    public void setFileList(ObservableList<LogFile> fileList) {
 
-        ObservableList<LogFile> items = FXCollections.observableArrayList(fileList);
-
-        listView.setItems(items);
+        // ObservableList<LogFile> items = FXCollections.observableArrayList(fileList);
+        listView.setItems(fileList);
     }
 
     /**
@@ -135,6 +146,23 @@ public class FilesetView {
      */
     public String requestFile() {
 
-        return "file";
+        try {
+            Stage mainStage = MainView.getMainStage();
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Log File");
+            fileChooser.getExtensionFilters().addAll(
+                            new ExtensionFilter("Log Files", "*.log", "*log*.*"),
+                            new ExtensionFilter("All Files", "*.*"));
+            File selectedFile = fileChooser.showOpenDialog(mainStage);
+            if (selectedFile == null) {
+                return "";
+            }
+
+            return selectedFile.getCanonicalPath();
+        } catch (IOException e) {
+            log.error(e);
+            return "";
+        }
     }
 }

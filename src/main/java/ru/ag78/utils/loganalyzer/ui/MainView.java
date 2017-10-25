@@ -34,6 +34,7 @@ public class MainView extends Application {
     private MainViewEvents eventListener;
 
     // ui controls
+    private static Stage mainStage;
     private Stage stage;
     private BorderPane mainLayout;
     private CheckMenuItem mnuShowFileset;
@@ -49,6 +50,7 @@ public class MainView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        MainView.mainStage = primaryStage;
         this.stage = primaryStage;
         String css = getClass().getResource("/main.css").toExternalForm();
 
@@ -81,6 +83,11 @@ public class MainView extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public static Stage getMainStage() {
+
+        return mainStage;
     }
 
     private Region initFilesetPane() {
