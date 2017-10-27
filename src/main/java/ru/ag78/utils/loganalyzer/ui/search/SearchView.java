@@ -65,32 +65,40 @@ public class SearchView {
         layout.getStyleClass().add("vbox");
 
         // toolbar
-        HBox toolbar = new HBox();
-        toolbar.setPadding(new Insets(2, 2, 2, 2));
+        BorderPane toolbar = new BorderPane();
+
+        HBox hboxLeft = new HBox();
+        hboxLeft.setPadding(new Insets(2, 2, 2, 2));
+        hboxLeft.getStyleClass().add("hbox");
 
         // Source
-        toolbar.getChildren().add(new Label("Source:"));
+        hboxLeft.getChildren().add(new Label("Source:"));
         cbSource = new ChoiceBox<String>();
         cbSource.setOnAction(t -> {
             eventListener.onSelectFileset(cbSource.getSelectionModel().getSelectedItem());
         });
-        toolbar.getChildren().add(cbSource);
+        hboxLeft.getChildren().add(cbSource);
 
         // Filter
-        toolbar.getChildren().add(new Label("Filter:"));
+        hboxLeft.getChildren().add(new Label("Filter:"));
+
         TextField textFilter = new TextField();
-        toolbar.getChildren().add(textFilter);
+        textFilter.getStyleClass().add("text");
+        textFilter.setId("Search");
+        // hboxLeft.getChildren().add(textFilter);
+
+        HBox hboxRight = new HBox();
 
         // Search button
         Button btnSearch = new Button("Search");
-        toolbar.getChildren().add(btnSearch);
+        hboxRight.getChildren().add(btnSearch);
         btnSearch.setOnAction(t -> {
             eventListener.onSearch("fileset1", "filter");
         });
 
         // Break button
         Button btnBreak = new Button("Break");
-        toolbar.getChildren().add(btnBreak);
+        hboxRight.getChildren().add(btnBreak);
         btnBreak.setOnAction(t -> {
             eventListener.onBreak();
         });
@@ -100,6 +108,10 @@ public class SearchView {
         searchResults.setId("textSearchResults");
 
         // add to layout
+        toolbar.setLeft(hboxLeft);
+        toolbar.setCenter(textFilter);
+        toolbar.setRight(hboxRight);
+
         layout.setTop(toolbar);
         layout.setCenter(searchResults);
 

@@ -144,6 +144,7 @@ public class MainView extends Application {
         hbox.setPadding(new Insets(2, 2, 2, 2)); // new Insets(15, 12, 15, 12)
         // hbox.setSpacing(10);
         // hbox.setStyle("-fx-background-color: #336699;");
+        hbox.getStyleClass().add("hbox");
         Button btnNewFileset = new Button("New Fileset");
         btnNewFileset.setPrefSize(100, 20);
         btnNewFileset.setOnAction(t -> {
