@@ -6,5 +6,7 @@ public interface MainViewEvents {
 
     public void onNewSearch();
 
+    public void onRegExpTest();
+
     public void onClose();
 }

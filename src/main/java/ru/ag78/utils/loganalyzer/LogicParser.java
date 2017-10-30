@@ -25,6 +25,11 @@ public class LogicParser {
      */
     public Queue<String> toTokens(String expr) throws Exception {
 
+        return toTokens(expr, this.pattern);
+    }
+
+    public Queue<String> toTokens(String expr, String pattern) throws Exception {
+
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(expr);
 

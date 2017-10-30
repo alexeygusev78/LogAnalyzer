@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.log4j.Logger;
 
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
+import ru.ag78.utils.loganalyzer.ui.regexp.RegExpTestDialog;
 import ru.ag78.utils.loganalyzer.ui.search.SearchController;
 
 /**
@@ -49,11 +50,8 @@ public class MainController implements MainViewEvents {
 
     }
 
-    
-    
-    
     public MainModel getModel() {
-    
+
         return model;
     }
 
@@ -112,5 +110,13 @@ public class MainController implements MainViewEvents {
         SearchController sc = new SearchController(this, model.getNextSearchName());
         addSearch(sc);
         sc.setFilesets(getFilesetNames());
+    }
+
+    @Override
+    public void onRegExpTest() {
+
+        log.debug(".onRegExpTest");
+        RegExpTestDialog dlg = new RegExpTestDialog();
+        dlg.show();
     }
 }

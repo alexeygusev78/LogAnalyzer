@@ -157,7 +157,12 @@ public class MainView extends Application {
             eventListener.onNewSearch();
         });
 
-        hbox.getChildren().addAll(btnNewFileset, btnNewSearch);
+        Button btnRegExpTest = new Button("RegEx Test...");
+        btnRegExpTest.setOnAction(t -> {
+            eventListener.onRegExpTest();
+        });
+
+        hbox.getChildren().addAll(btnNewFileset, btnNewSearch, btnRegExpTest);
         return hbox;
     }
 
