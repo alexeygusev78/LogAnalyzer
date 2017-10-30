@@ -38,9 +38,9 @@ public class SearchController implements SearchView.Events {
     }
 
     @Override
-    public void onSearch(String source, String filter) {
+    public void onSearch(String filter) {
 
-        log.debug("onSearch source=" + source + " filter=" + filter);
+        log.debug("onSearch source=" + model.getSelectedFileset() + " filter=" + filter);
     }
 
     @Override

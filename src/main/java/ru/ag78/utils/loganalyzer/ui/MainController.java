@@ -49,6 +49,14 @@ public class MainController implements MainViewEvents {
 
     }
 
+    
+    
+    
+    public MainModel getModel() {
+    
+        return model;
+    }
+
     /**
      * Add fileset to fileset collection.
      * @param fsc

@@ -23,6 +23,7 @@ public class SearchView {
     // UI controls
     private Node root;
     private ChoiceBox<String> cbSource;
+    private TextField textFilter;
 
     /**
      * SearchView events interface
@@ -31,7 +32,7 @@ public class SearchView {
      */
     public static interface Events {
 
-        public void onSearch(String source, String filter);
+        public void onSearch(String filter);
 
         public void onBreak();
 
@@ -82,7 +83,7 @@ public class SearchView {
         // Filter
         hboxLeft.getChildren().add(new Label("Filter:"));
 
-        TextField textFilter = new TextField();
+        textFilter = new TextField();
         textFilter.getStyleClass().add("text");
         textFilter.setId("Search");
         // hboxLeft.getChildren().add(textFilter);
@@ -93,7 +94,7 @@ public class SearchView {
         Button btnSearch = new Button("Search");
         hboxRight.getChildren().add(btnSearch);
         btnSearch.setOnAction(t -> {
-            eventListener.onSearch("fileset1", "filter");
+            eventListener.onSearch(textFilter.getText());
         });
 
         // Break button
