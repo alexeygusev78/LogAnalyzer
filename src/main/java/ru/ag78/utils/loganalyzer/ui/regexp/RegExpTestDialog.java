@@ -20,6 +20,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ru.ag78.utils.loganalyzer.LogicParser;
+import ru.ag78.utils.loganalyzer.Tokenizable;
+import ru.ag78.utils.loganalyzer.TokenizerCustom;
 
 public class RegExpTestDialog {
 
@@ -119,7 +121,8 @@ public class RegExpTestDialog {
         log.debug("onToTokens");
         LogicParser lp = new LogicParser();
         try {
-            Queue<String> tokens = lp.toTokens(textQuery.getText(), textRegExp.getText());
+            Tokenizable t = new TokenizerCustom(textRegExp.getText());
+            Queue<String> tokens = t.toTokens(textQuery.getText());
             String res = tokens.stream().collect(Collectors.joining("\r\n"));
             areaResults.setText(res);
         } catch (Exception e) {

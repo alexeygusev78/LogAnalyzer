@@ -6,9 +6,6 @@ import java.util.function.Predicate;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ru.ag78.utils.loganalyzer.LogicParser;
-import ru.ag78.utils.loganalyzer.PredicateWrapper;
-
 public class LogicParserTest {
 
     /**
@@ -18,12 +15,13 @@ public class LogicParserTest {
     public void testWolf() {
 
         System.out.println("testWolf ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(1, tokens.size());
 
@@ -45,12 +43,13 @@ public class LogicParserTest {
     public void testWolfAndFox() {
 
         System.out.println("testWolfAndFox ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\" AND \"fox\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(3, tokens.size());
 
@@ -72,12 +71,13 @@ public class LogicParserTest {
     public void testWolfAndNotFox() {
 
         System.out.println("testWolfAndNotFox ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\" AND NOT \"fox\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(4, tokens.size());
 
@@ -99,12 +99,13 @@ public class LogicParserTest {
     public void testNotWolfAndNotFox() {
 
         System.out.println("testNotWolfAndNotFox ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "NOT \"wolf\" AND NOT \"fox\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(5, tokens.size());
 
@@ -127,12 +128,13 @@ public class LogicParserTest {
     public void testWolfOrFox() {
 
         System.out.println("testWolfOrFox ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\" OR \"fox\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(3, tokens.size());
 
@@ -155,12 +157,13 @@ public class LogicParserTest {
     public void testWolfAndFoxOrHawkAndPigeon() {
 
         System.out.println("testWolfAndFoxOrHawkAndPigeon ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\" AND \"fox\" OR \"hawk\" AND \"pigeon\"";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(7, tokens.size());
 
@@ -184,12 +187,13 @@ public class LogicParserTest {
     public void testWolfAND_FoxOrRabbit_() {
 
         System.out.println("testWolfAND_FoxOrRabbit_ ----------------------------------------");
+        Tokenizable t = new Tokenizer1();
         try {
             LogicParser lp = new LogicParser();
             String expr = "\"wolf\" AND (\"fox\" OR \"rabbit\")";
             System.out.println("expr=" + expr);
 
-            Queue<String> tokens = lp.toTokens(expr);
+            Queue<String> tokens = t.toTokens(expr);
             Assert.assertNotNull(tokens);
             Assert.assertEquals(7, tokens.size());
 

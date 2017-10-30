@@ -8,15 +8,14 @@ public class TokenizerTest {
     @Test
     public void toTokensTest() {
 
-        LogicParser lp = new LogicParser();
+        Tokenizable t = new Tokenizer1();
 
         try {
-            Assert.assertEquals(1, lp.toTokens("\"wolf\"").size());
-            // Assert.assertEquals(1, lp.toTokens("wolf").size());
-            Assert.assertEquals(3, lp.toTokens("\"wolf\" AND \"fox\"").size());
-            Assert.assertEquals(4, lp.toTokens("\"wolf\" AND NOT \"fox\"").size());
-            Assert.assertEquals(3, lp.toTokens("\"grey wolf\" AND \"red fox\"").size());
-
+            Assert.assertEquals(1, t.toTokens("\"wolf\"").size());
+            Assert.assertEquals(1, t.toTokens("wolf").size());
+            Assert.assertEquals(3, t.toTokens("\"wolf\" AND \"fox\"").size());
+            Assert.assertEquals(4, t.toTokens("\"wolf\" AND NOT \"fox\"").size());
+            Assert.assertEquals(3, t.toTokens("\"grey wolf\" AND \"red fox\"").size());
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         }

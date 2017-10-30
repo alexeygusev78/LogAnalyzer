@@ -72,6 +72,17 @@ public class MainController implements MainViewEvents {
         }
     }
 
+    public FilesetController getFilesetController(String name) {
+
+        for (FilesetController fsc: filesets) {
+            if (fsc.getModel().getName().equalsIgnoreCase(name)) {
+                return fsc;
+            }
+        }
+
+        return null;
+    }
+
     private List<String> getFilesetNames() {
 
         return filesets.stream().map(f -> f.getModel().getName()).collect(Collectors.toList());

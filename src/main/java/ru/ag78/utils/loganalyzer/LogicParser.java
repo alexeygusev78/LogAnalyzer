@@ -4,8 +4,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.apache.log4j.Logger;
 
 /**
  * Logic expressions parsers
@@ -14,32 +14,8 @@ import java.util.regex.Pattern;
  */
 public class LogicParser {
 
+    private static final Logger log = Logger.getLogger(LogicParser.class);
     private Deque<Predicate<String>> stack = new LinkedList<>();
-    private final String pattern = "AND|OR|NOT|\\\"[\\w\\s\\.]+\\\"|\\(|\\)"; // "AND|OR|NOT|\\\"[а-яА-Яa-zA-Z0-9_\\s\\.]+\\\"|\\(|\\)"
-
-    /**
-     * Parse to tokens logic expression.
-     * @param expr
-     * @return
-     * @throws Exception
-     */
-    public Queue<String> toTokens(String expr) throws Exception {
-
-        return toTokens(expr, this.pattern);
-    }
-
-    public Queue<String> toTokens(String expr, String pattern) throws Exception {
-
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(expr);
-
-        LinkedList<String> tokens = new LinkedList<>();
-        while (m.find()) {
-            tokens.add(m.group());
-        }
-
-        return tokens;
-    }
 
     /**
      * Constructs logic predicate for supplied expression.
@@ -60,7 +36,7 @@ public class LogicParser {
             if (pw.isEmpty()) {
                 continue;
             }
-            System.out.println("pw=" + pw.toString());
+            log.debug("pw=" + pw.toString());
 
             if (cur == null) {
                 cur = pw;
@@ -90,9 +66,9 @@ public class LogicParser {
         PredicateWrapper pw = new PredicateWrapper();
         String token = null;
         while ((token = tokens.poll()) != null) {
-            System.out.println("token=" + token);
+            log.debug("token=" + token);
 
-            if (this.isAnd(token)) {
+            if (isAnd(token)) {
                 pw.setOperation(Operation.AND);
             } else if (this.isOr(token)) {
                 pw.setOperation(Operation.OR);

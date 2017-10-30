@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.cli.Options;
-import org.apache.log4j.Logger;
 
 import ru.ag78.api.utils.SafeTypes;
 import ru.ag78.useful.helpers.OptionsHelper;
@@ -24,7 +23,6 @@ import ru.ag78.utils.loganalyzer.ui.LogAnalyzerGUI;
  */
 public class LogAnalyzer implements OptionsInitializer {
 
-    private static final Logger log = Logger.getLogger(LogAnalyzer.class);
     private OptionsHelper options;
 
     public class Opts {
@@ -68,7 +66,6 @@ public class LogAnalyzer implements OptionsInitializer {
         if (options.isHelp()) {
             StringBuilder header = new StringBuilder();
             header.append("LogAnalyzer command-line utility.").append(System.lineSeparator());
-            // header.append("Use -Dfile.encoding=<encoding_name> for set up encoding of the source file.");
 
             StringBuilder synt = new StringBuilder("loganalyzer [<option>...]");
             synt.append(" [-Dfile.encoding=<encoding_name>]");
@@ -110,7 +107,8 @@ public class LogAnalyzer implements OptionsInitializer {
                 final String filter = options.getOption(Opts.FILTER);
                 System.out.println("filter={" + filter + "}");
                 LogicParser lp = new LogicParser();
-                Queue<String> tokens = lp.toTokens(filter);
+                Tokenizable t = new Tokenizer1();
+                Queue<String> tokens = t.toTokens(filter);
                 Predicate<String> p = lp.makePredicate(tokens).getPredicate();
                 s = s.filter(p);
             }

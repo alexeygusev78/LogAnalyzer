@@ -109,8 +109,9 @@ public class ParserTest {
 
         String expr = "\"волк\" AND \"лиса\" OR \"тюлень\" AND \"олень\" AND \"Орел\" OR \"Щука\"";
 
+        Tokenizable t = new Tokenizer1();
         LogicParser lp = new LogicParser();
-        Queue<String> tokens = lp.toTokens(expr);
+        Queue<String> tokens = t.toTokens(expr);
         PredicateWrapper pw = lp.makePredicate(tokens);
         System.out.println("pw=" + pw.toString());
     }

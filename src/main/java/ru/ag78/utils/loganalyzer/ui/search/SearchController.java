@@ -1,10 +1,18 @@
 package ru.ag78.utils.loganalyzer.ui.search;
 
 import java.util.List;
+import java.util.Queue;
 
 import org.apache.log4j.Logger;
 
+import ru.ag78.utils.loganalyzer.LogicParser;
+import ru.ag78.utils.loganalyzer.PredicateWrapper;
+import ru.ag78.utils.loganalyzer.Tokenizable;
+import ru.ag78.utils.loganalyzer.Tokenizer1;
 import ru.ag78.utils.loganalyzer.ui.MainController;
+import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
+import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
+import ru.ag78.utils.loganalyzer.ui.fileset.LogFile;
 
 public class SearchController implements SearchView.Events {
 
@@ -41,6 +49,28 @@ public class SearchController implements SearchView.Events {
     public void onSearch(String filter) {
 
         log.debug("onSearch source=" + model.getSelectedFileset() + " filter=" + filter);
+
+        try {
+            String fsName = model.getSelectedFileset();
+            FilesetController fsctrl = mainCtrl.getFilesetController(fsName);
+            FilesetModel fsm = fsctrl.getModel();
+            log.debug("Loaded Fileset name=" + fsm.getName());
+
+            List<LogFile> list = fsm.getFiles();
+
+            Tokenizable t = new Tokenizer1();
+            Queue<String> tokens = t.toTokens(filter);
+
+            LogicParser lp = new LogicParser();
+            PredicateWrapper p = lp.constructPredicate(tokens);
+
+            // TODO: вставить сюда парсинг каждого файла из Filest'а
+            // ...
+
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+
     }
 
     @Override
