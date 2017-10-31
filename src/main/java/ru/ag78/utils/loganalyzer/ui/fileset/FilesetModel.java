@@ -1,13 +1,15 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class FilesetModel {
 
-    private ObservableList<LogFile> files = FXCollections.observableArrayList(new ArrayList<LogFile>());
+    private ObservableList<LogFileItem> files = FXCollections.observableArrayList(new ArrayList<LogFileItem>());
     private String name;
 
     /**
@@ -20,12 +22,17 @@ public class FilesetModel {
         this.name = name;
     }
 
-    public ObservableList<LogFile> getFiles() {
+    public ObservableList<LogFileItem> getFiles() {
 
         return files;
     }
 
-    public void addFile(LogFile file) {
+    public List<LogFileItem> getSelectedFiles() {
+
+        return files.stream().filter(f -> f.isSelected()).map(f -> f.clone()).collect(Collectors.toList());
+    }
+
+    public void addFile(LogFileItem file) {
 
         files.add(file);
     }
@@ -35,7 +42,7 @@ public class FilesetModel {
      * @param filename
      * @return - true if file has been removed & false if file did not found in list.
      */
-    public boolean deleteFile(LogFile item) {
+    public boolean deleteFile(LogFileItem item) {
 
         return files.removeIf(i -> item.equals(i));
     }

@@ -31,7 +31,7 @@ public class FilesetView {
 
     // UI controls
     private Node root;
-    private ListView<LogFile> listView;
+    private ListView<LogFileItem> listView;
 
     /**
      * События вьюхи Fileset
@@ -44,7 +44,7 @@ public class FilesetView {
 
         public void onAddFile();
 
-        public void onDeleteFile(LogFile item);
+        public void onDeleteFile(LogFileItem item);
     }
 
     /**
@@ -90,7 +90,7 @@ public class FilesetView {
 
         Button btnDel = new Button("Delete");
         btnDel.setOnAction(t -> {
-            LogFile selected = listView.getSelectionModel().getSelectedItem();
+            LogFileItem selected = listView.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 eventListener.onDeleteFile(selected);
             }
@@ -99,7 +99,7 @@ public class FilesetView {
         toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel);
 
         // listView
-        listView = new ListView<LogFile>();
+        listView = new ListView<LogFileItem>();
 
         layout.setTop(toolbar);
         layout.setCenter(listView);
@@ -120,7 +120,7 @@ public class FilesetView {
      * Установить коллекцию файлов для отображения в списке.
      * @param fileList
      */
-    public void setFileList(ObservableList<LogFile> fileList) {
+    public void setFileList(ObservableList<LogFileItem> fileList) {
 
         // ObservableList<LogFile> items = FXCollections.observableArrayList(fileList);
         listView.setItems(fileList);

@@ -24,6 +24,7 @@ public class SearchView {
     private Node root;
     private ChoiceBox<String> cbSource;
     private TextField textFilter;
+    private TextArea searchResults;
 
     /**
      * SearchView events interface
@@ -105,7 +106,7 @@ public class SearchView {
         });
 
         // Search results window
-        TextArea searchResults = new TextArea();
+        searchResults = new TextArea();
         searchResults.setId("textSearchResults");
 
         // add to layout
@@ -124,5 +125,10 @@ public class SearchView {
         cbSource.getItems().clear();
         filesets.stream().forEach(fs -> cbSource.getItems().add(fs));
         cbSource.getSelectionModel().selectFirst();
+    }
+
+    public void setSearchResult(String result) {
+
+        searchResults.setText(result);
     }
 }

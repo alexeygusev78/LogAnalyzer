@@ -26,6 +26,7 @@ public class PredicateWrapper {
      * @param isNot
      */
     public PredicateWrapper(Operation operation, String expr, boolean isNot) {
+
         super();
         this.operation = operation;
         this.expr = expr;
@@ -78,7 +79,7 @@ public class PredicateWrapper {
         isEmpty = false;
     }
 
-    protected Predicate<String> getPredicate() {
+    public Predicate<String> getPredicate() {
 
         if (predicate == null) {
             predicate = x -> x.toLowerCase().contains(expr);

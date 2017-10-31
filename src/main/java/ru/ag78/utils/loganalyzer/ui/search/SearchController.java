@@ -12,7 +12,7 @@ import ru.ag78.utils.loganalyzer.Tokenizer1;
 import ru.ag78.utils.loganalyzer.ui.MainController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
-import ru.ag78.utils.loganalyzer.ui.fileset.LogFile;
+import ru.ag78.utils.loganalyzer.ui.fileset.LogFileItem;
 
 public class SearchController implements SearchView.Events {
 
@@ -56,17 +56,23 @@ public class SearchController implements SearchView.Events {
             FilesetModel fsm = fsctrl.getModel();
             log.debug("Loaded Fileset name=" + fsm.getName());
 
-            List<LogFile> list = fsm.getFiles();
-
             Tokenizable t = new Tokenizer1();
             Queue<String> tokens = t.toTokens(filter);
 
             LogicParser lp = new LogicParser();
             PredicateWrapper p = lp.constructPredicate(tokens);
 
-            // TODO: вставить сюда парсинг каждого файла из Filest'а
-            // ...
+            StringBuilder sb = new StringBuilder();
+            sb.append("Search string={" + filter + "}").append("\r\n");
 
+            List<LogFileItem> files = fsm.getSelectedFiles();
+            for (LogFileItem f: files) {
+                log.debug("f=" + f.toString());
+                StringBuilder res = model.search(f, p.getPredicate());
+                sb.append(res);
+            }
+
+            view.setSearchResult(sb.toString());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
