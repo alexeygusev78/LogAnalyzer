@@ -24,11 +24,11 @@ public class FilesetController implements FilesetView.Events {
         this.view = new FilesetView(this);
         this.model = new FilesetModel(name);
 
-        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog1.log"));
-        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog2.log"));
-        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog3.log"));
-        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog4.log"));
-        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog5.log"));
+        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog1.log"));
+        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog2.log"));
+        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog3.log"));
+        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog4.log"));
+        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog5.log"));
 
         init();
     }

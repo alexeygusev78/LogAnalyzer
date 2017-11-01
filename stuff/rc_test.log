@@ -1,0 +1,29 @@
+2017-10-16 00:00:00.229 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@0|16-10-2017 00:00:00 +3|ReloadCache|ClientInfo|aleksandr|isOnline:0@@@@
+2017-10-16 00:00:00.231 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@0|16-10-2017 00:00:00 +3|ReloadCache|ClientInfo|ADMIN19|isOnline:0@@@@
+2017-10-16 00:09:09.699 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:09:09 +3|ReloadCache|ClientInfo|ADMIN34|isOnline:1@@@@
+2017-10-16 00:10:04.401 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog4@@0|16-10-2017 00:10:04 +3|ReloadCache|ClientInfo|ADMIN34|isOnline:0@@@@
+2017-10-16 00:10:07.810 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:10:07 +3|ReloadCache|dealswap|DEALS|7639237@@@@
+2017-10-16 00:10:27.806 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:10:27 +3|ReloadCache|dealswap|DEALS|7639237@@@@
+2017-10-16 00:10:28.206 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:10:28 +3|ReloadCache|dealswap|DEALS|7639237@@@@
+2017-10-16 00:14:12.913 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@0|16-10-2017 00:14:12 +3|ReloadCache|ClientInfo|aleksandr|isOnline:1@@@@
+2017-10-16 00:14:40.833 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@0|16-10-2017 00:14:40 +3|ReloadCache|blog10|DEALTIMEOUT@@@@
+2017-10-16 00:14:41.040 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@0|16-10-2017 00:14:40 +3|ReloadCache|blog10|DEALTIMEOUT@@@@
+2017-10-16 00:14:41.045 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@9|16-10-2017 00:14:40.986|ReloadCache|CacheSpread|ALL@@@@
+2017-10-16 00:14:45.667 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:14:45 +3|ReloadCache|blog1|DEALTIMEOUT@@@@
+2017-10-16 00:14:45.673 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@0|16-10-2017 00:14:45 +3|ReloadCache|blog8|DEALTIMEOUT@@@@
+2017-10-16 00:14:45.677 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@1830|16-10-2017 00:14:45.548|ReloadCache|CacheSpread|ALL@@@@
+2017-10-16 00:14:54.250 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@143|16-10-2017 00:14:54 +3|ReloadCache|CacheSpread|25|USDRUR|0.05|0.5|0|0|0|1@@@@
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@6|16-10-2017 00:14:54.256|AutoQuoteLimit|USD|RUR|25|0@@@@
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@0|16-10-2017 00:14:54 +3|ReloadCache|blog11|DEALTIMEOUT@@@@
+2017-10-16 00:14:54.448 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@147|16-10-2017 00:14:54 +3|ReloadCache|CacheSpread|25|USDRUR|0.05|0.5|0|0|0|1@@@@
+2017-10-16 00:14:54.650 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@6|16-10-2017 00:14:54.453|AutoQuoteLimit|USD|RUR|25|0@@@@
+2017-10-16 00:14:54.650 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@0|16-10-2017 00:14:54 +3|ReloadCache|blog9|DEALTIMEOUT@@@@
+2017-10-16 00:14:58.032 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@152|16-10-2017 00:14:58 +3|ReloadCache|CacheSpread|25|EURRUR|0.05|0.5|0|0|0.005|1@@@@
+2017-10-16 00:14:58.212 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@1829|16-10-2017 00:14:58.037|AutoQuoteLimit|EUR|RUR|25|0@@@@
+2017-10-16 00:14:58.212 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@0|16-10-2017 00:14:58 +3|ReloadCache|blog12|DEALTIMEOUT@@@@
+2017-10-16 00:14:58.225 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@156|16-10-2017 00:14:58 +3|ReloadCache|CacheSpread|25|EURRUR|0.05|0.5|0|0|0.005|1@@@@
+2017-10-16 00:14:58.428 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@1832|16-10-2017 00:14:58.229|AutoQuoteLimit|EUR|RUR|25|0@@@@
+2017-10-16 00:14:58.428 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@0|16-10-2017 00:14:58 +3|ReloadCache|blog8|DEALTIMEOUT@@@@
+2017-10-16 00:15:02.327 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog6@@161|16-10-2017 00:15:02 +3|ReloadCache|CacheSpread|25|GBPRUR|0.05|0.5|0|0|0|0@@@@
+2017-10-16 00:15:02.337 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog6@@39|16-10-2017 00:15:02.331|AutoQuoteLimit|GBP|RUR|25|0@@@@
+2017-10-16 00:15:02.338 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog6@@0|16-10-2017 00:15:02 +3|ReloadCache|blog6|DEALTIMEOUT@@@@

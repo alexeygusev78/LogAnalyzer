@@ -56,7 +56,7 @@ public class LogicParserTest {
             Predicate<String> p = lp.makePredicate(tokens).getPredicate();
             Assert.assertNotNull(p);
 
-            Assert.assertFalse(p.test("Wolf - санитар леса"));
+            Assert.assertFalse(p.test("the wolf is the nurse of the forest"));
             Assert.assertFalse(p.test("fox - краса"));
             Assert.assertTrue(p.test("wolf и fox - друзья"));
         } catch (Exception e) {

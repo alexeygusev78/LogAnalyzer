@@ -10,4 +10,6 @@ import java.util.Queue;
 public interface Tokenizable {
 
     public Queue<String> toTokens(String expr) throws Exception;
+
+    public Queue<Token> toTokens2(String expr) throws Exception;
 }

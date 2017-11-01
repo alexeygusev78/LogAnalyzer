@@ -18,7 +18,7 @@ public class LogicParser {
     private Deque<Predicate<String>> stack = new LinkedList<>();
 
     /**
-     * Constructs logic predicate for supplied expression.
+     * Constructs logic predicate for supplied tokens.
      * В стек пушим предикаты, разделенные по OR. 
      * Предикаты, разделенные по AND объединяем на лету.
      * При открытии скобки уходим в рекурсию.

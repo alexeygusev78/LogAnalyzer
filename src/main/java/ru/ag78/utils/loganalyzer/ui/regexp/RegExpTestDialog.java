@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ru.ag78.utils.loganalyzer.LogicParser;
+import ru.ag78.utils.loganalyzer.Token;
 import ru.ag78.utils.loganalyzer.Tokenizable;
 import ru.ag78.utils.loganalyzer.TokenizerCustom;
 
@@ -89,7 +89,7 @@ public class RegExpTestDialog {
 
         layout.setLeft(new Label("RegExp:"));
         textRegExp = new TextField();
-        textRegExp.setText("AND|OR|NOT|\\\"[\\w\\s\\.]+\\\"|\\(|\\)");
+        textRegExp.setText("\\\".+?\\\"|\\(|\\)|[\\w\\[\\]\\\\\\/\\^\\$\\.\\|\\?\\*\\+\\{\\}<>!@#%_-]+");
         layout.setCenter(textRegExp);
 
         HBox rGroup = new HBox();
@@ -119,11 +119,13 @@ public class RegExpTestDialog {
     private void onToTokens() {
 
         log.debug("onToTokens");
-        LogicParser lp = new LogicParser();
         try {
             Tokenizable t = new TokenizerCustom(textRegExp.getText());
-            Queue<String> tokens = t.toTokens(textQuery.getText());
-            String res = tokens.stream().collect(Collectors.joining("\r\n"));
+
+            Queue<Token> tokens = t.toTokens2(textQuery.getText());
+
+            //            Queue<String> tokens = t.toTokens(textQuery.getText());
+            String res = tokens.stream().map(token -> token.toString()).collect(Collectors.joining("\r\n"));
             areaResults.setText(res);
         } catch (Exception e) {
             areaResults.setText(e.toString());

@@ -50,6 +50,7 @@ public class SearchModel {
 
     /**
      * Synchronouscly search through the file.
+     * TODO: extract to SearchEngine.
      * @param f
      * @param filter
      * @param p
@@ -58,7 +59,7 @@ public class SearchModel {
      */
     public StringBuilder search(LogFileItem f, Predicate<String> p) throws Exception {
 
-        final int limit = 1000;
+        final int limit = 100;
 
         StringBuilder sb = new StringBuilder();
         sb.append("File=").append(f.getPath()).append(" encoding=" + f.getEncoding()).append("\r\n");

@@ -37,4 +37,20 @@ public class TokenizerCustom implements Tokenizable {
 
         return tokens;
     }
+
+    @Override
+    public Queue<Token> toTokens2(String expr) throws Exception {
+
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(expr);
+
+        LinkedList<Token> tokens = new LinkedList<>();
+        while (m.find()) {
+            String value = m.group();
+            Token t = new Token(value);
+            tokens.add(t);
+        }
+
+        return tokens;
+    }
 }

@@ -1,0 +1,683 @@
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog]  _____  _            _          
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog] | __  || | ___  ___ |_| ___     
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog] | __ -|| || . || . || ||  _|    
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog] |_____||_||___||_  ||_||___|    
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog]                |___|            
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog] ----------------------------------------------
+2017-10-16 00:10:08.389  INFO main     [com.alfaforex.utils.debug.FxLog] AFX Blogic is here... version: 
+2017-10-16 00:10:08.409 DEBUG main     [com.alfaforex.server.dbpb.FxBBC] Initializing BBC remote interface...
+2017-10-16 00:10:08.409 DEBUG main     [com.alfaforex.server.dbpb.FxBBC] Connecting to BBC host //172.28.23.37/BBC...
+2017-10-16 00:10:08.465 DEBUG main     [com.alfaforex.server.dbpb.FxBBC] OK
+2017-10-16 00:10:08.467  INFO main     [com.alfaforex.server.dbpb.pst.StatementContainer] StatementContainer|Initialize...
+2017-10-16 00:10:08.470 DEBUG main     [com.alfaforex.server.dbpb.FxCrypto] Initialize the Java2Com Environment
+2017-10-16 00:10:08.475 DEBUG main     [com.alfaforex.server.dbpb.FxCrypto] Crypto|Create
+2017-10-16 00:10:08.475  WARN main     [com.alfaforex.server.dbpb.ICModulDispFactory] Not found "comprovider" configuration parameter. Using default value: bridge2java
+2017-10-16 00:10:08.490 DEBUG main     [com.alfaforex.server.dbpb.FxCrypto] Crypto|Setting Signer Certificate from file
+2017-10-16 00:10:08.492 DEBUG main     [com.alfaforex.server.dbpb.FxCrypto] Crypto|Init Provider
+2017-10-16 00:10:08.851 DEBUG main     [com.alfaforex.server.dbpb.FxCrypto] Crypto|OK
+2017-10-16 00:10:08.854 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|CURRENCY
+2017-10-16 00:10:08.858 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|select currencyid, currencyname, currencycode, decs, minor from currency |
+2017-10-16 00:10:08.868 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:10:08.868 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTYPE
+2017-10-16 00:10:08.871 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|select dealtypeid, upper(dealtypedescr) from dealtype |
+2017-10-16 00:10:08.874 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:10:08.874 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|CLIENTS
+2017-10-16 00:10:08.881 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|7|Select userid, login, forexid, groupid, admin, usesign, isnewdeal, cutgroup, offshore, margincontrol, groupright, gfi, isstrikedeal, branch_ind, office_id, limits from client |
+2017-10-16 00:10:09.289 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:10:09.289 DEBUG main     [com.alfaforex.server.dbpb.FxCalendarCache] LOAD CACHE - CALENDAR
+2017-10-16 00:10:09.294 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|SELECT 2 type, cur1, cur2, oldvaldate, newvaldate FROM spotvaldate UNION SELECT 1 type, cur1, cur2, oldvaldate, newvaldate FROM tomvaldate |
+2017-10-16 00:10:09.294 DEBUG main     [com.alfaforex.server.dbpb.FxCalendarCache] LOAD CACHE - OK
+2017-10-16 00:10:09.294 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:10:09.298 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:10:09.299 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:10:09.299 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|VDATEINTERVAL
+2017-10-16 00:10:09.303 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select vdateintervalid, vdateintervaldescr from valueDataInterval |
+2017-10-16 00:10:09.304 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:10:09.304 DEBUG main     [com.alfaforex.server.dbpb.FxHolidayCache] LOAD HOLIDAY CACHE - HOLIDAY
+2017-10-16 00:10:09.398 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|94|select ccy, dt from holiday where dt between today-20 and today+20|
+2017-10-16 00:10:09.419 DEBUG main     [com.alfaforex.server.dbpb.FxHolidayCache] LOAD HOLIDAY CACHE - OK
+2017-10-16 00:10:09.426 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Connecting to database...
+2017-10-16 00:10:09.426 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Connection to the database established!
+2017-10-16 00:10:09.429 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Connecting to socket server (localhost:5001@blog1)...
+2017-10-16 00:10:09.430 DEBUG main     [com.alfaforex.server.dbpb.BLogic] OK
+2017-10-16 00:10:09.430 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Begin authorization as 'blog1'...
+2017-10-16 00:10:09.430 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> auth@@1|1|sys|0|blog1|[thDfv@@
+2017-10-16 00:10:09.430 DEBUG main     [com.alfaforex.server.dbpb.BLogic] OK
+2017-10-16 00:10:09.498 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Connection to MQ store is established: 172.16.15.17(1417)'FXQM':'java.server.chnl':'MASTERQUEUE'
+2017-10-16 00:10:09.499 DEBUG main     [com.alfaforex.server.dbpb.BLogic] Initializing caches...
+2017-10-16 00:10:09.499 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...CacheCalculatedQuotes
+2017-10-16 00:10:09.510  INFO main     [com.alfaforex.utils.cache.CacheCurrencyPair] Cache com.alfaforex.utils.cache.CacheCurrencyPair reloaded successfully in 8 ms.
+2017-10-16 00:10:09.644  INFO main     [com.alfaforex.utils.cache.CacheSpread] Cache com.alfaforex.utils.cache.CacheSpread reloaded successfully in 127 ms.
+2017-10-16 00:10:09.709  INFO main     [com.alfaforex.utils.cache.CacheSourcer] Cache com.alfaforex.utils.cache.CacheSourcer reloaded successfully in 63 ms.
+2017-10-16 00:10:09.714  INFO main     [com.alfaforex.utils.cache.CacheMainsourcer] Cache com.alfaforex.utils.cache.CacheMainsourcer reloaded successfully in 3 ms.
+2017-10-16 00:10:09.726  INFO main     [com.alfaforex.utils.cache.CacheRawQuotes] Cache com.alfaforex.utils.cache.CacheRawQuotes reloaded successfully in 7 ms.
+2017-10-16 00:10:09.732 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:09.752 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:09.791 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:09.805 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:09.842 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:09.956 ERROR main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] java.lang.NullPointerException
+2017-10-16 00:10:10.065  INFO main     [com.alfaforex.utils.cache.CacheCalculatedQuotes] Cache com.alfaforex.utils.cache.CacheCalculatedQuotes reloaded successfully in 565 ms.
+2017-10-16 00:10:10.065 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...CacheCurrencyPair
+2017-10-16 00:10:10.065 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...CacheSpread
+2017-10-16 00:10:10.065 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...CacheClient
+2017-10-16 00:10:10.068 DEBUG main     [com.alfaforex.utils.debug.FxLog] class com.alfaforex.utils.cache.CacheClients loadObject...
+2017-10-16 00:10:10.399  INFO main     [com.alfaforex.utils.cache.CacheClients] Cache com.alfaforex.utils.cache.CacheClients reloaded successfully in 331 ms.
+2017-10-16 00:10:10.399 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...CacheGFI
+2017-10-16 00:10:10.405  INFO main     [com.alfaforex.utils.cache.CacheGFI] CacheGFI successfully loaded in 6 ms with 5 items.
+2017-10-16 00:10:10.405 DEBUG main     [com.alfaforex.server.dbpb.BLogic] ...done
+2017-10-16 00:10:10.405  INFO main     [com.alfaforex.server.dbpb.BLogic] SelfCheck: testRemote
+2017-10-16 00:10:10.407 DEBUG main     [ru.afxng.client.service.ProxyServiceFactory] ProxyServiceFactory.getProperties
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory] +-+getProperties+-+
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   java.naming.provider.url=http-remoting://172.28.23.37:8080
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   java.naming.factory.initial=org.jboss.naming.remote.client.InitialContextFactory
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   java.naming.security.principal=maxt
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   jboss.naming.client.ejb.context=null
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   java.naming.factory.url.pkgs=org.jboss.ejb.client.naming
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory]   java.naming.security.credentials=pinguin
+2017-10-16 00:10:10.407  INFO main     [ru.afxng.client.service.ProxyServiceFactory] +-+------+-+
+2017-10-16 00:10:10.584  INFO main     [org.xnio] XNIO version 3.3.1.Final
+2017-10-16 00:10:10.620  INFO main     [org.xnio.nio] XNIO NIO Implementation Version 3.3.1.Final
+2017-10-16 00:10:10.647 DEBUG t" I/O-1 [org.xnio.nio] Started channel thread 'Remoting "config-based-naming-client-endpoint" I/O-1', selector sun.nio.ch.WindowsSelectorImpl@6bc406
+2017-10-16 00:10:11.499 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:13.500 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:15.501 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:15.671  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test AccountSOAPClientRemote... SUCCEEDED. getName=ru.afxng.server.eq.proxy.AccountSOAPClientProxy
+2017-10-16 00:10:15.677  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test DealInfoServiceRemote... SUCCEEDED. getName=ru.afxng.server.service.proxy.DealInfoServiceProxy
+2017-10-16 00:10:15.683  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test FIXServiceRemote... SUCCEEDED. getName=ru.afxng.server.service.proxy.FIXServiceProxy
+2017-10-16 00:10:15.687  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test OrderProcessorProxyRemote... SUCCEEDED. getName=ru.afxng.server.orderprocessor.ejb.proxy.OrderProcessorProxy
+2017-10-16 00:10:15.691  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test ServicePointRemote... SUCCEED. getName=ru.afxng.server.backend.domain.ServicePointAccess
+2017-10-16 00:10:15.696  INFO main     [com.alfaforex.server.dbpb.BLogic]   Test AuthServiceProxy... SUCCEED. getName=AuthServiceProxy
+2017-10-16 00:10:15.696  INFO main     [com.alfaforex.server.dbpb.BLogic] SelfCheck: testRemote SUCCEEDED in 5291 ms
+2017-10-16 00:10:15.697 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> SYS@@connectedclients@@
+2017-10-16 00:10:15.697 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] Requesting QState from AuthModule
+2017-10-16 00:10:15.699  INFO main     [com.alfaforex.server.dbpb.BLogic] >>> AuthModule@@*prc*@@1|16-10-2017 00:10:15.699|GetQSState@@@@
+2017-10-16 00:10:15.699 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] ...exited from wait for GetQState response
+2017-10-16 00:10:15.700 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> ADC@@*adp*@@0|16-10-2017 00:10:15 +3|adGetPartnersAvailabilityInfo|@@
+2017-10-16 00:10:15.700 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> ADC@@*adp*@@0|16-10-2017 00:10:15 +3|adSetExecOrderWaitPeriod|5@@
+2017-10-16 00:10:15.700 DEBUG main     [com.alfaforex.server.dbpb.BLogicExample] mode=run
+2017-10-16 00:10:15.700  INFO main     [com.alfaforex.server.dbpb.BLogicExample] startBlogic
+2017-10-16 00:10:15.700 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *YO!*|afxng1@@8652|16-10-2017 00:10:10.000|ConfirmAllOrders@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|*rq*|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|*rc*|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|*adp*|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.Starter] Subscribing on Calculated Quotes...
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl1|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl2|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl3|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl4|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl5|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl6|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl7|true@@
+2017-10-16 00:10:15.701 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl8|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl9|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl10|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl11|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl12|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl13|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl14|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl15|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl17|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl16|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl19|true@@
+2017-10-16 00:10:15.702 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl18|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl21|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl20|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl23|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl22|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl25|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl24|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl27|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl26|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl29|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl28|true@@
+2017-10-16 00:10:15.703 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl31|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl30|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl34|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl35|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl32|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl33|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl38|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl39|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl36|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl37|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl42|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl43|true@@
+2017-10-16 00:10:15.704 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl40|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl41|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl46|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl47|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl44|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl45|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl51|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl50|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl49|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl48|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl55|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl54|true@@
+2017-10-16 00:10:15.705 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl53|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl52|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl59|true@@
+2017-10-16 00:10:15.706 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] DEALERS_ONLINE|0|
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl58|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl57|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl56|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl63|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl62|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl61|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl60|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl68|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl69|true@@
+2017-10-16 00:10:15.706 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl70|true@@
+2017-10-16 00:10:15.707 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] ConfirmAllOrders is processing!
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl71|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl64|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl65|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl66|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl67|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl72|true@@
+2017-10-16 00:10:15.707 DEBUG Thread-7 [com.alfaforex.server.dbpb.BLogic] >>> SYS@@Setfilter|tl73|true@@
+2017-10-16 00:10:15.728 DEBUG main     [connectionmanager.DBConnectionManager] Created a new connection in pool forex
+2017-10-16 00:10:15.731 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|24|Select 1 type, individualid, statustime, ordertypeext from orders where status = 5 AND ( dealerwait != 1 OR dealerwait IS NULL ) UNION Select 2 type, individualid, statustime, ordertypeext from orders where status = 6 and flag <> 4 UNION Select 3 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 1 UNION Select 4 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 2 UNION Select 5 type, individualid, statustime, ordertypeext from orders where status = 11 UNION Select 6 type, individualid, statustime, ordertypeext from orders where status = 12 UNION Select 7 type, individualid, statustime, ordertypeext from orders where status = 5 AND dealerwait = 1 order by statustime|
+2017-10-16 00:10:15.737 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|Select * from orders where (goodtilllong < ? and (status = 1 or status = -1)) and (flag is null or flag <> 4)|1508101815732
+2017-10-16 00:10:15.746 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|46|ConfirmAllOrders
+2017-10-16 00:10:15.746 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|connectedclients@@total=35@@BBC|/172.28.23.33:5001|Sun Oct 15 21:03:33 MSK 2017|0|40000|0@@blog12|/127.0.0.1:5001|Sun Oct 15 21:03:50 MSK 2017|0|40000|0@@blog11|/127.0.0.1:5001|Sun Oct 15 21:03:48 MSK 2017|0|40000|0@@blog10|/127.0.0.1:5001|Sun Oct 15 21:03:47 MSK 2017|0|40000|0@@dealswap|/172.28.23.33:5001|Sun Oct 15 21:04:12 MSK 2017|0|40000|0@@AlfaRates|/217.12.97.140:5001|Sun Oct 15 21:03:15 MSK 2017|0|40000|0@@translator|/172.28.23.33:5001|Sun Oct 15 21:04:00 MSK 2017|0|40000|0@@bbccalc9|/172.28.23.33:5001|Sun Oct 15 21:03:31 MSK 2017|0|40000|0@@bbccalc8|/172.28.23.33:5001|Sun Oct 15 21:03:30 MSK 2017|0|40000|0@@bbccalc7|/172.28.23.33:5001|Sun Oct 15 21:03:29 MSK 2017|0|40000|0@@bbccalc6|/172.28.23.33:5001|Sun Oct 15 23:06:34 MSK 2017|0|40000|0@@bbccalc5|/172.28.23.33:5001|Sun Oct 15 21:03:26 MSK 2017|0|40000|0@@bbccalc4|/172.28.23.33:5001|Sun Oct 15 21:03:25 MSK 2017|0|40000|0@@bbccalc3|/172.28.23.33:5001|Sun Oct 15 21:03:24 MSK 2017|0|40000|0@@calc1|/172.28.23.33:5001|Sun Oct 15 21:04:00 MSK 2017|0|40000|0@@bbccalc2|/172.28.23.33:5001|Sun Oct 15 21:03:23 MSK 2017|0|40000|0@@bbccalc1|/172.28.23.33:5001|Sun Oct 15 21:03:22 MSK 2017|0|40000|0@@TPrinter|/172.28.23.33:5001|Sun Oct 15 21:04:31 MSK 2017|0|40000|0@@blog9|/127.0.0.1:5001|Sun Oct 15 21:03:46 MSK 2017|0|40000|0@@blog8|/127.0.0.1:5001|Sun Oct 15 21:03:44 MSK 2017|0|40000|0@@blog7|/127.0.0.1:5001|Sun Oct 15 21:03:43 MSK 2017|0|40000|0@@blog6|/127.0.0.1:5001|Sun Oct 15 21:03:42 MSK 2017|0|40000|0@@DBProccessor|/172.28.23.33:5001|Sun Oct 15 21:03:56 MSK 2017|0|40000|0@@blog5|/127.0.0.1:5001|Sun Oct 15 21:03:41 MSK 2017|0|40000|0@@ARFeeder|/172.28.23.33:5001|Sun Oct 15 21:04:22 MSK 2017|0|40000|0@@SmartFX|/172.28.23.33:5001|Sun Oct 15 21:05:31 MSK 2017|0|40000|0@@blog4|/127.0.0.1:5001|Sun Oct 15 21:03:40 MSK 2017|0|40000|0@@blog3|/127.0.0.1:5001|Sun Oct 15 21:03:39 MSK 2017|0|40000|0@@blog2|/127.0.0.1:5001|Sun Oct 15 21:03:37 MSK 2017|0|40000|0@@FixServer|/172.28.23.33:5001|Sun Oct 15 21:04:19 MSK 2017|0|40000|0@@blog1|/127.0.0.1:5001|Mon Oct 16 00:10:09 MSK 2017|0|0|0@@afxng1|/172.28.23.33:5001|Sun Oct 15 21:03:19 MSK 2017|0|40000|0@@NewsTranslator|/172.28.23.33:5001|Sun Oct 15 21:04:28 MSK 2017|0|40000|0@@Bridge|/172.19.7.27:5001|Sun Oct 15 22:03:43 MSK 2017|0|40000|0@@bridge_cedr34|/172.25.188.225:5001|Sun Oct 15 22:03:46 MSK 2017|0|40000|0@@@@
+2017-10-16 00:10:15.748  INFO main     [com.alfaforex.server.dbpb.BLogic] >>> FixServer@@*fix*@@2|16-10-2017 00:10:15.748|GetOnlineClients@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|2|
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|*rq*|true@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|*rc*|true@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|*adp*|true@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl1|true@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl2|true@@@@
+2017-10-16 00:10:15.748 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl3|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl4|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl5|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl6|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl7|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl8|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl9|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl10|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl11|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl12|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl13|true@@@@
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.749 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl14|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl15|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl17|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl16|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl19|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl18|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl21|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl20|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl23|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl22|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl25|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl24|true@@@@
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.750 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl27|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl26|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl29|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl28|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl31|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl30|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl34|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl35|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl32|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl33|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl38|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl39|true@@@@
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.751 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl36|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl37|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl42|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl43|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl40|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl41|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl46|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl47|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl44|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl45|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl51|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl50|true@@@@
+2017-10-16 00:10:15.752 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl49|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl48|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl55|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl54|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl53|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl52|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl59|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl58|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl57|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl56|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl63|true@@@@
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.753 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl62|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl61|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl60|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl68|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl69|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl70|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl71|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl64|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl65|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl66|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl67|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl72|true@@@@
+2017-10-16 00:10:15.754 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|OK
+2017-10-16 00:10:15.755 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< SYS|SetFilter@@SetFilter|0|OK|tl73|true@@@@
+2017-10-16 00:10:15.755 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|OK
+2017-10-16 00:10:15.755 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *fix*|FixServer@@2|16-10-2017 00:10:15.749|GetOnlineClients|1|alfa_forex@@@@
+2017-10-16 00:10:15.757 DEBUG main     [com.alfaforex.server.dbpb.processors.FixProcessor] processGetOnlineClients
+2017-10-16 00:10:15.757 DEBUG main     [com.alfaforex.server.dbpb.processors.FixProcessor] FixClients online: 'alfa_forex'
+2017-10-16 00:10:15.758 DEBUG main     [com.alfaforex.server.dbpb.processors.FixProcessor] update client set Isonline = 1 where TRIM(login) in ('alfa_forex');
+2017-10-16 00:10:15.851 DEBUG main     [com.alfaforex.server.dbpb.processors.FixProcessor] Client states merged successfully
+2017-10-16 00:10:15.851 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|96|GetOnlineClients
+2017-10-16 00:10:17.502 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:19.502 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:21.503 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:23.503 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:25.504 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:27.504 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:27.607 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *ds*|dealswap@@D5022284A4BEA34AA80D35127B87BBD6|16-10-2017 00:10:27.459|DealInfo|7639237|8844849|1|ALBR@@@@
+2017-10-16 00:10:27.652 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> *rc*@@0|16-10-2017 00:10:27 +3|ReloadCache|dealswap|DEALS|7639237@@
+2017-10-16 00:10:27.652 DEBUG main     [com.alfaforex.server.dbpb.processors.DSProcessor] SELECT dealTypeId, parentId FROM dealarc WHERE dealid = 7639237;
+2017-10-16 00:10:27.670 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select idconversion from conversions_md where dealarcid=7639237
+2017-10-16 00:10:27.674 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select initaction from dealswap where iddealswap = 8844849
+2017-10-16 00:10:27.680 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|SELECT d.iddocument, d.orderindividualid, d.dealtypeid, d.opicsdealno, d.parentid, d.ammount, d.ammount2, d.source, CASE WHEN d.reversed not in (1, 2) OR d.reversed IS NULL THEN 0 ELSE 1 END as rev, p1.instruction ins1, p2.instruction ins2, doc.isnetting , pineq FROM dealarc d, OUTER platinstruction p1, OUTER platinstruction p2, OUTER docdeals doc WHERE dealid = ? AND p1.id = d.platbankref AND p2.id = d.platclientref AND d.iddocument = doc.iddocument|7639237
+2017-10-16 00:10:27.687 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|SELECT ammount, ammount2, price, cur1, cur2, dealdate, valuedata, clientname, cur1vdate, cur2vdate, parentid, iscontra FROM dealarc WHERE dealid = ? |7639237
+2017-10-16 00:10:27.696 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|select max(status) from ticketstore where dealid=?|7639237
+2017-10-16 00:10:27.699 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|select isoutforex from client where login = ?|ALBR
+2017-10-16 00:10:27.703 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|SELECT body, index FROM ticketstore WHERE dealid = ?  and status=? ORDER BY index|7639237;0
+2017-10-16 00:10:27.706 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|DELETE FROM ticketstore WHERE dealid = ? and status=0|7639237
+2017-10-16 00:10:27.708 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|select isoutforex from client where login = ?|ALBR
+2017-10-16 00:10:27.716 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|SELECT c.login, c.firstname, c.secondname, c.thirdname, c.groupid, c.password, c.company, c.forexid, c.leverage as f1, c.stopout as f2, c.limits, c.cutGroup, c.useSign, c.groupRight, c.offshore, c.isnewdeal, c.calllevel, c.margincontrol, c.clienttypeid, c.ver, c.openpositionrule, c.valid, c.admin, c.isstrikedeal, c.notifyGroupId, c.isonline, c.email, c.phone, c.gfi, c.branch_ind, c.isoutforex, c.autoprinttickets, c.fixticketexport, c.office_id, c.userid as uid, c.opicscmne, c.pin_fl, c.isdemouser, c.interdealer, c.ipaddress, c.position, c.address, c.maincontract FROM client c WHERE c.login = ?;|ALBR
+2017-10-16 00:10:27.718 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select server from dealarc where dealid = 7639237
+2017-10-16 00:10:27.726 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|SELECT c.login, c.firstname, c.secondname, c.thirdname, c.groupid, c.password, c.company, c.forexid, c.leverage as f1, c.stopout as f2, c.limits, c.cutGroup, c.useSign, c.groupRight, c.offshore, c.isnewdeal, c.calllevel, c.margincontrol, c.clienttypeid, c.ver, c.openpositionrule, c.valid, c.admin, c.isstrikedeal, c.notifyGroupId, c.isonline, c.email, c.phone, c.gfi, c.branch_ind, c.isoutforex, c.autoprinttickets, c.fixticketexport, c.office_id, c.userid as uid, c.opicscmne, c.pin_fl, c.isdemouser, c.interdealer, c.ipaddress, c.position, c.address, c.maincontract FROM client c WHERE c.login = ?;|ALBR
+2017-10-16 00:10:27.728  INFO main     [com.alfaforex.server.dbpb.pst.StatementContainer] !SQL! START TRANSACTION. ISOLATION_LEVEL=8, NEW_LEVEL=8
+2017-10-16 00:10:27.760 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|32|INSERT INTO ticketstore (date, index, dealid, body, login, status)VALUES(current, ?, ?, ?, ?, ?)|1;7639237;0|16-10-2017 00:10:27 +3|Deal|3|7639237|GBP|USD||||||0|0|16-10-2017 00:09:00|0|0|0|16-10-2017|DealSrv|1|0|0|OK|0|0|SPOT|18-10-2017|18-10-2017|18-10-2017|18-10-2017|1.33002|1.33002|0.0|0.0|0.0|0.0|1.33;ALBR;0
+2017-10-16 00:10:27.762 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|INSERT INTO ticketstore (date, index, dealid, body, login, status)VALUES(current, ?, ?, ?, ?, ?)|2;7639237;002|1.33002|500000.0|500000.0|665010.0|665010.0|0|16-10-2017|Deal|2|0|0|2|||;ALBR;0
+2017-10-16 00:10:27.764  INFO main     [com.alfaforex.server.dbpb.pst.StatementContainer] !SQL! COMMIT. ISOLATION_LEVEL=8
+2017-10-16 00:10:27.766 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|select max(status) from ticketstore where dealid=?|7639237
+2017-10-16 00:10:27.769 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|update ticketstore set status=? where dealid=? and status=0|1;7639237
+2017-10-16 00:10:27.769 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] FxDeal.getBlockFIXAdapter
+2017-10-16 00:10:27.770 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select server from dealarc where dealid = 7639237
+2017-10-16 00:10:27.775 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] Total list of FIX Adapters that's being online in the chache: 
+2017-10-16 00:10:27.776 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] Selected FIX-adapters to sent: 
+2017-10-16 00:10:27.776 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] packet from NT PROGRES was skiped
+2017-10-16 00:10:27.781  INFO main     [com.alfaforex.server.dbpb.BLogic] >>> dealswap@@*ds*@@D5022284A4BEA34AA80D35127B87BBD6|16-10-2017 00:10:27.781|DealInfo|0|OK@@@@
+2017-10-16 00:10:27.781 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|174|DealInfo
+2017-10-16 00:10:27.781 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:10:27 +3|ReloadCache|dealswap|DEALS|7639237@@@@
+2017-10-16 00:10:27.782 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|ReloadCache
+2017-10-16 00:10:27.982 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *ds*|dealswap@@55D6FB92C481CB7E922E74F257009063|16-10-2017 00:10:27.784|DealInfo|7639237|8844849|1|ALBR@@@@
+2017-10-16 00:10:28.023 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> *rc*@@0|16-10-2017 00:10:28 +3|ReloadCache|dealswap|DEALS|7639237@@
+2017-10-16 00:10:28.023 DEBUG main     [com.alfaforex.server.dbpb.processors.DSProcessor] SELECT dealTypeId, parentId FROM dealarc WHERE dealid = 7639237;
+2017-10-16 00:10:28.027 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select idconversion from conversions_md where dealarcid=7639237
+2017-10-16 00:10:28.030 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select initaction from dealswap where iddealswap = 8844849
+2017-10-16 00:10:28.034 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|SELECT d.iddocument, d.orderindividualid, d.dealtypeid, d.opicsdealno, d.parentid, d.ammount, d.ammount2, d.source, CASE WHEN d.reversed not in (1, 2) OR d.reversed IS NULL THEN 0 ELSE 1 END as rev, p1.instruction ins1, p2.instruction ins2, doc.isnetting , pineq FROM dealarc d, OUTER platinstruction p1, OUTER platinstruction p2, OUTER docdeals doc WHERE dealid = ? AND p1.id = d.platbankref AND p2.id = d.platclientref AND d.iddocument = doc.iddocument|7639237
+2017-10-16 00:10:28.039 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|SELECT ammount, ammount2, price, cur1, cur2, dealdate, valuedata, clientname, cur1vdate, cur2vdate, parentid, iscontra FROM dealarc WHERE dealid = ? |7639237
+2017-10-16 00:10:28.044 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|select max(status) from ticketstore where dealid=?|7639237
+2017-10-16 00:10:28.045 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|select isoutforex from client where login = ?|ALBR
+2017-10-16 00:10:28.048 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|SELECT body, index FROM ticketstore WHERE dealid = ?  and status=? ORDER BY index|7639237;1
+2017-10-16 00:10:28.051 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|DELETE FROM ticketstore WHERE dealid = ? and status=0|7639237
+2017-10-16 00:10:28.053 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|select isoutforex from client where login = ?|ALBR
+2017-10-16 00:10:28.057 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|SELECT c.login, c.firstname, c.secondname, c.thirdname, c.groupid, c.password, c.company, c.forexid, c.leverage as f1, c.stopout as f2, c.limits, c.cutGroup, c.useSign, c.groupRight, c.offshore, c.isnewdeal, c.calllevel, c.margincontrol, c.clienttypeid, c.ver, c.openpositionrule, c.valid, c.admin, c.isstrikedeal, c.notifyGroupId, c.isonline, c.email, c.phone, c.gfi, c.branch_ind, c.isoutforex, c.autoprinttickets, c.fixticketexport, c.office_id, c.userid as uid, c.opicscmne, c.pin_fl, c.isdemouser, c.interdealer, c.ipaddress, c.position, c.address, c.maincontract FROM client c WHERE c.login = ?;|ALBR
+2017-10-16 00:10:28.058 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select server from dealarc where dealid = 7639237
+2017-10-16 00:10:28.066 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|SELECT c.login, c.firstname, c.secondname, c.thirdname, c.groupid, c.password, c.company, c.forexid, c.leverage as f1, c.stopout as f2, c.limits, c.cutGroup, c.useSign, c.groupRight, c.offshore, c.isnewdeal, c.calllevel, c.margincontrol, c.clienttypeid, c.ver, c.openpositionrule, c.valid, c.admin, c.isstrikedeal, c.notifyGroupId, c.isonline, c.email, c.phone, c.gfi, c.branch_ind, c.isoutforex, c.autoprinttickets, c.fixticketexport, c.office_id, c.userid as uid, c.opicscmne, c.pin_fl, c.isdemouser, c.interdealer, c.ipaddress, c.position, c.address, c.maincontract FROM client c WHERE c.login = ?;|ALBR
+2017-10-16 00:10:28.068  INFO main     [com.alfaforex.server.dbpb.pst.StatementContainer] !SQL! START TRANSACTION. ISOLATION_LEVEL=8, NEW_LEVEL=8
+2017-10-16 00:10:28.070 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|INSERT INTO ticketstore (date, index, dealid, body, login, status)VALUES(current, ?, ?, ?, ?, ?)|1;7639237;0|16-10-2017 00:10:28 +3|Deal|3|7639237|GBP|USD||||||0|0|16-10-2017 00:09:00|0|0|0|16-10-2017|DealSrv|1|0|0|OK|0|0|SPOT|18-10-2017|18-10-2017|18-10-2017|18-10-2017|1.33002|1.33002|0.0|0.0|0.0|0.0|1.33;ALBR;0
+2017-10-16 00:10:28.073 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|INSERT INTO ticketstore (date, index, dealid, body, login, status)VALUES(current, ?, ?, ?, ?, ?)|2;7639237;002|1.33002|500000.0|500000.0|665010.0|665010.0|0|16-10-2017|Deal|2|0|0|2|||;ALBR;0
+2017-10-16 00:10:28.074  INFO main     [com.alfaforex.server.dbpb.pst.StatementContainer] !SQL! COMMIT. ISOLATION_LEVEL=8
+2017-10-16 00:10:28.077 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|1|select max(status) from ticketstore where dealid=?|7639237
+2017-10-16 00:10:28.080 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|update ticketstore set status=? where dealid=? and status=0|2;7639237
+2017-10-16 00:10:28.080 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] FxDeal.getBlockFIXAdapter
+2017-10-16 00:10:28.081 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] SQL: select server from dealarc where dealid = 7639237
+2017-10-16 00:10:28.086 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] Total list of FIX Adapters that's being online in the chache: 
+2017-10-16 00:10:28.087 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] Selected FIX-adapters to sent: 
+2017-10-16 00:10:28.087 DEBUG main     [com.alfaforex.server.dbpb.FxDeal] packet from NT PROGRES was skiped
+2017-10-16 00:10:28.091  INFO main     [com.alfaforex.server.dbpb.BLogic] >>> dealswap@@*ds*@@55D6FB92C481CB7E922E74F257009063|16-10-2017 00:10:28.091|DealInfo|0|OK@@@@
+2017-10-16 00:10:28.091 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|109|DealInfo
+2017-10-16 00:10:28.091 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:10:28 +3|ReloadCache|dealswap|DEALS|7639237@@@@
+2017-10-16 00:10:28.091 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:10:29.504 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:31.504 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:33.505 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:35.505 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:37.505 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:39.505 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:40.002 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *YO!*|afxng1@@8673|16-10-2017 00:10:40.000|ConfirmAllOrders@@
+2017-10-16 00:10:40.002 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] ConfirmAllOrders is processing!
+2017-10-16 00:10:40.006 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select 1 type, individualid, statustime, ordertypeext from orders where status = 5 AND ( dealerwait != 1 OR dealerwait IS NULL ) UNION Select 2 type, individualid, statustime, ordertypeext from orders where status = 6 and flag <> 4 UNION Select 3 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 1 UNION Select 4 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 2 UNION Select 5 type, individualid, statustime, ordertypeext from orders where status = 11 UNION Select 6 type, individualid, statustime, ordertypeext from orders where status = 12 UNION Select 7 type, individualid, statustime, ordertypeext from orders where status = 5 AND dealerwait = 1 order by statustime|
+2017-10-16 00:10:40.006 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|4|ConfirmAllOrders
+2017-10-16 00:10:41.506 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:43.507 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:45.507 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:47.508 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:49.509 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:51.510 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:53.511 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:55.512 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:57.512 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:10:59.513 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:01.514 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:03.515 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:05.516 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:07.516 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:09.516 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:11.517 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:13.518 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:15.518 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:17.519 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:19.519 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:21.520 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:23.520 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:25.521 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:27.522 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:29.522 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:31.523 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:33.524 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:35.524 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:37.525 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:39.526 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:41.526 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:43.527 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:45.528 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:47.529 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:49.530 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:51.530 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:53.531 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:55.531 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:57.532 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:11:59.532 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:01.532 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:03.532 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:05.533 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:07.534 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:09.534 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:11.534 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:13.535 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:15.536 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:17.536 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:19.537 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:21.537 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:23.538 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:25.538 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:27.539 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:29.539 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:31.540 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:33.540 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:35.540 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:37.540 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:39.541 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:41.541 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:43.541 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:45.542 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:47.543 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:49.543 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:51.543 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:53.543 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:55.544 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:57.544 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:12:59.544 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:01.544 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:03.545 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:05.545 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:07.546 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:09.546 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:11.547 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:13.547 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:15.548 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:17.548 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:19.550 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:21.551 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:23.551 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:25.552 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:27.552 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:29.553 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:31.554 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:33.554 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:35.003 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *YO!*|afxng1@@8808|16-10-2017 00:13:35.001|ConfirmAllOrders@@
+2017-10-16 00:13:35.005 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] DEALERS_ONLINE|0|
+2017-10-16 00:13:35.005 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] ConfirmAllOrders is processing!
+2017-10-16 00:13:35.009 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select 1 type, individualid, statustime, ordertypeext from orders where status = 5 AND ( dealerwait != 1 OR dealerwait IS NULL ) UNION Select 2 type, individualid, statustime, ordertypeext from orders where status = 6 and flag <> 4 UNION Select 3 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 1 UNION Select 4 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 2 UNION Select 5 type, individualid, statustime, ordertypeext from orders where status = 11 UNION Select 6 type, individualid, statustime, ordertypeext from orders where status = 12 UNION Select 7 type, individualid, statustime, ordertypeext from orders where status = 5 AND dealerwait = 1 order by statustime|
+2017-10-16 00:13:35.014 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select * from orders where (goodtilllong < ? and (status = 1 or status = -1)) and (flag is null or flag <> 4)|1508102015010
+2017-10-16 00:13:35.021 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|18|ConfirmAllOrders
+2017-10-16 00:13:35.555 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:37.555 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:39.556 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:41.556 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:43.556 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:45.556 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:47.557 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:49.557 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:51.558 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:53.559 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:55.559 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:57.560 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:13:59.561 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:01.561 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:03.561 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:05.562 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:07.563 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:09.563 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:11.564 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:12.914 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@0|16-10-2017 00:14:12 +3|ReloadCache|ClientInfo|aleksandr|isOnline:1@@@@
+2017-10-16 00:14:12.914 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:14:13.133 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *pay*|aleksandr@@30|16-10-2017 00:14:13 +3|GetPayment@@
+2017-10-16 00:14:13.136 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|3|GetPayment
+2017-10-16 00:14:13.140 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *sd*|aleksandr@@36|16-10-2017 00:14:13 +3|GetAutoQuotes@@
+2017-10-16 00:14:13.272 DEBUG thread-1 [connectionmanager.DBConnectionManager] Created a new connection in pool forex
+2017-10-16 00:14:13.272 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> aleksandr@@*sd*@@36|16-10-2017 00:14:13 +3|GetAutoQuotes|0|OK|1|0|2|1|3|1|4|0|5|1@@
+2017-10-16 00:14:13.272 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|132|GetAutoQuotes
+2017-10-16 00:14:13.360 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|224|Select * from LORO where login = ?|
+2017-10-16 00:14:13.364 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;4204;
+2017-10-16 00:14:13.367 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22486;
+2017-10-16 00:14:13.372 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22487;
+2017-10-16 00:14:13.375 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22489;
+2017-10-16 00:14:13.378 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22490;
+2017-10-16 00:14:13.381 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22491;
+2017-10-16 00:14:13.384 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22492;
+2017-10-16 00:14:13.387 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22493;
+2017-10-16 00:14:13.390 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22494;
+2017-10-16 00:14:13.393 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22495;
+2017-10-16 00:14:13.396 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22496;
+2017-10-16 00:14:13.399 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22497;
+2017-10-16 00:14:13.403 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22498;
+2017-10-16 00:14:13.406 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22499;
+2017-10-16 00:14:13.409 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;22500;
+2017-10-16 00:14:13.412 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;38006;
+2017-10-16 00:14:13.415 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;38007;
+2017-10-16 00:14:13.418 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;38008;
+2017-10-16 00:14:13.421 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|LORO;68211;
+2017-10-16 00:14:13.425 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from NOSTRORUR where login = ?|
+2017-10-16 00:14:13.428 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|RUR_NOSTRO;31;
+2017-10-16 00:14:13.432 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select * from NOSTROVAL where login = ?|
+2017-10-16 00:14:13.435 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;323;
+2017-10-16 00:14:13.438 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;145;
+2017-10-16 00:14:13.441 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;146;
+2017-10-16 00:14:13.447 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|6|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;151;
+2017-10-16 00:14:13.450 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;153;
+2017-10-16 00:14:13.452 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;154;
+2017-10-16 00:14:13.455 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;155;
+2017-10-16 00:14:13.458 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;156;
+2017-10-16 00:14:13.461 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;177;
+2017-10-16 00:14:13.464 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;313;
+2017-10-16 00:14:13.467 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;314;
+2017-10-16 00:14:13.471 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;324;
+2017-10-16 00:14:13.474 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;373;
+2017-10-16 00:14:13.476 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;374;
+2017-10-16 00:14:13.479 DEBUG thread-1 [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from definstruct where instructiontype = ? and instructid = ? and login = ?|NONRUR_NOSTRO;402;
+2017-10-16 00:14:13.482  INFO thread-1 [com.alfaforex.server.dbpb.BLogic] >>> aleksandr@@*pay*@@30|16-10-2017 00:14:13.480|GetPayment@@5|16-10-2017 00:14:13.480|GetPayment|LORO|4204|ACC/ACC|RUR|1|RUR|0@@6|16-10-2017 00:14:13.480|GetPayment|LORO|22486|ACC/ACC|USD_Vnutr|0|USD|0@@7|16-10-2017 00:14:13.480|GetPayment|LORO|22487|ACC/ACC|EUR_Vnutr|0|EUR|0@@8|16-10-2017 00:14:13.480|GetPayment|LORO|22489|ACC/ACC|XAU_Vnutr|0|XAU|0@@9|16-10-2017 00:14:13.480|GetPayment|LORO|22490|ACC/ACC|CAD_Vnutr|0|CAD|0@@10|16-10-2017 00:14:13.480|GetPayment|LORO|22491|ACC/ACC|CHF_Vnutr|0|CHF|0@@11|16-10-2017 00:14:13.480|GetPayment|LORO|22492|ACC/ACC|SEK_Vnutr|0|SEK|0@@12|16-10-2017 00:14:13.480|GetPayment|LORO|22493|ACC/ACC|NOK_Vnutr|0|NOK|0@@13|16-10-2017 00:14:13.480|GetPayment|LORO|22494|ACC/ACC|GBP_Vnutr|0|GBP|0@@14|16-10-2017 00:14:13.480|GetPayment|LORO|22495|ACC/ACC|JPY_Vnutr|0|JPY|0@@15|16-10-2017 00:14:13.480|GetPayment|LORO|22496|ACC/ACC|CNY_Vnutr|0|CNY|0@@16|16-10-2017 00:14:13.481|GetPayment|LORO|22497|ACC/ACC|AUD_Vnutr|0|AUD|0@@17|16-10-2017 00:14:13.481|GetPayment|LORO|22498|ACC/ACC|XAG_Vnutr|0|XAG|0@@18|16-10-2017 00:14:13.481|GetPayment|LORO|22499|ACC/ACC|XPT_Vnutr|0|XPT|0@@19|16-10-2017 00:14:13.481|GetPayment|LORO|22500|ACC/ACC|XPD_Vnutr|0|XPD|0@@20|16-10-2017 00:14:13.481|GetPayment|LORO|38006|ACC/ACC|PLN_Vnutr|1|PLN|0@@21|16-10-2017 00:14:13.481|GetPayment|LORO|38007|ACC/ACC|SGD_Vnutr|1|SGD|0@@22|16-10-2017 00:14:13.481|GetPayment|LORO|38008|ACC/ACC|HKD_Vnutr|1|HKD|0@@23|16-10-2017 00:14:13.481|GetPayment|LORO|68211|ACC/ACC|NZD_Vnutr|1|NZD|0@@24|16-10-2017 00:14:13.481|GetPayment|RUR_NOSTRO|31|7728168971|ОАО Альфа-Банк|Согласно договору|В ОПЕРУ Московского ГТУ Банка России|044525593|30101810200000000593|RUR- Vneshnie|0|RUR@@25|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|323|ALFARUMM|ALFA-BANK, RUSSIA, MOSCOW|30119А98300000000007|CHASGB2LGC|JP MORGAN CHASE BANK N.A., LONDON|||||XAU|1|XAU@@26|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|145|ALFARUMM|ALFA-BANKRUSSIAMOSCOW|36310481|CITIUS33|CITIBANK_NA|||||USD|1|USD@@27|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|146|ALFARUMM|ALFA-BANKRUSSIAMOSCOW|ACC_00150092584|RZBAATWW|RAIFFEISEN_BANK_NTERNATIONAL_AG|||||EUR|1|EUR@@28|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|151|ALFARUMM|ALFA-BANK,RUSSIA,MOSCOW|3144-1035-657|BOFMCAT2|BANK OF MONTREAL, CANADA, TORONTO|||||CAD|1|CAD@@29|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|153|ALFARUMM|ALFA-BANK,RUSSIA,MOSCOW|069055.05P|UBSWCHZH|UNION BANK OF SWITZERLAND,ZURICH|||||CHF|1|CHF@@30|16-10-2017 00:14:13.481|GetPayment|NONRUR_NOSTRO|154|ALFARUMM|ALFA-BANK,RUSSIA, MOSCOW|99-40331059|HANDSESS|SVENSKA  SVENSKA HANDELSBANKEN,\0D\0ASTOCKHOLM|||||SEK|1|SEK@@31|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|155|ALFARUMM|ALFA-BANK, RUSSIA, MOSCOW|7001.02.05903|DNBANOKK|DEN NORSKE BANK AS,\0D\0AOSLO|||||NOK|1|NOK@@32|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|156|ALFARUMM|ALFA-BANKRUSSIAMOSCOW|59238016|BOFAGB22|BANKOFAMERICANA|||||GBP|1|GBP@@33|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|177|ALFARUMM|ALFA-BANK, RUSSIA, MOSCOW|653-0411876|BOTKJPJT|BANK OF TOKYO MITSUBISHI|||||JPY|1|JPY@@34|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|313|HSBCHKHH|The Hong Kong and Shanghai Banking Corporation Ltd|848071700209|||||||CNY|1|CNY@@35|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|314|NATAAU33|National Australia Bank Ltd|1803123420500|||||||AUD|1|AUD@@36|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|324|ALFARUMM|ALFA-BANK, RUSSIA, MOSCOW|30119А99000000000005|CHASGB2LGC|JP MORGAN CHASE BANK, N.A., LONDON|||||XAG|1|XAG@@37|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|373||||||||||XPT|1|XPT@@38|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|374||||||||||XPD|1|XPD@@39|16-10-2017 00:14:13.482|GetPayment|NONRUR_NOSTRO|402|ALFARUMM|ALFA-BANK_RUSSIA_MOSCOW|023000000690557O0000|UBSWCHZH80A|UBS_AG|||||PLN|0|PLN@@@@
+2017-10-16 00:14:13.482  INFO thread-1 [com.alfaforex.server.dbpb.async.CallableTopicProcessor] ASYNCEXEC|OK|346|OK
+2017-10-16 00:14:13.564 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:15.565 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:17.566 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:19.567 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:21.567 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:23.567 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:25.568 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:27.569 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:29.569 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:31.569 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:33.570 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:35.570 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:37.570 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:39.571 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:40.833 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@0|16-10-2017 00:14:40 +3|ReloadCache|blog10|DEALTIMEOUT@@@@
+2017-10-16 00:14:40.835 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] DEALERS_ONLINE|1|aleksandr
+2017-10-16 00:14:40.835 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:40.839 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:40.839 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:40.847 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|14|ReloadCache
+2017-10-16 00:14:41.048 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@0|16-10-2017 00:14:40 +3|ReloadCache|blog10|DEALTIMEOUT@@@@
+2017-10-16 00:14:41.048 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:41.053 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:41.054 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:41.054 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|6|ReloadCache
+2017-10-16 00:14:41.054 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog10@@9|16-10-2017 00:14:40.986|ReloadCache|CacheSpread|ALL@@@@
+2017-10-16 00:14:41.109  INFO main     [com.alfaforex.utils.cache.CacheSpread] Cache com.alfaforex.utils.cache.CacheSpread reloaded successfully in 55 ms.
+2017-10-16 00:14:41.109 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|55|ReloadCache
+2017-10-16 00:14:41.572 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:43.573 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:45.003 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *YO!*|afxng1@@8857|16-10-2017 00:14:45.001|ConfirmAllOrders@@
+2017-10-16 00:14:45.003 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] ConfirmAllOrders is processing!
+2017-10-16 00:14:45.194 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|191|Select 1 type, individualid, statustime, ordertypeext from orders where status = 5 AND ( dealerwait != 1 OR dealerwait IS NULL ) UNION Select 2 type, individualid, statustime, ordertypeext from orders where status = 6 and flag <> 4 UNION Select 3 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 1 UNION Select 4 type, individualid, statustime, ordertypeext from orders where status = 1 and wantdelete = 2 UNION Select 5 type, individualid, statustime, ordertypeext from orders where status = 11 UNION Select 6 type, individualid, statustime, ordertypeext from orders where status = 12 UNION Select 7 type, individualid, statustime, ordertypeext from orders where status = 5 AND dealerwait = 1 order by statustime|
+2017-10-16 00:14:45.206 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|203|ConfirmAllOrders
+2017-10-16 00:14:45.417 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *so*|aleksandr@@139|16-10-2017 00:14:46 +3|SetTradeMode|1|2|10|30|501000|250|30000|30000@@
+2017-10-16 00:14:45.460 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|40|update settings set value = ? where key = 'valdate'|1
+2017-10-16 00:14:45.473 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|13|update gfi set  (spottimeout, swaptimeout,OrderAutoExecMaxAmount,cdmaxdiff, cdturbotimeout, cdtimeout)=(?,?,?,?,?,?) where groupid=?|10;30;501000;250;30000;30000;2
+2017-10-16 00:14:45.473 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:45.476 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:45.477 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:45.477 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> *rc*@@0|16-10-2017 00:14:45 +3|ReloadCache|blog1|DEALTIMEOUT@@
+2017-10-16 00:14:45.478 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> *so*@@139|16-10-2017 00:14:45 +3|GetTradeMode|0|Ok|1|2|10|30|501000|250|30000|30000@@
+2017-10-16 00:14:45.478 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|61|SetTradeMode
+2017-10-16 00:14:45.574 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:45.678 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog1@@0|16-10-2017 00:14:45 +3|ReloadCache|blog1|DEALTIMEOUT@@@@
+2017-10-16 00:14:45.678 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:14:45.678 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@0|16-10-2017 00:14:45 +3|ReloadCache|blog8|DEALTIMEOUT@@@@
+2017-10-16 00:14:45.678 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:45.681 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:45.683 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:45.683 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|5|ReloadCache
+2017-10-16 00:14:45.683 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@1830|16-10-2017 00:14:45.548|ReloadCache|CacheSpread|ALL@@@@
+2017-10-16 00:14:45.736  INFO main     [com.alfaforex.utils.cache.CacheSpread] Cache com.alfaforex.utils.cache.CacheSpread reloaded successfully in 53 ms.
+2017-10-16 00:14:45.736 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|53|ReloadCache
+2017-10-16 00:14:47.575 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:49.575 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:51.575 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:53.575 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:54.250 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@143|16-10-2017 00:14:54 +3|ReloadCache|CacheSpread|25|USDRUR|0.05|0.5|0|0|0|1@@@@
+2017-10-16 00:14:54.251 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|1|ReloadCache
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@6|16-10-2017 00:14:54.256|AutoQuoteLimit|USD|RUR|25|0@@@@
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|AutoQuoteLimit
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog11@@0|16-10-2017 00:14:54 +3|ReloadCache|blog11|DEALTIMEOUT@@@@
+2017-10-16 00:14:54.437 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:54.442 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:54.443 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:54.443 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|6|ReloadCache
+2017-10-16 00:14:54.448 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@147|16-10-2017 00:14:54 +3|ReloadCache|CacheSpread|25|USDRUR|0.05|0.5|0|0|0|1@@@@
+2017-10-16 00:14:54.448 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:14:54.651 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@6|16-10-2017 00:14:54.453|AutoQuoteLimit|USD|RUR|25|0@@@@
+2017-10-16 00:14:54.651 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|AutoQuoteLimit
+2017-10-16 00:14:54.651 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog9@@0|16-10-2017 00:14:54 +3|ReloadCache|blog9|DEALTIMEOUT@@@@
+2017-10-16 00:14:54.651 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:54.655 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|4|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:54.656 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:54.656 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|5|ReloadCache
+2017-10-16 00:14:55.576 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:57.576 DEBUG idle     [com.alfaforex.utils.debug.FxLog] AccessiblyChecker: Idle
+2017-10-16 00:14:58.033 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@152|16-10-2017 00:14:58 +3|ReloadCache|CacheSpread|25|EURRUR|0.05|0.5|0|0|0.005|1@@@@
+2017-10-16 00:14:58.033 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:14:58.212 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@1829|16-10-2017 00:14:58.037|AutoQuoteLimit|EUR|RUR|25|0@@@@
+2017-10-16 00:14:58.212 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|AutoQuoteLimit
+2017-10-16 00:14:58.213 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog12@@0|16-10-2017 00:14:58 +3|ReloadCache|blog12|DEALTIMEOUT@@@@
+2017-10-16 00:14:58.213 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:58.218 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|5|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:58.218 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:58.218 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|5|ReloadCache
+2017-10-16 00:14:58.225 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@156|16-10-2017 00:14:58 +3|ReloadCache|CacheSpread|25|EURRUR|0.05|0.5|0|0|0.005|1@@@@
+2017-10-16 00:14:58.225 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|ReloadCache
+2017-10-16 00:14:58.227 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *qp*|aleksandr@@158|16-10-2017 00:14:59 +3|SETDELTARULES|EUR|RUR|25|0|@@
+2017-10-16 00:14:58.229 DEBUG main     [com.alfaforex.server.dbpb.FxSpreds] SETDELTARULES
+*qp*|aleksandr@@158|16-10-2017 00:14:59 +3|SETDELTARULES|EUR|RUR|25|0|@@
+2017-10-16 00:14:58.232 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|delete from deltarules where cur1 = ? and cur2 = ? and group = ?|EUR;RUR;25
+2017-10-16 00:14:58.235 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|3|Select * from deltarules where cur1 = ? and cur2 = ? and group = ? order by amount|EUR;RUR;25
+2017-10-16 00:14:58.235 DEBUG main     [com.alfaforex.server.dbpb.BLogic] >>> aleksandr@@*qp*@@158|16-10-2017 00:14:58 +3|DELTARULES|EUR|RUR|25|0|0.00000000|0|@@
+2017-10-16 00:14:58.236 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|9|SETDELTARULES
+2017-10-16 00:14:58.236 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@1832|16-10-2017 00:14:58.229|AutoQuoteLimit|EUR|RUR|25|0@@@@
+2017-10-16 00:14:58.236 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|0|AutoQuoteLimit
+2017-10-16 00:14:58.236 DEBUG main     [com.alfaforex.server.dbpb.PacketProcessorExample] <<< *rc*|blog8@@0|16-10-2017 00:14:58 +3|ReloadCache|blog8|DEALTIMEOUT@@@@
+2017-10-16 00:14:58.236 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|DEALTIMEOUT
+2017-10-16 00:14:58.238 DEBUG main     [com.alfaforex.server.dbpb.pst.StatementContainer] EXEC|SQLOK|2|Select gfi.groupid, gfi.SpotTimeout, gfi.SwapTimeout, gfi.CDMaxDiff, margincontrol, 0, gfi.OrderAutoExecMaxAmount, gfi.autoorder, gfi.autoquote, gfi.quotatype, StopOutControl, strikeBargin, yieldControl, adTimeout,adMaxAmountBargain,adMinAmountBargain, adMaxAmountUnconfirm, gfi.cdmode, gfi.CDTurboTimeout from orderoper, gfi |
+2017-10-16 00:14:58.239 DEBUG main     [com.alfaforex.server.dbpb.FxCacheItem] LOADCACHE|OK
+2017-10-16 00:14:58.239 DEBUG main     [com.alfaforex.server.dbpb.BLogic] EXEC|3|ReloadCache

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class Tokenizer1 implements Tokenizable {
 
-    private static final String pattern = "\\\".+?\\\"|\\w+|\\(|\\)"; // regexp: \".+?\"|\w+|\(|\)
+    private static final String pattern = "\\\".+?\\\"|\\(|\\)|[\\w\\[\\]\\\\\\/\\^\\$\\.\\|\\?\\*\\+\\{\\}<>!@#%_-]+"; // regexp: \".+?\"|\(|\)|[\w\[\]\\\/\^\$\.\|\?\*\+\{\}<>!@#%_-=]+
 
     @Override
     public Queue<String> toTokens(String expr) throws Exception {
@@ -24,6 +24,22 @@ public class Tokenizer1 implements Tokenizable {
         LinkedList<String> tokens = new LinkedList<>();
         while (m.find()) {
             tokens.add(m.group());
+        }
+
+        return tokens;
+    }
+
+    @Override
+    public Queue<Token> toTokens2(String expr) throws Exception {
+
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(expr);
+
+        LinkedList<Token> tokens = new LinkedList<>();
+        while (m.find()) {
+            String value = m.group();
+            Token t = new Token(value);
+            tokens.add(t);
         }
 
         return tokens;
