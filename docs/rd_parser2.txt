@@ -1,0 +1,208 @@
+// https://habrahabr.ru/company/yandex/blog/206234/
+
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stdexcept>
+
+struct token {
+    enum { E_UNDEF, E_NUMBER, E_OPERATOR, E_LEVEL  } type;
+
+    union {
+        double d_val;
+        int i_val;
+        char c_val;
+    } data;
+
+    token() {
+        type = E_UNDEF;
+    }
+
+    token(double val) : type(E_NUMBER) {
+        data.d_val = val;
+    }
+    token(int val) : type(E_LEVEL) {
+        data.i_val = val;
+    }
+    token(char val) : type(E_OPERATOR) {
+        data.c_val = val;
+    }
+};
+
+typedef std::vector<token> tokens;
+
+void push_level(tokens &pr, int level) {
+    if (pr.empty() || pr.back().type != token::E_LEVEL) {
+        pr.push_back(token(level));
+    } else {
+        pr.back().data.i_val += level;
+    }
+}
+
+void push_operator(tokens &pr, char op) {
+    pr.push_back(token(op));
+}
+
+void push_number(tokens &pr, int num) {
+    if (pr.empty() || pr.back().type == token::E_LEVEL || (pr.back().type == token::E_OPERATOR && pr.size() > 1 && pr[pr.size() - 2].type == token::E_NUMBER) ) {
+        pr.push_back(token((double)num));
+    } else if (pr.back().type == token::E_OPERATOR && (pr.size() == 1 || pr[pr.size() - 2].type == token::E_LEVEL) ) {
+        if (pr.back().data.c_val == '*' || pr.back().data.c_val == '/') {
+            throw std::domain_error("unexpected operator");
+        }
+        if (pr.back().data.c_val == '-') {
+            num = -num;
+        }
+        pr.pop_back();
+        pr.push_back(token((double)num));
+    } else {
+        throw std::domain_error("unexpected number");
+    }
+}
+
+token calc3(tokens &pr) {
+    token s2 = pr.back(); pr.pop_back();
+    token op = pr.back(); pr.pop_back();
+    token s1 = pr.back(); pr.pop_back();
+
+    if (s1.type != token::E_NUMBER || op.type != token::E_OPERATOR || s2.type != token::E_NUMBER) {
+        throw std::domain_error("unexpected closing brace");
+    }
+
+    switch (op.data.c_val) {
+        case '+':
+            s1.data.d_val += s2.data.d_val;
+            break;
+        case '-':
+            s1.data.d_val -= s2.data.d_val;
+            break;
+        case '*':
+            s1.data.d_val *= s2.data.d_val;
+            break;
+        case '/':
+            s1.data.d_val /= s2.data.d_val;
+            break;
+        default:
+        throw std::domain_error("internal error");
+    }
+
+    return s1;
+}
+
+void pop_level(tokens &pr, int level) {
+    if (level == 0) {
+        if (pr.size() > 3) {
+            pr.push_back(calc3(pr));
+        }
+        return;
+    }
+    if (pr.empty() || pr.back().type == token::E_LEVEL || pr.back().type == token::E_OPERATOR) {
+        throw std::domain_error("unexpected closing brace");
+    } else if (pr.size() > 1 && pr[pr.size() - 2].type == token::E_LEVEL) {
+        if (pr[pr.size() - 2].data.i_val > level) {
+            pr[pr.size() - 2].data.i_val -= level;
+        } else {
+            int delta = level - pr[pr.size() - 2].data.i_val;
+            token tmp = pr.back();
+            pr.pop_back(); pr.pop_back();
+            pr.push_back(tmp);
+            pop_level(pr, delta);
+        }
+    } else if (pr.size() > 3) {
+        token s1 = calc3(pr);
+
+        if (pr.back().type == token::E_LEVEL) {
+            if (pr.back().data.i_val > level) {
+                pr.back().data.i_val -= level;
+                pr.push_back(s1);
+            } else {
+                int delta = level - pr.back().data.i_val;
+                pr.pop_back();
+                pr.push_back(s1);
+                pop_level(pr, delta);
+            }
+        } else if (pr.back().type == token::E_OPERATOR) {
+            pr.push_back(s1);
+            pop_level(pr, level);
+        } else {
+            throw std::domain_error("unexpected closing brace");
+        }
+    } else {
+        throw std::domain_error("unexpected closing brace");
+    }
+}
+
+double process(const std::string &str) {
+    tokens program;
+
+    push_level(program, 3);
+    for (std::string::const_iterator cit = str.begin(); cit != str.end(); ++cit) {
+        switch (*cit) {
+            case '(':
+                push_level(program, 3);
+                break;
+            case ')':
+                pop_level(program, 3);
+                break;
+            case '*':
+            case '/':
+                pop_level(program, 1);
+                push_operator(program, *cit);
+                push_level(program, 1);
+                break;
+            case '+':
+            case '-':
+                if (cit == str.begin() || strchr("(+/-*", *(cit-1))) {
+                    push_operator(program, *cit);
+                } else {
+                    pop_level(program, 2);
+                    push_operator(program, *cit);
+                    push_level(program, 2);
+                }
+                break;
+            case ' ':
+                break;
+            case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                {
+                    int curnum = 0;
+                    while (cit != str.end()) {
+                        curnum = 10*curnum + (*cit - '0');
+                        if ((cit + 1) == str.end() || !isdigit(*(cit+1))) {
+                            break;
+                        }
+                        ++cit;
+                    }
+                    push_number(program, curnum);
+                }
+                break;
+            default:
+                throw std::domain_error("unexpected symbol");
+        }
+    }
+    pop_level(program, 3);
+
+    if (program.size() == 0 || program.size() > 1) {
+        throw std::domain_error("incomplete expression");
+    }
+
+    return program.back().data.d_val;
+}
+
+int main() {
+    std::string line;
+    while (!std::cin.eof()) {
+        std::getline(std::cin, line);
+
+        if (line.length() > 0) {
+            try {
+                std::cout << process(line) << std::endl;
+            } catch (std::exception &e) {
+                std::cout << "error: " << e.what() << std::endl;
+            }
+        }
+    }
+
+    return 0;
+}

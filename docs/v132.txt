@@ -1,8 +1,29 @@
 v132.txt
 
 1. Механизм поиска:
-  1. Отладка механизма поиска на синтетическом файле;
-  2. Слова, разделенные пробелом считаются разделенными по AND;
+  +1. Слова, разделенные пробелом считаются разделенными по AND;
+  2. Отладка токенайзера:
+	+ if STRING STRING => STRING AND STRING
+	+ if STRING OPEN_BR => STRING AND OPEN_BR
+	- if STRING NOT OPEN_BR => STRING AND NOT OPEN_BR
+	+ if CLOSE_BR STRING => CLOSE_BR AND STRING
+	+ if CLOSE_BR OPEN_BR => CLOSE_BR AND OPEN_BR
+	- if CLOSE_BR NOT OPEN_BR => CLOSE_BR AND NOT OPEN_BR
+  3. Отладка парсера по корректным сценариям
+    3.1. val1
+	3.2. NOT val1
+	- val1 AND val2, val1 AND (val2)
+	- val1 AND NOT val2, NOT val1 AND val2
+	- val1 OR val2
+	- val1 OR val2 AND val3
+	- val1 AND val2 OR val3
+	- val1 AND val2 OR val3 OR val4
+	- val1 AND val2 OR val3 AND val4
+  4. Отладка некорректных сценариев:
+    - лишняя скобка
+    - недостающая скобка
+    - неправильная последовательность элементов
+  4. Отладка механизма поиска на синтетическом файле;
 
 [v133]
   1. Файлсеты:
@@ -66,3 +87,6 @@ wolf AND "red fox" OR "brown deer" AND (frog OR lizard)
 	\(|\)| -> Открывающаяся и закрывающаяся скобка
 	&&| ->
 	\|\| ->
+
+Таблица переходов для логического парсера
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

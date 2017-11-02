@@ -5,7 +5,7 @@ import java.util.Queue;
 
 import org.apache.log4j.Logger;
 
-import ru.ag78.utils.loganalyzer.LogicParser;
+import ru.ag78.utils.loganalyzer.LogicParserOld;
 import ru.ag78.utils.loganalyzer.PredicateWrapper;
 import ru.ag78.utils.loganalyzer.Tokenizable;
 import ru.ag78.utils.loganalyzer.Tokenizer1;
@@ -59,7 +59,7 @@ public class SearchController implements SearchView.Events {
             Tokenizable t = new Tokenizer1();
             Queue<String> tokens = t.toTokens(filter);
 
-            LogicParser lp = new LogicParser();
+            LogicParserOld lp = new LogicParserOld();
             PredicateWrapper p = lp.constructPredicate(tokens);
 
             StringBuilder sb = new StringBuilder();

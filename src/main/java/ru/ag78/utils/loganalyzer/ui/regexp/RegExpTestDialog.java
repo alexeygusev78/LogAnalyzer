@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ru.ag78.utils.loganalyzer.Token;
 import ru.ag78.utils.loganalyzer.Tokenizable;
-import ru.ag78.utils.loganalyzer.TokenizerCustom;
+import ru.ag78.utils.loganalyzer.Tokenizer1;
 
 public class RegExpTestDialog {
 
@@ -120,7 +120,7 @@ public class RegExpTestDialog {
 
         log.debug("onToTokens");
         try {
-            Tokenizable t = new TokenizerCustom(textRegExp.getText());
+            Tokenizable t = new Tokenizer1(textRegExp.getText());
 
             Queue<Token> tokens = t.toTokens2(textQuery.getText());
 

@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
  * @author U_M00Y1
  *
  */
-public class LogicParser {
+public class LogicParserOld {
 
-    private static final Logger log = Logger.getLogger(LogicParser.class);
+    private static final Logger log = Logger.getLogger(LogicParserOld.class);
     private Deque<Predicate<String>> stack = new LinkedList<>();
 
     /**

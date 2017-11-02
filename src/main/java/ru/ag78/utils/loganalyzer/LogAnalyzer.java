@@ -106,7 +106,7 @@ public class LogAnalyzer implements OptionsInitializer {
             if (options.isOption(Opts.FILTER)) {
                 final String filter = options.getOption(Opts.FILTER);
                 System.out.println("filter={" + filter + "}");
-                LogicParser lp = new LogicParser();
+                LogicParserOld lp = new LogicParserOld();
                 Tokenizable t = new Tokenizer1();
                 Queue<String> tokens = t.toTokens(filter);
                 Predicate<String> p = lp.makePredicate(tokens).getPredicate();

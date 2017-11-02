@@ -11,6 +11,7 @@ public class Token {
 
     private Type type;
     private String value;
+    private int index;
 
     public static enum Type {
 
@@ -67,7 +68,7 @@ public class Token {
     @Override
     public String toString() {
 
-        return String.format("[%8s] %s", type, value);
+        return String.format("%03d [%8s] %s", index, type, value);
     }
 
     @Override
@@ -138,5 +139,15 @@ public class Token {
     public boolean isValue() {
 
         return type == Type.STRING;
+    }
+
+    public int getIndex() {
+
+        return index;
+    }
+
+    public void setIndex(int index) {
+
+        this.index = index;
     }
 }
