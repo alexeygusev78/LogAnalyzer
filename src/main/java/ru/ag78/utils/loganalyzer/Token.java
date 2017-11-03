@@ -150,4 +150,24 @@ public class Token {
 
         this.index = index;
     }
+
+    public boolean isAnd() {
+
+        return type == Type.AND;
+    }
+
+    public boolean isOr() {
+
+        return type == Type.OR;
+    }
+
+    public boolean isOpenBrace() {
+
+        return type == Type.OPEN_BR;
+    }
+
+    public boolean isCloseBrace() {
+
+        return type == Type.CLOSE_BR;
+    }
 }

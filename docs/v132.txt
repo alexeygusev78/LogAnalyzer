@@ -12,7 +12,7 @@ v132.txt
   3. Отладка парсера по корректным сценариям
     3.1. val1
 	3.2. NOT val1
-	- val1 AND val2, val1 AND (val2)
+	3.3. val1 AND val2, val1 AND (val2)
 	- val1 AND NOT val2, NOT val1 AND val2
 	- val1 OR val2
 	- val1 OR val2 AND val3
