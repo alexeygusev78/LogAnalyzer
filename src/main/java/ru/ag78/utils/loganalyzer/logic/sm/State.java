@@ -39,7 +39,7 @@ public abstract class State {
         return t;
     }
 
-    abstract public State next() throws ParseException;
+    abstract public State next(Token t) throws ParseException;
 
     abstract protected boolean check(Token t);
 }

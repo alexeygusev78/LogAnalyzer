@@ -9,14 +9,16 @@ v132.txt
 	+ if CLOSE_BR STRING => CLOSE_BR AND STRING
 	+ if CLOSE_BR OPEN_BR => CLOSE_BR AND OPEN_BR
 	- if CLOSE_BR NOT OPEN_BR => CLOSE_BR AND NOT OPEN_BR
-  3. Отладка парсера по корректным сценариям
-    3.1. val1
-	3.2. NOT val1
-	3.3. val1 AND val2, val1 AND (val2)
-	- val1 AND NOT val2, NOT val1 AND val2
-	- val1 OR val2
-	- val1 OR val2 AND val3
-	- val1 AND val2 OR val3
+  3. Отладка парсера по корректным сценариям без скобок
+    +3.1. val1
+	+3.2. NOT val1
+	+3.3. val1 AND val2
+	+3.4.1. val1 AND NOT val2 
+	+3.4.2. NOT val1 AND val2
+	+3.5. val1 OR val2
+	+3.6. val1 OR val2 OR val3
+	+3.7. val1 OR val2 AND val3
+	3.8. val1 AND val2 OR val3
 	- val1 AND val2 OR val3 OR val4
 	- val1 AND val2 OR val3 AND val4
   4. Отладка некорректных сценариев:

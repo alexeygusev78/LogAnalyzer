@@ -15,22 +15,21 @@ public class StateBegin extends State {
     }
 
     @Override
-    public State next() throws ParseException {
+    public State next(Token t) throws ParseException {
 
-        boolean negate = false;
+        boolean negative = false;
         while (true) {
-            Token t = getNextSymbol();
             if (t == null) {
                 return null;
             }
 
             if (Token.Type.NOT == t.getType()) {
-                negate = !negate;
+                negative = !negative;
                 continue;
             }
 
             if (Token.Type.STRING == t.getType()) {
-                return new StateString(getContext(), t.getValue());
+                return new StateString(getContext(), t.getValue(), negative);
             }
 
             throw new ParseException("Unsupported token: " + t.toString(), t.getIndex());

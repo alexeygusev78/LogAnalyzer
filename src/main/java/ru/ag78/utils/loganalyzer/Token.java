@@ -68,7 +68,7 @@ public class Token {
     @Override
     public String toString() {
 
-        return String.format("%03d [%8s] %s", index, type, value);
+        return String.format("Token %03d [%8s] %s", index, type, value);
     }
 
     @Override
