@@ -16,6 +16,15 @@ public class Element {
 
     }
 
+    public Element(Predicate<String> p, boolean negative) {
+
+        this.p = p;
+        this.negative = negative;
+        if (negative) {
+            p = p.negate();
+        }
+    }
+
     public Element(String value) {
 
         p = new MyPredicate(value);

@@ -1,5 +1,6 @@
 package ru.ag78.utils.loganalyzer.logic;
 
+import java.text.ParseException;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -41,11 +42,15 @@ public class LogicParser {
 
     public Predicate<String> parse(Queue<Token> tokens) throws Exception {
 
+        return parse(tokens, 0);
+    }
+
+    public Predicate<String> parse(Queue<Token> tokens, int level) throws Exception {
+
         this.tokens = tokens;
 
         Deque<Predicate<String>> stack = new LinkedList<>();
 
-        int level = 0;
         Element prev = null;
         Element cur = null;
         while ((cur = getNextElement(tokens, level)) != null) {
@@ -112,6 +117,19 @@ public class LogicParser {
             if (t.isValue()) {
                 e = new Element(t.getValue(), negative);
                 e.setOp(op);
+                return e;
+            }
+
+            if (t.isOpenBrace()) {
+                Predicate<String> p = parse(tokens, level + 1);
+                e = new Element(p, negative);
+                e.setOp(op);
+            }
+
+            if (t.isCloseBrace()) {
+                if (level == 0) {
+                    throw new ParseException("Unexpected bracket for " + t.toString(), t.getIndex());
+                }
                 return e;
             }
         }
