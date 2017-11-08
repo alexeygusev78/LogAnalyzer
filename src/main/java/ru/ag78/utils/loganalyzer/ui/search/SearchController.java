@@ -2,13 +2,14 @@ package ru.ag78.utils.loganalyzer.ui.search;
 
 import java.util.List;
 import java.util.Queue;
+import java.util.function.Predicate;
 
 import org.apache.log4j.Logger;
 
-import ru.ag78.utils.loganalyzer.LogicParserOld;
-import ru.ag78.utils.loganalyzer.PredicateWrapper;
+import ru.ag78.utils.loganalyzer.Token;
 import ru.ag78.utils.loganalyzer.Tokenizable;
 import ru.ag78.utils.loganalyzer.Tokenizer1;
+import ru.ag78.utils.loganalyzer.logic.LogicParser;
 import ru.ag78.utils.loganalyzer.ui.MainController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
@@ -57,10 +58,10 @@ public class SearchController implements SearchView.Events {
             log.debug("Loaded Fileset name=" + fsm.getName());
 
             Tokenizable t = new Tokenizer1();
-            Queue<String> tokens = t.toTokens(filter);
+            Queue<Token> tokens = t.toTokens2(filter);
 
-            LogicParserOld lp = new LogicParserOld();
-            PredicateWrapper p = lp.constructPredicate(tokens);
+            LogicParser lp = new LogicParser();
+            Predicate<String> p = lp.parse(tokens);
 
             StringBuilder sb = new StringBuilder();
             sb.append("Search string={" + filter + "}").append("\r\n");
@@ -68,7 +69,7 @@ public class SearchController implements SearchView.Events {
             List<LogFileItem> files = fsm.getSelectedFiles();
             for (LogFileItem f: files) {
                 log.debug("f=" + f.toString());
-                StringBuilder res = model.search(f, p.getPredicate());
+                StringBuilder res = model.search(f, p);
                 sb.append(res);
             }
 
