@@ -1,6 +1,7 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -48,11 +50,9 @@ public class FilesetView {
      */
     public static interface Events {
 
-        public void onAddDir();
+        public void onListChange(List<LogFileItem> files);
 
-        public void onAddFile();
-
-        public void onDeleteFile(LogFileItem item);
+        public void onCheck();
     }
 
     /**
@@ -86,15 +86,16 @@ public class FilesetView {
         // hbox.setSpacing(10);
         // hbox.setStyle("-fx-background-color: #336699;");
         Button btnAddDir = new Button("Add dir");
+
+        btnAddDir.setDisable(true);
         btnAddDir.setOnAction(t -> {
-            eventListener.onAddDir();
+            onAddDir();
         });
 
         // btnShowFileset.setPrefSize(100, 20);
         Button btnAddFile = new Button("Add file");
         btnAddFile.setOnAction(t -> {
-            // eventListener.onAddFile();
-            itemsWrp.add(new LogFileItemWrp(new LogFileItem(false, "blog1.log")));
+            onAddFile();
         });
 
         Button btnDel = new Button("Delete");
@@ -110,7 +111,7 @@ public class FilesetView {
         // btnShowFileset.setPrefSize(100, 20);
         Button btnCheck = new Button("Check");
         btnCheck.setOnAction(t -> {
-            onCheck();
+            invokeOnCheck();
         });
 
         // buttonProjected.setPrefSize(100, 20);
@@ -125,17 +126,22 @@ public class FilesetView {
         return layout;
     }
 
-    private void onCheck() {
+    private void invokeOnCheck() {
 
-        log.debug("onCheck");
-        for (LogFileItemWrp itm: items) {
-            log.debug("  itm=" + itm.getItem().toString());
-        }
+        log.debug("invokeOnCheck");
+        eventListener.onCheck();
+        //        for (LogFileItemWrp itm: items) {
+        //            log.debug("  itm=" + itm.getItem().toString());
+        //        }
     }
 
-    private void onListChange() {
+    private void invokeOnListChange() {
 
-        log.debug("onListChange");
+        log.debug("invokeOnListChange");
+        List<LogFileItem> files = new LinkedList<>();
+        items.stream().forEach(i -> files.add(i.getItem()));
+
+        eventListener.onListChange(files);
     }
 
     private TableView<LogFileItemWrp> initTableView() {
@@ -146,7 +152,7 @@ public class FilesetView {
             @Override
             public void onChanged(Change<? extends LogFileItemWrp> c) {
 
-                onListChange();
+                invokeOnListChange();
             }
         });
 
@@ -172,14 +178,19 @@ public class FilesetView {
         selectedCol.setCellFactory(CheckBoxTableCell.forTableColumn(selectedCol));
 
         TableColumn<LogFileItemWrp, String> pathCol = new TableColumn<LogFileItemWrp, String>();
-        pathCol.setText("Path");
-        pathCol.setCellValueFactory(new PropertyValueFactory<LogFileItemWrp, String>("path"));
+        pathCol.setText("File");
+        pathCol.setCellValueFactory(new PropertyValueFactory<LogFileItemWrp, String>("file"));
         // firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn(sc));
+
+        TableColumn<LogFileItemWrp, String> encodingCol = new TableColumn<LogFileItemWrp, String>();
+        encodingCol.setText("Encoding");
+        encodingCol.setCellValueFactory(new PropertyValueFactory<LogFileItemWrp, String>("encoding"));
+        encodingCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         TableView<LogFileItemWrp> tv = new TableView<>();
         tv.setItems(itemsWrp);
         tv.setEditable(true);
-        tv.getColumns().addAll(selectedCol, pathCol);
+        tv.getColumns().addAll(selectedCol, pathCol, encodingCol);
 
         return tv;
     }
@@ -199,9 +210,8 @@ public class FilesetView {
      */
     public void setFileList(List<LogFileItem> fileList) {
 
-        // ObservableList<LogFile> items = FXCollections.observableArrayList(fileList);
-        // this.fileList.clear();
-        // this.fileList.addAll(fileList);
+        itemsWrp.clear();
+        fileList.stream().forEach(i -> itemsWrp.add(new LogFileItemWrp(i)));
     }
 
     /**
@@ -237,5 +247,22 @@ public class FilesetView {
             log.error(e);
         }
         return files;
+    }
+
+    private void onAddFile() {
+
+        log.debug(".onAddFile");
+        List<File> files = requestFile();
+        for (File f: files) {
+            try {
+                itemsWrp.add(new LogFileItemWrp(new LogFileItem(true, f.getCanonicalPath())));
+            } catch (IOException e) {
+                log.warn(e);
+            }
+        }
+    }
+
+    private void onAddDir() {
+
     }
 }

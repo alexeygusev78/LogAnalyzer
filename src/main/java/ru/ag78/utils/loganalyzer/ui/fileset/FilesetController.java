@@ -1,7 +1,5 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -26,11 +24,11 @@ public class FilesetController implements FilesetView.Events {
         this.view = new FilesetView(this);
         this.model = new FilesetModel(name);
 
-        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog1.log"));
-        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog2.log"));
-        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog3.log"));
-        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog4.log"));
-        //        model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog5.log"));
+        // model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog1.log"));
+        // model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog2.log"));
+        // model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog3.log"));
+        // model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog4.log"));
+        // model.addFile(new LogFileItem(true, "~/dev/logs/20171009/blog5.log"));
 
         init();
     }
@@ -64,31 +62,18 @@ public class FilesetController implements FilesetView.Events {
     }
 
     @Override
-    public void onAddDir() {
+    public void onListChange(List<LogFileItem> files) {
 
-        log.debug(".onAddDir");
+        model.setFiles(files);
     }
 
     @Override
-    public void onAddFile() {
+    public void onCheck() {
 
-        log.debug(".onAddFile");
-
-        List<File> files = view.requestFile();
-        for (File f: files) {
-            try {
-                model.addFile(new LogFileItem(true, f.getCanonicalPath()));
-                view.setFileList(model.getFiles());
-            } catch (IOException e) {
-                log.warn(e);
-            }
+        log.debug("onCheck");
+        List<LogFileItem> files = model.getFiles();
+        for (LogFileItem f: files) {
+            log.debug("  f=" + f.toString());
         }
-    }
-
-    @Override
-    public void onDeleteFile(LogFileItem item) {
-
-        log.debug(".onDeleteFile item=" + item);
-        model.deleteFile(item);
     }
 }

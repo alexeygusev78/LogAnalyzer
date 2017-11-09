@@ -19,6 +19,11 @@ public class FilesetModel {
         this.name = name;
     }
 
+    public void setFiles(List<LogFileItem> files) {
+
+        this.files = files;
+    }
+
     public List<LogFileItem> getFiles() {
 
         return files;

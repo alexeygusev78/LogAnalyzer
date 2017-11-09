@@ -1,5 +1,7 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
+import java.io.File;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,21 +31,21 @@ public class LogFileItemWrp {
         path.set(item.getPath());
         encoding.set(item.getEncoding());
 
-        path.addListener(new ChangeListener<String>() {
-
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-                item.setPath(newValue);
-            }
-        });
-
         checked.addListener(new ChangeListener<Boolean>() {
 
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 
                 item.setSelected(newValue);
+            }
+        });
+
+        encoding.addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                item.setEncoding(newValue);
             }
         });
     }
@@ -76,6 +78,12 @@ public class LogFileItemWrp {
     public String getPath() {
 
         return path.get();
+    }
+
+    public String getFile() {
+
+        File f = new File(path.get());
+        return f.getName();
     }
 
     public void setPath(String path) {

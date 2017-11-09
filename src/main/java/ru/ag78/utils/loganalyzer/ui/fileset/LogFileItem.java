@@ -53,7 +53,7 @@ public class LogFileItem implements Cloneable {
     @Override
     public String toString() {
 
-        return "[" + (checked ? "V" : " ") + "] " + path;
+        return "[" + (checked ? "V" : " ") + "] " + path + " (" + encoding + ")";
     }
 
     public boolean isChecked() {
