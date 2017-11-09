@@ -6,16 +6,22 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import ru.ag78.utils.loganalyzer.ui.MainView;
 
 /**
@@ -31,7 +37,9 @@ public class FilesetView {
 
     // UI controls
     private Node root;
-    private ListView<LogFileItem> listView;
+    private TableView<LogFileItemWrp> tableView;
+    private List<LogFileItemWrp> items = new LinkedList<LogFileItemWrp>();
+    private ObservableList<LogFileItemWrp> itemsWrp;
 
     /**
      * События вьюхи Fileset
@@ -85,26 +93,95 @@ public class FilesetView {
         // btnShowFileset.setPrefSize(100, 20);
         Button btnAddFile = new Button("Add file");
         btnAddFile.setOnAction(t -> {
-            eventListener.onAddFile();
+            // eventListener.onAddFile();
+            itemsWrp.add(new LogFileItemWrp(new LogFileItem(false, "blog1.log")));
         });
 
         Button btnDel = new Button("Delete");
         btnDel.setOnAction(t -> {
-            LogFileItem selected = listView.getSelectionModel().getSelectedItem();
+            LogFileItemWrp selected = tableView.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                eventListener.onDeleteFile(selected);
+                log.debug("onDelete selected=" + selected.getItem().toString());
+                itemsWrp.remove(selected);
+                // eventListener.onDeleteFile(selected);
             }
         });
+
+        // btnShowFileset.setPrefSize(100, 20);
+        Button btnCheck = new Button("Check");
+        btnCheck.setOnAction(t -> {
+            onCheck();
+        });
+
         // buttonProjected.setPrefSize(100, 20);
-        toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel);
+        toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel, btnCheck);
 
         // listView
-        listView = new ListView<LogFileItem>();
+        tableView = initTableView();
 
         layout.setTop(toolbar);
-        layout.setCenter(listView);
+        layout.setCenter(tableView);
 
         return layout;
+    }
+
+    private void onCheck() {
+
+        log.debug("onCheck");
+        for (LogFileItemWrp itm: items) {
+            log.debug("  itm=" + itm.getItem().toString());
+        }
+    }
+
+    private void onListChange() {
+
+        log.debug("onListChange");
+    }
+
+    private TableView<LogFileItemWrp> initTableView() {
+
+        itemsWrp = FXCollections.observableList(items);
+        itemsWrp.addListener(new ListChangeListener<LogFileItemWrp>() {
+
+            @Override
+            public void onChanged(Change<? extends LogFileItemWrp> c) {
+
+                onListChange();
+            }
+        });
+
+        StringConverter<Object> sc = new StringConverter<Object>() {
+
+            @Override
+            public String toString(Object t) {
+
+                return t == null ? null : t.toString();
+            }
+
+            @Override
+            public Object fromString(String string) {
+
+                return string;
+            }
+        };
+
+        TableColumn<LogFileItemWrp, Boolean> selectedCol = new TableColumn<LogFileItemWrp, Boolean>();
+        selectedCol.setText("Use");
+        selectedCol.setMinWidth(70);
+        selectedCol.setCellValueFactory(new PropertyValueFactory<LogFileItemWrp, Boolean>("checked"));
+        selectedCol.setCellFactory(CheckBoxTableCell.forTableColumn(selectedCol));
+
+        TableColumn<LogFileItemWrp, String> pathCol = new TableColumn<LogFileItemWrp, String>();
+        pathCol.setText("Path");
+        pathCol.setCellValueFactory(new PropertyValueFactory<LogFileItemWrp, String>("path"));
+        // firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn(sc));
+
+        TableView<LogFileItemWrp> tv = new TableView<>();
+        tv.setItems(itemsWrp);
+        tv.setEditable(true);
+        tv.getColumns().addAll(selectedCol, pathCol);
+
+        return tv;
     }
 
     /**
@@ -120,10 +197,11 @@ public class FilesetView {
      * Установить коллекцию файлов для отображения в списке.
      * @param fileList
      */
-    public void setFileList(ObservableList<LogFileItem> fileList) {
+    public void setFileList(List<LogFileItem> fileList) {
 
         // ObservableList<LogFile> items = FXCollections.observableArrayList(fileList);
-        listView.setItems(fileList);
+        // this.fileList.clear();
+        // this.fileList.addAll(fileList);
     }
 
     /**

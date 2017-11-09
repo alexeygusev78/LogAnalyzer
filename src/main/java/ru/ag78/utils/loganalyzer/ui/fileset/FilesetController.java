@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import javafx.collections.FXCollections;
+
 public class FilesetController implements FilesetView.Events {
 
     private static final Logger log = Logger.getLogger(FilesetController.class);
@@ -35,7 +37,7 @@ public class FilesetController implements FilesetView.Events {
 
     private void init() {
 
-        view.setFileList(model.getFiles());
+        view.setFileList(FXCollections.observableList(model.getFiles()));
         view.setTitle(model.getName());
     }
 
@@ -76,6 +78,7 @@ public class FilesetController implements FilesetView.Events {
         for (File f: files) {
             try {
                 model.addFile(new LogFileItem(true, f.getCanonicalPath()));
+                view.setFileList(model.getFiles());
             } catch (IOException e) {
                 log.warn(e);
             }

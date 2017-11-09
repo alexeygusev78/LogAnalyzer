@@ -1,15 +1,12 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class FilesetModel {
 
-    private ObservableList<LogFileItem> files = FXCollections.observableArrayList(new ArrayList<LogFileItem>());
+    private List<LogFileItem> files = new LinkedList<LogFileItem>();
     private String name;
 
     /**
@@ -22,14 +19,14 @@ public class FilesetModel {
         this.name = name;
     }
 
-    public ObservableList<LogFileItem> getFiles() {
+    public List<LogFileItem> getFiles() {
 
         return files;
     }
 
     public List<LogFileItem> getSelectedFiles() {
 
-        return files.stream().filter(f -> f.isSelected()).map(f -> f.clone()).collect(Collectors.toList());
+        return files.stream().filter(f -> f.isChecked()).map(f -> f.clone()).collect(Collectors.toList());
     }
 
     public void addFile(LogFileItem file) {

@@ -7,8 +7,8 @@ package ru.ag78.utils.loganalyzer.ui.fileset;
  */
 public class LogFileItem implements Cloneable {
 
-    private final boolean selected;
-    private final String path;
+    private boolean checked;
+    private String path;
     private String encoding;
 
     /**
@@ -20,13 +20,13 @@ public class LogFileItem implements Cloneable {
 
     /**
      * Constructor using fields.
-     * @param selected
+     * @param checked
      * @param path
      */
-    public LogFileItem(boolean selected, String path) {
+    public LogFileItem(boolean checked, String path) {
 
         super();
-        this.selected = selected;
+        this.checked = checked;
         this.path = path;
     }
 
@@ -39,7 +39,7 @@ public class LogFileItem implements Cloneable {
     public LogFileItem(boolean selected, String path, String encoding) {
 
         super();
-        this.selected = selected;
+        this.checked = selected;
         this.path = path;
         this.encoding = encoding;
     }
@@ -47,7 +47,38 @@ public class LogFileItem implements Cloneable {
     @Override
     protected LogFileItem clone() {
 
-        return new LogFileItem(selected, path, encoding);
+        return new LogFileItem(checked, path, encoding);
+    }
+
+    @Override
+    public String toString() {
+
+        return "[" + (checked ? "V" : " ") + "] " + path;
+    }
+
+    public boolean isChecked() {
+
+        return checked;
+    }
+
+    public boolean getChecked() {
+
+        return checked;
+    }
+
+    public void setSelected(boolean selected) {
+
+        this.checked = selected;
+    }
+
+    public String getPath() {
+
+        return path;
+    }
+
+    public void setPath(String path) {
+
+        this.path = path;
     }
 
     public String getEncoding() {
@@ -58,21 +89,5 @@ public class LogFileItem implements Cloneable {
     public void setEncoding(String encoding) {
 
         this.encoding = encoding;
-    }
-
-    public boolean isSelected() {
-
-        return selected;
-    }
-
-    public String getPath() {
-
-        return path;
-    }
-
-    @Override
-    public String toString() {
-
-        return "[" + (selected ? "V" : " ") + "] " + path;
     }
 }
