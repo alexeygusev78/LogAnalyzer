@@ -100,10 +100,11 @@ public class SearchView {
 
         // Break button
         Button btnBreak = new Button("Break");
-        hboxRight.getChildren().add(btnBreak);
+        btnBreak.setDisable(true);
         btnBreak.setOnAction(t -> {
             eventListener.onBreak();
         });
+        hboxRight.getChildren().add(btnBreak);
 
         // Search results window
         searchResults = new TextArea();

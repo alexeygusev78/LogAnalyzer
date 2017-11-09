@@ -8,8 +8,8 @@
 
 .text {
 	-fx-font-family: "Courier";
-	-fx-text-fill: white;
-	-fx-background-color: red;
+	-fx-text-fill: black;
+	-fx-background-color: #ffffc9;
 }
 
 .vbox {

@@ -76,6 +76,7 @@ public class MainView extends Application {
         mainLayout.setTop(topBar);
         mainLayout.setCenter(splitPane);
 
+        primaryStage.setTitle("LogAnalyzer v1.3.2");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -132,18 +133,31 @@ public class MainView extends Application {
         mnuShowFileset = new CheckMenuItem("Fileset panel");
         mnuView.getItems().addAll(mnuShowFileset);
 
+        Menu mnuHelp = new Menu("Help");
+        MenuItem mnuAbout = new MenuItem("About ...");
+        mnuAbout.setOnAction(t -> {
+            showAbout();
+        });
+        mnuHelp.getItems().add(mnuAbout);
+
         // Add to main menu
-        bar.getMenus().addAll(mnuFile, mnuView);
+        bar.getMenus().addAll(mnuFile, mnuView, mnuHelp);
 
         return bar;
+    }
+
+    /**
+     * Shows "About" modal dialog.
+     */
+    private void showAbout() {
+
+        log.debug("showAbout");
     }
 
     private HBox initToolBar() {
 
         HBox hbox = new HBox();
-        hbox.setPadding(new Insets(2, 2, 2, 2)); // new Insets(15, 12, 15, 12)
-        // hbox.setSpacing(10);
-        // hbox.setStyle("-fx-background-color: #336699;");
+        hbox.setPadding(new Insets(2, 2, 2, 2));
         hbox.getStyleClass().add("hbox");
         Button btnNewFileset = new Button("New Fileset");
         btnNewFileset.setPrefSize(100, 20);
@@ -201,5 +215,4 @@ public class MainView extends Application {
 
         stage.close();
     }
-
 }
