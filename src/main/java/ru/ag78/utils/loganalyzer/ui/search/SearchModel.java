@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
+import ru.ag78.utils.loganalyzer.logic.search.SearchResultReceiver;
 import ru.ag78.utils.loganalyzer.ui.fileset.LogFileItem;
 
 public class SearchModel {
@@ -57,14 +58,15 @@ public class SearchModel {
      * @return int - returns count of found elements.
      * @throws Exception
      */
-    public void search(StringBuilder sb, LogFileItem f, Predicate<String> p, int limit) throws Exception {
+    public void search(SearchResultReceiver srr, LogFileItem f, Predicate<String> p, int limit) throws Exception {
 
-        sb.append("file=" + f.toString()).append(" limit=").append(limit).append("\r\n");
+        srr.addInfo("LogFile=" + f.toString() + " limit=" + limit);
 
+        srr.onSearchStarted();
         Stream<String> s = null;
         try {
             Path path = Paths.get(f.getPath());
-            sb.append("exists=").append(path.toFile().exists()).append("\r\n");
+            srr.addInfo("exists=" + path.toFile().exists());
 
             s = Files.lines(path, Charset.forName(f.getEncoding()));
             s = s.filter(p);
@@ -73,18 +75,16 @@ public class SearchModel {
                 s = s.limit(limit);
             }
 
-            s.forEach(l -> sb.append(l).append("\r\n"));
+            s.forEach(l -> srr.onNewResult(l));
         } catch (Exception e) {
             log.error(e.toString(), e);
-            sb.append("Error: " + e.toString()).append("\r\n");
+            srr.onError("Error: " + e.toString());
         } finally {
             if (s != null) {
                 s.close();
             }
 
-            sb.append("\r\n");
-            sb.append("========================================");
-            sb.append("\r\n");
+            srr.onSearchFinished();
         }
     }
 }

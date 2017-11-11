@@ -10,6 +10,7 @@ import ru.ag78.utils.loganalyzer.Token;
 import ru.ag78.utils.loganalyzer.Tokenizable;
 import ru.ag78.utils.loganalyzer.Tokenizer1;
 import ru.ag78.utils.loganalyzer.logic.LogicParser;
+import ru.ag78.utils.loganalyzer.logic.search.SBSearchResult;
 import ru.ag78.utils.loganalyzer.ui.MainController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
@@ -67,12 +68,18 @@ public class SearchController implements SearchView.Events {
             sb.append("Search string={" + filter + "}").append("\r\n");
 
             List<LogFileItem> files = fsm.getSelectedFiles();
+            int totalFound = 0;
             for (LogFileItem f: files) {
                 log.debug("f=" + f.toString());
-                model.search(sb, f, p, limit);
+                SBSearchResult srr = new SBSearchResult();
+                model.search(srr, f, p, limit);
+                totalFound += srr.getCounter().getCount();
+
+                sb.append(srr.toString());
             }
 
             view.setSearchResult(sb.toString());
+            view.setFound(totalFound);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
