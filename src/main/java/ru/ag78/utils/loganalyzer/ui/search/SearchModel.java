@@ -54,15 +54,12 @@ public class SearchModel {
      * @param f
      * @param filter
      * @param p
-     * @return
+     * @return int - returns count of found elements.
      * @throws Exception
      */
-    public StringBuilder search(LogFileItem f, Predicate<String> p) throws Exception {
+    public void search(StringBuilder sb, LogFileItem f, Predicate<String> p, int limit) throws Exception {
 
-        final int limit = 100;
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("File=").append(f.getPath()).append(" encoding=" + f.getEncoding()).append("\r\n");
+        sb.append("file=" + f.toString()).append(" limit=").append(limit).append("\r\n");
 
         Stream<String> s = null;
         try {
@@ -89,7 +86,5 @@ public class SearchModel {
             sb.append("========================================");
             sb.append("\r\n");
         }
-
-        return sb;
     }
 }

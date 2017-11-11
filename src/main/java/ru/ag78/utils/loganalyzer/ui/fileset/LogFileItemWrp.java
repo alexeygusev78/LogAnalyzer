@@ -40,6 +40,15 @@ public class LogFileItemWrp {
             }
         });
 
+        path.addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                item.setPath(newValue);
+            }
+        });
+
         encoding.addListener(new ChangeListener<String>() {
 
             @Override

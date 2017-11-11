@@ -47,9 +47,9 @@ public class SearchController implements SearchView.Events {
     }
 
     @Override
-    public void onSearch(String filter) {
+    public void onSearch(String filter, int limit) {
 
-        log.debug("onSearch source=" + model.getSelectedFileset() + " filter=" + filter);
+        log.debug("onSearch source=" + model.getSelectedFileset() + " filter=" + filter + " limit=" + limit);
 
         try {
             String fsName = model.getSelectedFileset();
@@ -69,15 +69,13 @@ public class SearchController implements SearchView.Events {
             List<LogFileItem> files = fsm.getSelectedFiles();
             for (LogFileItem f: files) {
                 log.debug("f=" + f.toString());
-                StringBuilder res = model.search(f, p);
-                sb.append(res);
+                model.search(sb, f, p, limit);
             }
 
             view.setSearchResult(sb.toString());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-
     }
 
     @Override
