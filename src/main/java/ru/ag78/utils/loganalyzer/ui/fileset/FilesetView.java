@@ -25,6 +25,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import ru.ag78.utils.loganalyzer.ui.MainView;
+import ru.ag78.utils.loganalyzer.ui.fileset.settings.FilesetSettingsDialog;
 
 /**
  * Вьюха для панели Fileset
@@ -264,5 +265,18 @@ public class FilesetView {
 
     private void onAddDir() {
 
+    }
+
+    public void showSettings() {
+
+        try {
+            log.debug(".showSettings");
+
+            Stage mainStage = MainView.getMainStage();
+            FilesetSettingsDialog dlg = new FilesetSettingsDialog();
+            dlg.start(mainStage);
+        } catch (Exception e) {
+            log.error(e.toString(), e);
+        }
     }
 }

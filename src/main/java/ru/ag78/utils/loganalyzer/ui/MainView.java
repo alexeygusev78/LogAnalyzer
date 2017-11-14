@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -67,6 +68,7 @@ public class MainView extends Application {
 
         // init Fileset Pane
         filesetPane = new TabPane();
+        // filesetPane.setContextMenu(initFilesetContextMenu());
 
         // init Search Pane
         searchPane = new TabPane();
@@ -185,11 +187,13 @@ public class MainView extends Application {
      * @param fsv
      * @param name
      */
-    public void addFileSet(Node fsv, String name) {
+    public void addFileSet(Node fsv, String name, ContextMenu ctxMenu) {
 
         Tab tab = new Tab();
         tab.setContent(fsv);
         tab.setText(name);
+
+        tab.setContextMenu(ctxMenu);
 
         filesetPane.getTabs().add(tab);
     }

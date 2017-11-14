@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.regexp.RegExpTestDialog;
 import ru.ag78.utils.loganalyzer.ui.search.SearchController;
@@ -59,10 +63,19 @@ public class MainController implements MainViewEvents {
      * Add fileset to fileset collection.
      * @param fsc
      */
-    private void addFileset(FilesetController fsc) {
+    private void addFileset(final FilesetController fsc) {
 
         filesets.add(fsc);
-        view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName());
+        ContextMenu fsContextMenu = createFsContextMenu();
+        view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName(), fsContextMenu);
+        fsContextMenu.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+
+                log.debug(".onSettings2 fileset=" + fsc.getModel().getName());
+            }
+        });
 
         List<String> fsNames = getFilesetNames();
 
@@ -70,6 +83,14 @@ public class MainController implements MainViewEvents {
         for (SearchController sc: searches) {
             sc.setFilesets(fsNames);
         }
+    }
+
+    private ContextMenu createFsContextMenu() {
+
+        ContextMenu ctxMenu = new ContextMenu();
+        MenuItem mnuSettings = new MenuItem("Settings...");
+        ctxMenu.getItems().add(mnuSettings);
+        return ctxMenu;
     }
 
     public FilesetController getFilesetController(String name) {
