@@ -73,7 +73,7 @@ public class MainController implements MainViewEvents {
             @Override
             public void handle(ActionEvent event) {
 
-                log.debug(".onSettings2 fileset=" + fsc.getModel().getName());
+                log.debug(".onSettings fileset=" + fsc.getModel().getName());
             }
         });
 
