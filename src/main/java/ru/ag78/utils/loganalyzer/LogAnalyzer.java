@@ -78,7 +78,7 @@ public class LogAnalyzer implements OptionsInitializer {
             return;
         }
 
-        if (options.isOption(Opts.GUI)) {
+        if (options.isOption(Opts.GUI) || options.isEmpty()) {
             LogAnalyzerGUI.main(args);
             return;
         }
