@@ -56,23 +56,6 @@ public class MainController implements MainViewEvents, FilesetController.Events 
         return model;
     }
 
-    /**
-     * Add fileset to fileset collection.
-     * @param fsc
-     */
-    private void addFileset(final FilesetController fsc) {
-
-        filesets.add(fsc);
-        view.addFileSet(fsc.getView(), fsc.getModel().getName());
-
-        List<String> fsNames = getFilesetNames();
-
-        // обновить во всех SearchView список доступных Fileset'ов
-        for (SearchController sc: searches) {
-            sc.setFilesets(fsNames);
-        }
-    }
-
     public FilesetController getFilesetController(String name) {
 
         for (FilesetController fsc: filesets) {
@@ -112,7 +95,20 @@ public class MainController implements MainViewEvents, FilesetController.Events 
         log.debug(".onNewFileset");
 
         FilesetController fsc = new FilesetController(model.getNextFilesetName(), this);
-        addFileset(fsc);
+
+        filesets.add(fsc);
+        view.addFileSet(fsc.getView());
+
+        updateFsListInSearches();
+    }
+
+    private void updateFsListInSearches() {
+
+        List<String> fsNames = getFilesetNames();
+        // обновить во всех SearchView список доступных Fileset'ов
+        for (SearchController sc: searches) {
+            sc.setFilesets(fsNames);
+        }
     }
 
     @Override
@@ -135,7 +131,6 @@ public class MainController implements MainViewEvents, FilesetController.Events 
     @Override
     public void onFilesetChanged(FilesetModel model) {
 
-        // TODO Auto-generated method stub
-
+        updateFsListInSearches();
     }
 }

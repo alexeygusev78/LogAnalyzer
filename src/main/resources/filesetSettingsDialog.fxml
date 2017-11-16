@@ -20,11 +20,11 @@
 	<TextField fx:id="txtDescription" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
 	<Label text="Persistent:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-	<CheckBox fx:id="chkPersistent" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_LEFT"/>
+	<CheckBox fx:id="chkPersistent" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_LEFT" disable="true"/>
 
 	<HBox spacing="10" alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
-		<Button fx:id="btnOK" text="OK" onAction="#onOK"/>
-		<Button fx:id="btnClose" text="Cancel" onAction="#onCancel"/>
+		<Button text="OK" onAction="#onOK"/>
+		<Button text="Cancel" onAction="#onCancel"/>
 	</HBox>
 	
 </GridPane>

@@ -14,7 +14,7 @@ public class FilesetController implements FilesetView.Events {
     private FilesetView view;
     private FilesetModel model;
 
-    private FilesetController.Events eventListener;
+    private Events eventListener;
 
     public interface Events {
 
@@ -26,9 +26,10 @@ public class FilesetController implements FilesetView.Events {
      * @param view
      * @param model
      */
-    public FilesetController(String name, FilesetController.Events eventListener) {
+    public FilesetController(String name, Events eventListener) {
 
         super();
+        this.eventListener = eventListener;
         this.view = new FilesetView(this);
         this.model = new FilesetModel(name);
 
@@ -38,7 +39,7 @@ public class FilesetController implements FilesetView.Events {
     private void init() {
 
         view.setFileList(FXCollections.observableList(model.getFiles()));
-        view.setTitle(model.getName());
+        view.setTitle(model.getName(), model.getDescription());
     }
 
     @Override
@@ -70,16 +71,6 @@ public class FilesetController implements FilesetView.Events {
     }
 
     @Override
-    public void onCheck() {
-
-        log.debug("onCheck");
-        List<LogFileItem> files = model.getFiles();
-        for (LogFileItem f: files) {
-            log.debug("  f=" + f.toString());
-        }
-    }
-
-    @Override
     public void onSettings() {
 
         log.debug(".onSettings name=" + model.getName());
@@ -88,18 +79,25 @@ public class FilesetController implements FilesetView.Events {
 
             FilesetSettingsDialog dlg = new FilesetSettingsDialog();
             if (dlg.start(model, MainView.getMainStage())) {
-                invokeOnFilesetChanged();
+                view.setTitle(model.getName(), model.getDescription());
+                eventListener.onFilesetChanged(model);
             }
         } catch (Exception e) {
             log.error(e.toString(), e);
         }
     }
 
-    /**
-     * Fire fileset changes event
-     */
-    private void invokeOnFilesetChanged() {
+    @Override
+    public void onSelect(final boolean checked) {
 
-        log.debug(".invokeOnFilesetChanged");
+        model.getFiles().stream().forEach(i -> i.setChecked(checked));
+        view.setFileList(FXCollections.observableList(model.getFiles()));
+    }
+
+    @Override
+    public void onInvertSelection() {
+
+        model.getFiles().stream().forEach(i -> i.setChecked(!i.isChecked()));
+        view.setFileList(FXCollections.observableList(model.getFiles()));
     }
 }

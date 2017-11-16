@@ -24,7 +24,7 @@ public class FilesetSettingsDialog {
         dlg.initStyle(StageStyle.UTILITY);
         dlg.setScene(scene);
 
-        dlg.show();
+        dlg.showAndWait();
 
         return ctrl.isOk();
     }

@@ -36,7 +36,7 @@ public class LogFileItemWrp {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 
-                item.setSelected(newValue);
+                item.setChecked(newValue);
             }
         });
 

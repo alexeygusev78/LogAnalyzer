@@ -17,8 +17,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -46,7 +48,8 @@ public class FilesetView {
     private TableView<LogFileItemWrp> tableView;
     private List<LogFileItemWrp> items = new LinkedList<LogFileItemWrp>();
     private ObservableList<LogFileItemWrp> itemsWrp;
-    private ContextMenu fsContextMenu;
+    private Tab tab;
+    private Tooltip tooltip;
 
     /**
      * События вьюхи Fileset
@@ -57,9 +60,11 @@ public class FilesetView {
 
         public void onListChange(List<LogFileItem> files);
 
-        public void onCheck();
-
         public void onSettings();
+
+        public void onSelect(boolean checked);
+
+        public void onInvertSelection();
     }
 
     /**
@@ -89,9 +94,7 @@ public class FilesetView {
         layout.getStyleClass().add("vbox");
 
         HBox toolbar = new HBox();
-        toolbar.setPadding(new Insets(2, 2, 2, 2)); // new Insets(15, 12, 15, 12)
-        // hbox.setSpacing(10);
-        // hbox.setStyle("-fx-background-color: #336699;");
+        toolbar.setPadding(new Insets(2, 2, 2, 2));
         Button btnAddDir = new Button("Add dir");
 
         btnAddDir.setDisable(true);
@@ -101,28 +104,43 @@ public class FilesetView {
 
         // btnShowFileset.setPrefSize(100, 20);
         Button btnAddFile = new Button("Add file");
+        btnAddFile.setTooltip(new Tooltip("Add file(s)"));
         btnAddFile.setOnAction(t -> {
             onAddFile();
         });
 
         Button btnDel = new Button("Delete");
+        btnDel.setTooltip(new Tooltip("Delete selected item(s)"));
         btnDel.setOnAction(t -> {
             LogFileItemWrp selected = tableView.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 log.debug("onDelete selected=" + selected.getItem().toString());
                 itemsWrp.remove(selected);
-                // eventListener.onDeleteFile(selected);
             }
         });
 
-        // btnShowFileset.setPrefSize(100, 20);
-        Button btnCheck = new Button("Check");
-        btnCheck.setOnAction(t -> {
-            invokeOnCheck();
+        // select all button
+        Button btnPlus = new Button("+");
+        btnPlus.setTooltip(new Tooltip("Check all items"));
+        btnPlus.setOnAction(t -> {
+            invokeOnPlus();
         });
 
-        // buttonProjected.setPrefSize(100, 20);
-        toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel, btnCheck);
+        // deselect all button
+        Button btnMinus = new Button("-");
+        btnMinus.setTooltip(new Tooltip("Uncheck all items"));
+        btnMinus.setOnAction(t -> {
+            invokeOnMinus();
+        });
+
+        // invert selection button
+        Button btnAsterisk = new Button("*");
+        btnAsterisk.setTooltip(new Tooltip("Invert checking items"));
+        btnAsterisk.setOnAction(t -> {
+            onAsterisk();
+        });
+
+        toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel, btnPlus, btnMinus, btnAsterisk);
 
         // listView
         tableView = initTableView();
@@ -130,18 +148,31 @@ public class FilesetView {
         layout.setTop(toolbar);
         layout.setCenter(tableView);
 
-        fsContextMenu = createFsContextMenu();
+        tooltip = new Tooltip();
+
+        // create tab for this view
+        tab = new Tab();
+        tab.setContent(layout);
+        tab.setText("");
+        tab.setTooltip(tooltip);
+        tab.setContextMenu(createFsContextMenu());
 
         return layout;
     }
 
-    private void invokeOnCheck() {
+    private void onAsterisk() {
 
-        log.debug("invokeOnCheck");
-        eventListener.onCheck();
-        //        for (LogFileItemWrp itm: items) {
-        //            log.debug("  itm=" + itm.getItem().toString());
-        //        }
+        eventListener.onInvertSelection();
+    }
+
+    private void invokeOnMinus() {
+
+        eventListener.onSelect(false);
+    }
+
+    private void invokeOnPlus() {
+
+        eventListener.onSelect(true);
     }
 
     private void invokeOnListChange() {
@@ -208,9 +239,10 @@ public class FilesetView {
      * Установить имя файлсета.
      * @param title
      */
-    public void setTitle(String title) {
+    public void setTitle(String title, String tooltip) {
 
-        // labelTitle.setText(title);
+        tab.setText(title);
+        this.tooltip.setText(tooltip);
     }
 
     /**
@@ -293,12 +325,8 @@ public class FilesetView {
         return mnu;
     }
 
-    /**
-     * MainController needs this context menu to set it to the appropriate fileset tab.
-     * @return
-     */
-    public ContextMenu getFsContextMenu() {
+    public Tab getTab() {
 
-        return fsContextMenu;
+        return tab;
     }
 }

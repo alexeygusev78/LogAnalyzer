@@ -61,14 +61,9 @@ public class LogFileItem implements Cloneable {
         return checked;
     }
 
-    public boolean getChecked() {
+    public void setChecked(boolean checked) {
 
-        return checked;
-    }
-
-    public void setSelected(boolean selected) {
-
-        this.checked = selected;
+        this.checked = checked;
     }
 
     public String getPath() {

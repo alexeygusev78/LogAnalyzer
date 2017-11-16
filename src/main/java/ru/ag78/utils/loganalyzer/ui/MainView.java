@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -188,17 +187,9 @@ public class MainView extends Application {
      * @param fsv
      * @param name
      */
-    public void addFileSet(FilesetView fsv, String name) {
+    public void addFileSet(FilesetView fsv) {
 
-        ContextMenu mnu = fsv.getFsContextMenu();
-
-        Tab tab = new Tab();
-        tab.setContent(fsv.getRoot());
-        tab.setText(name);
-
-        tab.setContextMenu(mnu);
-
-        filesetPane.getTabs().add(tab);
+        filesetPane.getTabs().add(fsv.getTab());
     }
 
     /**
