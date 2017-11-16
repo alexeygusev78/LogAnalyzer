@@ -20,6 +20,7 @@ public class OptionsHelper {
     private CommandLine cmd;
     private Options options;
     private OptionsInitializer oi;
+    private boolean isEmpty;
 
     /**
      * Ctor with command-line arguments.
@@ -35,8 +36,8 @@ public class OptionsHelper {
         options = new Options();
         options.addOption("h", "help", false, "Show this help information");
         oi.initOptions(options);
-
         cmd = parseCommandLine(options, args);
+        isEmpty = args.length==0;
     }
 
     private CommandLine parseCommandLine(Options options, String[] args) throws Exception {
@@ -46,7 +47,14 @@ public class OptionsHelper {
 
         return cmd;
     }
-
+    /**
+     * Checks if there were any command line parameters passed
+     * @return
+     */
+    public boolean isEmpty() {
+    	return isEmpty;
+    }
+    
     /**
      * Безопасно возвращает значение заданной опции. В случае ошибки возвращается пустая строка "".
      * @param name
