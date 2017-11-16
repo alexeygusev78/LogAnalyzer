@@ -9,7 +9,7 @@ public class FilesetModel {
     private List<LogFileItem> files = new LinkedList<LogFileItem>();
     private String name;
     private String description;
-    private boolean isToSave;
+    private boolean persist;
 
     /**
      * Ctor with parameters
@@ -71,14 +71,14 @@ public class FilesetModel {
         this.description = description;
     }
 
-    public boolean isToSave() {
+    public boolean isPersist() {
 
-        return isToSave;
+        return persist;
     }
 
-    public void setToSave(boolean isToSave) {
+    public void setPersist(boolean persist) {
 
-        this.isToSave = isToSave;
+        this.persist = persist;
     }
 
 }
