@@ -8,6 +8,8 @@ public class FilesetModel {
 
     private List<LogFileItem> files = new LinkedList<LogFileItem>();
     private String name;
+    private String description;
+    private boolean isToSave;
 
     /**
      * Ctor with parameters
@@ -58,4 +60,25 @@ public class FilesetModel {
 
         this.name = name;
     }
+
+    public String getDescription() {
+
+        return description;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
+    }
+
+    public boolean isToSave() {
+
+        return isToSave;
+    }
+
+    public void setToSave(boolean isToSave) {
+
+        this.isToSave = isToSave;
+    }
+
 }

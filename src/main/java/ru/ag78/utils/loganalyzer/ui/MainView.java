@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ru.ag78.utils.loganalyzer.ui.fileset.FilesetView;
 
 /**
  * UI Console for LogAnalyzer.
@@ -187,13 +188,15 @@ public class MainView extends Application {
      * @param fsv
      * @param name
      */
-    public void addFileSet(Node fsv, String name, ContextMenu ctxMenu) {
+    public void addFileSet(FilesetView fsv, String name) {
+
+        ContextMenu mnu = fsv.getFsContextMenu();
 
         Tab tab = new Tab();
-        tab.setContent(fsv);
+        tab.setContent(fsv.getRoot());
         tab.setText(name);
 
-        tab.setContextMenu(ctxMenu);
+        tab.setContextMenu(mnu);
 
         filesetPane.getTabs().add(tab);
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import javafx.collections.FXCollections;
+import ru.ag78.utils.loganalyzer.ui.MainView;
 
 public class FilesetController implements FilesetView.Events {
 
@@ -13,12 +14,19 @@ public class FilesetController implements FilesetView.Events {
     private FilesetView view;
     private FilesetModel model;
 
+    private FilesetController.Events eventListener;
+
+    public interface Events {
+
+        public void onFilesetChanged(FilesetModel model);
+    }
+
     /**
      * Ctor usign fields.
      * @param view
      * @param model
      */
-    public FilesetController(String name) {
+    public FilesetController(String name, FilesetController.Events eventListener) {
 
         super();
         this.view = new FilesetView(this);
@@ -69,5 +77,29 @@ public class FilesetController implements FilesetView.Events {
         for (LogFileItem f: files) {
             log.debug("  f=" + f.toString());
         }
+    }
+
+    @Override
+    public void onSettings() {
+
+        log.debug(".onSettings name=" + model.getName());
+        try {
+            log.debug(".showSettings");
+
+            FilesetSettingsDialog dlg = new FilesetSettingsDialog();
+            if (dlg.start(model, MainView.getMainStage())) {
+                invokeOnFilesetChanged();
+            }
+        } catch (Exception e) {
+            log.error(e.toString(), e);
+        }
+    }
+
+    /**
+     * Fire fileset changes event
+     */
+    private void invokeOnFilesetChanged() {
+
+        log.debug(".invokeOnFilesetChanged");
     }
 }

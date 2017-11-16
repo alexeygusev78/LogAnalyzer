@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ag78.utils.loganalyzer.ui.fileset.FilesetSettingsDialog" alignment="center" hgap="10" vgap="10" >
+	<padding>
+		<Insets top="10" right="25" bottom="10" left="25"/>
+	</padding>
+	
+	<Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+	<TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="0" text="$controller.name"></TextField>
+
+	<Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+	<TextField fx:id="txtDescription" GridPane.columnIndex="1" GridPane.rowIndex="1" text="${controller.description}"/>
+
+	<Label text="Persistent:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+	<CheckBox fx:id="chkPersistent" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_LEFT"/>
+
+	<HBox spacing="10" alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+		<Button fx:id="btnOK" text="OK" onAction="#onOK" disable="${chkPersistent.selected}"/>
+		<Button fx:id="btnClose" text="Cancel" onAction="#onCancel"/>
+	</HBox>
+	
 </GridPane>
-

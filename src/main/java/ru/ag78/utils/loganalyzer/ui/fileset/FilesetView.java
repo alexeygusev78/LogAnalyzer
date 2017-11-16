@@ -10,9 +10,13 @@ import org.apache.log4j.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -25,7 +29,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import ru.ag78.utils.loganalyzer.ui.MainView;
-import ru.ag78.utils.loganalyzer.ui.fileset.settings.FilesetSettingsDialog;
 
 /**
  * Вьюха для панели Fileset
@@ -43,6 +46,7 @@ public class FilesetView {
     private TableView<LogFileItemWrp> tableView;
     private List<LogFileItemWrp> items = new LinkedList<LogFileItemWrp>();
     private ObservableList<LogFileItemWrp> itemsWrp;
+    private ContextMenu fsContextMenu;
 
     /**
      * События вьюхи Fileset
@@ -54,6 +58,8 @@ public class FilesetView {
         public void onListChange(List<LogFileItem> files);
 
         public void onCheck();
+
+        public void onSettings();
     }
 
     /**
@@ -123,6 +129,8 @@ public class FilesetView {
 
         layout.setTop(toolbar);
         layout.setCenter(tableView);
+
+        fsContextMenu = createFsContextMenu();
 
         return layout;
     }
@@ -267,16 +275,30 @@ public class FilesetView {
 
     }
 
-    public void showSettings() {
+    private ContextMenu createFsContextMenu() {
 
-        try {
-            log.debug(".showSettings");
+        ContextMenu mnu = new ContextMenu();
+        MenuItem mnuSettings = new MenuItem("Settings...");
+        mnu.getItems().add(mnuSettings);
 
-            Stage mainStage = MainView.getMainStage();
-            FilesetSettingsDialog dlg = new FilesetSettingsDialog();
-            dlg.start(mainStage);
-        } catch (Exception e) {
-            log.error(e.toString(), e);
-        }
+        mnu.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+
+                eventListener.onSettings();
+            }
+        });
+
+        return mnu;
+    }
+
+    /**
+     * MainController needs this context menu to set it to the appropriate fileset tab.
+     * @return
+     */
+    public ContextMenu getFsContextMenu() {
+
+        return fsContextMenu;
     }
 }

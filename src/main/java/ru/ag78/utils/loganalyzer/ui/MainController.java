@@ -6,11 +6,8 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
+import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
 import ru.ag78.utils.loganalyzer.ui.regexp.RegExpTestDialog;
 import ru.ag78.utils.loganalyzer.ui.search.SearchController;
 
@@ -22,7 +19,7 @@ import ru.ag78.utils.loganalyzer.ui.search.SearchController;
  * @author alexey
  *
  */
-public class MainController implements MainViewEvents {
+public class MainController implements MainViewEvents, FilesetController.Events {
 
     private static final Logger log = Logger.getLogger(MainController.class);
 
@@ -66,16 +63,7 @@ public class MainController implements MainViewEvents {
     private void addFileset(final FilesetController fsc) {
 
         filesets.add(fsc);
-        ContextMenu fsContextMenu = createFsContextMenu();
-        view.addFileSet(fsc.getView().getRoot(), fsc.getModel().getName(), fsContextMenu);
-        fsContextMenu.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-
-                log.debug(".onSettings fileset=" + fsc.getModel().getName());
-            }
-        });
+        view.addFileSet(fsc.getView(), fsc.getModel().getName());
 
         List<String> fsNames = getFilesetNames();
 
@@ -83,14 +71,6 @@ public class MainController implements MainViewEvents {
         for (SearchController sc: searches) {
             sc.setFilesets(fsNames);
         }
-    }
-
-    private ContextMenu createFsContextMenu() {
-
-        ContextMenu ctxMenu = new ContextMenu();
-        MenuItem mnuSettings = new MenuItem("Settings...");
-        ctxMenu.getItems().add(mnuSettings);
-        return ctxMenu;
     }
 
     public FilesetController getFilesetController(String name) {
@@ -131,7 +111,7 @@ public class MainController implements MainViewEvents {
 
         log.debug(".onNewFileset");
 
-        FilesetController fsc = new FilesetController(model.getNextFilesetName());
+        FilesetController fsc = new FilesetController(model.getNextFilesetName(), this);
         addFileset(fsc);
     }
 
@@ -150,5 +130,12 @@ public class MainController implements MainViewEvents {
         log.debug(".onRegExpTest");
         RegExpTestDialog dlg = new RegExpTestDialog();
         dlg.show();
+    }
+
+    @Override
+    public void onFilesetChanged(FilesetModel model) {
+
+        // TODO Auto-generated method stub
+
     }
 }
