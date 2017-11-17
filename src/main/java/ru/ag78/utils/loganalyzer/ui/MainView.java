@@ -154,6 +154,12 @@ public class MainView extends Application {
     private void showAbout() {
 
         log.debug("showAbout");
+
+        try {
+            AboutDialog.start(MainView.getMainStage());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private HBox initToolBar() {

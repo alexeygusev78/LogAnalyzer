@@ -40,8 +40,6 @@ public class FilesetController implements FilesetView.Events {
 
         view.setFileList(FXCollections.observableList(model.getFiles()));
         view.setTitle(model.getName(), model.getDescription());
-
-        // view.subscribeOnCloseTab(t -> this.onClosed());
     }
 
     @Override
@@ -102,9 +100,4 @@ public class FilesetController implements FilesetView.Events {
         model.getFiles().stream().forEach(i -> i.setChecked(!i.isChecked()));
         view.setFileList(FXCollections.observableList(model.getFiles()));
     }
-
-    //    public void onClosed() {
-    //
-    //        log.debug(".onClosed filesetname=" + model.getName());
-    //    }
 }

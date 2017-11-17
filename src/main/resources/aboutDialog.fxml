@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ag78.utils.loganalyzer.ui.AboutDialog" alignment="center" hgap="10" vgap="10">
+
+	<padding>
+		<Insets top="10" right="25" bottom="10" left="25"/>
+	</padding>
+	
+	<Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+	<Text text = "LogAnalyzer tool v1.3.3" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+	<Label text="Author:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+	<Text text="Gusev Alexey" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+	<Label text="Home:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+	<Text text="http://github.com/alexeygusev78/LogAnalyzer" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+</GridPane>
+

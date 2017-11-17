@@ -336,6 +336,12 @@ public class FilesetView {
         return tab;
     }
 
+    /**
+     * Subscribe client to closeTab events.
+     * Model will be supplied to the consumer when the event occurs.
+     * @param consumer
+     * @param model
+     */
     public void subscribeOnCloseTab(final Consumer<FilesetModel> consumer, final FilesetModel model) {
 
         tab.setOnClosed(new EventHandler<Event>() {
