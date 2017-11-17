@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.apache.log4j.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -137,7 +139,7 @@ public class FilesetView {
         Button btnAsterisk = new Button("*");
         btnAsterisk.setTooltip(new Tooltip("Invert checking items"));
         btnAsterisk.setOnAction(t -> {
-            onAsterisk();
+            invokeOnAsterisk();
         });
 
         toolbar.getChildren().addAll(btnAddDir, btnAddFile, btnDel, btnPlus, btnMinus, btnAsterisk);
@@ -160,7 +162,11 @@ public class FilesetView {
         return layout;
     }
 
-    private void onAsterisk() {
+    private void invokeOnDeleteTab() {
+
+    }
+
+    private void invokeOnAsterisk() {
 
         eventListener.onInvertSelection();
     }
@@ -328,5 +334,17 @@ public class FilesetView {
     public Tab getTab() {
 
         return tab;
+    }
+
+    public void subscribeOnCloseTab(final Consumer<FilesetModel> consumer, final FilesetModel model) {
+
+        tab.setOnClosed(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+
+                consumer.accept(model);
+            }
+        });
     }
 }

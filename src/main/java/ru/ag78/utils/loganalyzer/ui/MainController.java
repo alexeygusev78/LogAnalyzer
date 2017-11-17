@@ -98,7 +98,15 @@ public class MainController implements MainViewEvents, FilesetController.Events 
 
         filesets.add(fsc);
         view.addFileSet(fsc.getView());
+        fsc.getView().subscribeOnCloseTab(t -> onCloseFileset(t), fsc.getModel());
 
+        updateFsListInSearches();
+    }
+
+    private void onCloseFileset(FilesetModel model) {
+
+        log.debug(".onCloseFileset name=" + model.getName());
+        filesets.removeIf(fsc -> fsc.getModel().getName().equals(model.getName()));
         updateFsListInSearches();
     }
 
