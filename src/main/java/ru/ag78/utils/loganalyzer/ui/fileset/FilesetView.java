@@ -19,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,7 +32,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import ru.ag78.utils.loganalyzer.ui.MainView;
 
 /**
@@ -202,21 +202,6 @@ public class FilesetView {
             }
         });
 
-        StringConverter<Object> sc = new StringConverter<Object>() {
-
-            @Override
-            public String toString(Object t) {
-
-                return t == null ? null : t.toString();
-            }
-
-            @Override
-            public Object fromString(String string) {
-
-                return string;
-            }
-        };
-
         TableColumn<LogFileItemWrp, Boolean> selectedCol = new TableColumn<LogFileItemWrp, Boolean>();
         selectedCol.setText("Use");
         selectedCol.setMinWidth(70);
@@ -237,6 +222,8 @@ public class FilesetView {
         tv.setItems(itemsWrp);
         tv.setEditable(true);
         tv.getColumns().addAll(selectedCol, pathCol, encodingCol);
+
+        tv.getSelectionModel().selectionModeProperty().set(SelectionMode.MULTIPLE);
 
         return tv;
     }
