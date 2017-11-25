@@ -1,10 +1,13 @@
 package ru.ag78.utils.loganalyzer.ui.fileset;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Структура, представляющая собой ссылку на лог-файл.
  * @author alexey
  *
  */
+@XmlRootElement
 public class LogFileItem implements Cloneable {
 
     private boolean checked;
@@ -16,6 +19,13 @@ public class LogFileItem implements Cloneable {
      */
     {
         encoding = System.getProperty("file.encoding", "UTF-8");
+    }
+
+    /**
+     * Default ctor
+     */
+    public LogFileItem() {
+
     }
 
     /**

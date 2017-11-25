@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
+import ru.ag78.utils.loganalyzer.config.Configuration;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
 import ru.ag78.utils.loganalyzer.ui.regexp.RegExpTestDialog;
@@ -19,10 +20,11 @@ import ru.ag78.utils.loganalyzer.ui.search.SearchController;
  * @author alexey
  *
  */
-public class MainController implements MainViewEvents, FilesetController.Events {
+public class MainController implements MainView.Events, FilesetController.Events {
 
     private static final Logger log = Logger.getLogger(MainController.class);
 
+    private Configuration config = new Configuration();
     private MainView view;
     private MainModel model;
 
@@ -34,21 +36,15 @@ public class MainController implements MainViewEvents, FilesetController.Events 
      * @param view
      * @param model
      */
-    public MainController(MainView view) {
+    public MainController(MainView view) throws Exception {
 
         super();
         this.view = view;
         this.model = new MainModel();
 
-        init();
-    }
+        config = loadConfig();
 
-    /**
-     * Initialize controller.
-     * We assume that the MainView already initialized.
-     */
-    private void init() {
-
+        view.start(this);
     }
 
     public MainModel getModel() {
@@ -103,10 +99,10 @@ public class MainController implements MainViewEvents, FilesetController.Events 
         updateFsListInSearches();
     }
 
-    private void onCloseFileset(FilesetModel model) {
+    private void onCloseFileset(FilesetModel fsModel) {
 
-        log.debug(".onCloseFileset name=" + model.getName());
-        filesets.removeIf(fsc -> fsc.getModel().getName().equals(model.getName()));
+        log.debug(".onCloseFileset name=" + fsModel.getName());
+        filesets.removeIf(fsc -> fsc.getModel().getName().equals(fsModel.getName()));
         updateFsListInSearches();
     }
 
@@ -140,5 +136,16 @@ public class MainController implements MainViewEvents, FilesetController.Events 
     public void onFilesetChanged(FilesetModel model) {
 
         updateFsListInSearches();
+    }
+
+    @Override
+    public void onSaveConfig() {
+
+        log.debug(".onSaveConfig");
+    }
+
+    private Configuration loadConfig() {
+
+        return new Configuration();
     }
 }
