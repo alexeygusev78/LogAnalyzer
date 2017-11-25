@@ -12,6 +12,13 @@ public class FilesetModel {
     private boolean persist;
 
     /**
+     * Default ctor
+     */
+    public FilesetModel() {
+
+    }
+
+    /**
      * Ctor with parameters
      * @param name
      */

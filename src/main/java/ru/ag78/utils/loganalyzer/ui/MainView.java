@@ -2,7 +2,6 @@ package ru.ag78.utils.loganalyzer.ui;
 
 import org.apache.log4j.Logger;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -26,38 +25,53 @@ import ru.ag78.utils.loganalyzer.ui.fileset.FilesetView;
  * @author Алексей
  *
  */
-public class MainView extends Application {
+public class MainView {
 
     private static final Logger log = Logger.getLogger(MainView.class);
 
     // main MVC
-    private MainViewEvents eventListener;
+    private Events eventListener;
 
     // ui controls
     private static Stage mainStage;
-    private Stage stage;
     private BorderPane mainLayout;
     private CheckMenuItem mnuShowFileset;
     private TabPane filesetPane;
     private TabPane searchPane;
 
     /**
-     * Default ctor, invoked from JavaFX.
+     * Events interface
+     * @author alexey
+     *
      */
-    public MainView() {
+    public interface Events {
 
+        public void onNewFileset();
+
+        public void onNewSearch();
+
+        public void onRegExpTest();
+
+        public void onClose();
+
+        public void onSaveConfig();
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    /**
+     * Default ctor, invoked from JavaFX.
+     */
+    public MainView(Stage mainStage) {
 
-        MainView.mainStage = primaryStage;
-        this.stage = primaryStage;
+        MainView.mainStage = mainStage;
+    }
+
+    public void start(Events eventListener) throws Exception {
+
+        this.eventListener = eventListener;
+
         String css = getClass().getResource("/main.css").toExternalForm();
 
         // init controller & view
-        eventListener = new MainController(this);
-
         mainLayout = new BorderPane();
         Scene scene = new Scene(mainLayout, 800, 600);
         scene.getStylesheets().add(css);
@@ -78,9 +92,9 @@ public class MainView extends Application {
         mainLayout.setTop(topBar);
         mainLayout.setCenter(splitPane);
 
-        primaryStage.setTitle("LogAnalyzer v1.3.2");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        mainStage.setTitle("LogAnalyzer v1.3.2");
+        mainStage.setScene(scene);
+        mainStage.show();
     }
 
     public static Stage getMainStage() {
@@ -217,6 +231,6 @@ public class MainView extends Application {
      */
     public void close() {
 
-        stage.close();
+        mainStage.close();
     }
 }
