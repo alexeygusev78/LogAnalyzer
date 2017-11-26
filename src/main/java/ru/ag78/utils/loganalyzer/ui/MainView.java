@@ -138,6 +138,11 @@ public class MainView {
             eventListener.onNewSearch();
         });
 
+        MenuItem mnuSave = new MenuItem("Save");
+        mnuSave.setOnAction(t -> {
+            eventListener.onSaveConfig();
+        });
+
         MenuItem mnuExit = new MenuItem("Exit");
         mnuExit.setOnAction(t -> {
             eventListener.onClose();
@@ -198,7 +203,12 @@ public class MainView {
             eventListener.onRegExpTest();
         });
 
-        hbox.getChildren().addAll(btnNewFileset, btnNewSearch, btnRegExpTest);
+        Button btnSave = new Button("Save");
+        btnSave.setOnAction(t -> {
+            eventListener.onSaveConfig();
+        });
+
+        hbox.getChildren().addAll(btnNewFileset, btnNewSearch, btnSave, btnRegExpTest);
         return hbox;
     }
 
