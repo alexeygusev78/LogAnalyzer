@@ -6,10 +6,11 @@ import java.util.Properties;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "config")
 public class Configuration {
 
     private Properties props = new Properties();
+
     private List<Fileset> filesets = new LinkedList<>();
 
     public Properties getProps() {
@@ -25,5 +26,10 @@ public class Configuration {
     public List<Fileset> getFilesets() {
 
         return filesets;
+    }
+
+    public void setFilesets(List<Fileset> filesets) {
+
+        this.filesets = filesets;
     }
 }

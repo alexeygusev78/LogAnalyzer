@@ -2,7 +2,6 @@ package ru.ag78.utils.loganalyzer.ui;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -27,7 +26,6 @@ public class MainController implements MainView.Events, FilesetController.Events
     private MainView view;
     private MainModel model;
 
-    private List<FilesetController> filesets = new LinkedList<>();
     private List<SearchController> searches = new LinkedList<>();
 
     /**
@@ -47,22 +45,6 @@ public class MainController implements MainView.Events, FilesetController.Events
     public MainModel getModel() {
 
         return model;
-    }
-
-    public FilesetController getFilesetController(String name) {
-
-        for (FilesetController fsc: filesets) {
-            if (fsc.getModel().getName().equalsIgnoreCase(name)) {
-                return fsc;
-            }
-        }
-
-        return null;
-    }
-
-    private List<String> getFilesetNames() {
-
-        return filesets.stream().map(f -> f.getModel().getName()).collect(Collectors.toList());
     }
 
     /**
@@ -89,7 +71,7 @@ public class MainController implements MainView.Events, FilesetController.Events
 
         FilesetController fsc = new FilesetController(model.getNextFilesetName(), this);
 
-        filesets.add(fsc);
+        model.addFileset(fsc);
         view.addFileSet(fsc.getView());
         fsc.getView().subscribeOnCloseTab(t -> onCloseFileset(t), fsc.getModel());
 
@@ -99,13 +81,13 @@ public class MainController implements MainView.Events, FilesetController.Events
     private void onCloseFileset(FilesetModel fsModel) {
 
         log.debug(".onCloseFileset name=" + fsModel.getName());
-        filesets.removeIf(fsc -> fsc.getModel().getName().equals(fsModel.getName()));
+        model.removeFileset(fsModel.getName());
         updateFsListInSearches();
     }
 
     private void updateFsListInSearches() {
 
-        List<String> fsNames = getFilesetNames();
+        List<String> fsNames = model.getFilesetNames();
         // обновить во всех SearchView список доступных Fileset'ов
         for (SearchController sc: searches) {
             sc.setFilesets(fsNames);
@@ -118,7 +100,7 @@ public class MainController implements MainView.Events, FilesetController.Events
         log.debug(".onNewSearch");
         SearchController sc = new SearchController(this, model.getNextSearchName());
         addSearch(sc);
-        sc.setFilesets(getFilesetNames());
+        sc.setFilesets(model.getFilesetNames());
     }
 
     @Override

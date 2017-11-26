@@ -3,13 +3,14 @@ package ru.ag78.utils.loganalyzer.config;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+@XmlType
 public class Fileset {
 
     private String name;
     private String description;
+
     private List<LogFile> files = new LinkedList<>();
 
     public String getName() {

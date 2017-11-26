@@ -54,7 +54,7 @@ public class SearchController implements SearchView.Events {
 
         try {
             String fsName = model.getSelectedFileset();
-            FilesetController fsctrl = mainCtrl.getFilesetController(fsName);
+            FilesetController fsctrl = mainCtrl.getModel().getFileset(fsName);
             FilesetModel fsm = fsctrl.getModel();
             log.debug("Loaded Fileset name=" + fsm.getName());
 
