@@ -1,5 +1,8 @@
 package ru.ag78.utils.loganalyzer;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -37,5 +40,11 @@ public class JAXBTest {
     @Test
     public void settingsTest() {
 
+        System.getProperties().keySet().stream().filter(k -> k.toString().contains("user")).forEach(k -> {
+            System.out.println(k.toString() + "=" + System.getProperty(k.toString(), ""));
+        });
+
+        Path p = Paths.get(System.getProperty("user.home"), "loganalyzer.dat");
+        System.out.println("p=" + p.toString());
     }
 }

@@ -1,18 +1,16 @@
 package ru.ag78.utils.loganalyzer.config;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
-import ru.ag78.utils.loganalyzer.ui.fileset.Fileset;
 
 @XmlRootElement
 public class Configuration {
 
     private Properties props = new Properties();
-    private Map<String, Fileset> filesets = new HashMap<>();
+    private List<Fileset> filesets = new LinkedList<>();
 
     public Properties getProps() {
 
@@ -24,13 +22,8 @@ public class Configuration {
         this.props = props;
     }
 
-    public Map<String, Fileset> getFilesets() {
+    public List<Fileset> getFilesets() {
 
         return filesets;
-    }
-
-    public void setFilesets(Map<String, Fileset> filesets) {
-
-        this.filesets = filesets;
     }
 }

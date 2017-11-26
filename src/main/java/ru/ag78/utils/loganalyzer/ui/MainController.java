@@ -24,7 +24,6 @@ public class MainController implements MainView.Events, FilesetController.Events
 
     private static final Logger log = Logger.getLogger(MainController.class);
 
-    private Configuration config = new Configuration();
     private MainView view;
     private MainModel model;
 
@@ -41,8 +40,6 @@ public class MainController implements MainView.Events, FilesetController.Events
         super();
         this.view = view;
         this.model = new MainModel();
-
-        config = loadConfig();
 
         view.start(this);
     }
@@ -142,6 +139,12 @@ public class MainController implements MainView.Events, FilesetController.Events
     public void onSaveConfig() {
 
         log.debug(".onSaveConfig");
+        try {
+            model.saveConfig();
+            log.info("Configuration saved successfully.");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private Configuration loadConfig() {
