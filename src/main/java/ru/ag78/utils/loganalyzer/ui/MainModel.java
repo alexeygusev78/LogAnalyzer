@@ -2,8 +2,9 @@ package ru.ag78.utils.loganalyzer.ui;
 
 import java.io.FileWriter;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,7 @@ import ru.ag78.useful.helpers.Utils;
 import ru.ag78.utils.loganalyzer.config.Configuration;
 import ru.ag78.utils.loganalyzer.config.Fileset;
 import ru.ag78.utils.loganalyzer.config.LogFile;
+import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
 import ru.ag78.utils.loganalyzer.ui.fileset.LogFileItem;
 
@@ -20,10 +22,10 @@ public class MainModel {
 
     private Configuration config = new Configuration();
 
+    private List<FilesetController> filesets = new LinkedList<>();
+
     private int filesetCounter = 1;
     private int searchCounter = 1;
-
-    private Map<String, FilesetModel> filesets = new HashMap<>();
 
     public String getNextFilesetName() {
 
@@ -35,9 +37,29 @@ public class MainModel {
         return "Search" + Integer.toString(searchCounter++);
     }
 
-    public FilesetModel getFileset(String filesetName) {
+    public void addFileset(FilesetController fsc) {
 
-        return filesets.get(filesetName);
+        filesets.add(fsc);
+    }
+
+    public FilesetController getFileset(String name) {
+
+        for (FilesetController fsc: filesets) {
+            if (fsc.getModel().getName().equalsIgnoreCase(name)) {
+                return fsc;
+            }
+        }
+        return null;
+    }
+
+    public void removeFileset(String name) {
+
+        filesets.removeIf(fsc -> fsc.getModel().getName().equals(name));
+    }
+
+    public List<String> getFilesetNames() {
+
+        return filesets.stream().map(f -> f.getModel().getName()).collect(Collectors.toList());
     }
 
     /**
@@ -46,7 +68,8 @@ public class MainModel {
      */
     public void saveConfig() throws Exception {
 
-        filesets.values().stream().filter(fs -> fs.isPersist()).forEach(fs -> config.getFilesets().add(createFileset(fs)));
+        config.getFilesets().clear();
+        filesets.stream().map(fsc -> fsc.getModel()).filter(m -> m.isPersist()).forEach(m -> config.getFilesets().add(createFileset(m)));
 
         Path p = Utils.getConfigFile();
         try (FileWriter fw = new FileWriter(p.toFile(), false);) {

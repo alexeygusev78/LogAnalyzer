@@ -1,8 +1,8 @@
 package ru.ag78.utils.loganalyzer.config;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+@XmlType
 public class LogFile {
 
     private String path;
