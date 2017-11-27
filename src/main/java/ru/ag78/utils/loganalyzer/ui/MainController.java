@@ -6,8 +6,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import ru.ag78.utils.loganalyzer.config.Configuration;
+import ru.ag78.utils.loganalyzer.config.Fileset;
+import ru.ag78.utils.loganalyzer.config.LogFile;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetController;
 import ru.ag78.utils.loganalyzer.ui.fileset.FilesetModel;
+import ru.ag78.utils.loganalyzer.ui.fileset.LogFileItem;
 import ru.ag78.utils.loganalyzer.ui.regexp.RegExpTestDialog;
 import ru.ag78.utils.loganalyzer.ui.search.SearchController;
 
@@ -40,6 +43,35 @@ public class MainController implements MainView.Events, FilesetController.Events
         this.model = new MainModel();
 
         view.start(this);
+
+        loadConfig(view);
+    }
+
+    private void loadConfig(MainView view) throws Exception {
+
+        model.loadConfig();
+        for (Fileset fs: model.getConfig().getFilesets()) {
+            FilesetController fsc = new FilesetController(fs.getName(), this);
+            FilesetModel fsm = fsc.getModel();
+
+            fsm.setName(fs.getName());
+            fsm.setDescription(fs.getDescription());
+            fsm.setPersist(true);
+
+            for (LogFile lf: fs.getFiles()) {
+                LogFileItem lfi = new LogFileItem();
+                lfi.setChecked(true);
+                lfi.setPath(lf.getPath());
+                lfi.setEncoding(lf.getEncoding());
+                fsm.addFile(lfi);
+            }
+            fsc.getView().setFileList(fsm.getFiles());
+
+            model.addFileset(fsc);
+            view.addFileSet(fsc.getView());
+            fsc.getView().subscribeOnCloseTab(t -> onCloseFileset(t), fsc.getModel());
+        }
+        updateFsListInSearches();
     }
 
     public MainModel getModel() {

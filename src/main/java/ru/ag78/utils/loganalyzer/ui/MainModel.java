@@ -1,5 +1,7 @@
 package ru.ag78.utils.loganalyzer.ui;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.LinkedList;
@@ -9,6 +11,9 @@ import java.util.stream.Collectors;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import org.apache.log4j.Logger;
 
 import ru.ag78.useful.helpers.Utils;
 import ru.ag78.utils.loganalyzer.config.Configuration;
@@ -20,6 +25,7 @@ import ru.ag78.utils.loganalyzer.ui.fileset.LogFileItem;
 
 public class MainModel {
 
+    private static final Logger log = Logger.getLogger(MainModel.class);
     private Configuration config = new Configuration();
 
     private List<FilesetController> filesets = new LinkedList<>();
@@ -81,6 +87,27 @@ public class MainModel {
         }
     }
 
+    /**
+     * Load current configuration from fiile.
+     * @throws Exception
+     */
+    public void loadConfig() throws Exception {
+
+        File f = Utils.getConfigFile().toFile();
+        if (!f.exists()) {
+            log.warn("File " + f.getAbsolutePath() + " not found");
+            return;
+        }
+
+        try (FileReader fr = new FileReader(f)) {
+            JAXBContext context = JAXBContext.newInstance(Configuration.class);
+            Unmarshaller u = context.createUnmarshaller();
+            config = (Configuration) u.unmarshal(f);
+        } catch (JAXBException e) {
+            throw new Exception("Failed to save config", e);
+        }
+    }
+
     private static Fileset createFileset(FilesetModel fsModel) {
 
         Fileset fs = new Fileset();
@@ -102,5 +129,10 @@ public class MainModel {
         lf.setEncoding(logFileItem.getEncoding());
 
         return lf;
+    }
+
+    public Configuration getConfig() {
+
+        return config;
     }
 }
