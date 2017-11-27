@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+import ru.ag78.api.utils.SafeArrays;
+
 public class Utils {
 
     private static final String USER_HOME = "user.home";
@@ -15,9 +17,19 @@ public class Utils {
     public static Properties getManifest() throws Exception {
 
         Properties props = new Properties();
-        try (InputStream is = Utils.class.getResourceAsStream("MANIFEST.MF");
+        try (InputStream is = Utils.class.getResourceAsStream("/META-INF/MANIFEST.MF");
                         BufferedReader rdr = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+            String line = null;
+            while ((line = rdr.readLine()) != null) {
+                String[] tokens = line.split(":");
+                String key = SafeArrays.getSafeItem(tokens, 0);
+                String value = SafeArrays.getSafeItem(tokens, 1);
+                if (key.isEmpty()) {
+                    continue;
+                }
 
+                props.setProperty(key, value);
+            }
         }
 
         return props;

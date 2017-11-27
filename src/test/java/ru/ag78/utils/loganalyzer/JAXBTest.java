@@ -8,7 +8,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.junit.Assert;
-import org.junit.Test;
 
 import ru.ag78.useful.helpers.Utils;
 import ru.ag78.utils.loganalyzer.config.Configuration;
@@ -17,7 +16,7 @@ import ru.ag78.utils.loganalyzer.config.LogFile;
 
 public class JAXBTest {
 
-    @Test
+    // @Test
     public void marshalTest() {
 
         Configuration config = new Configuration();
@@ -52,7 +51,7 @@ public class JAXBTest {
         }
     }
 
-    @Test
+    // @Test
     public void settingsTest() {
 
         System.getProperties().keySet().stream().filter(k -> k.toString().contains("user")).forEach(k -> {
