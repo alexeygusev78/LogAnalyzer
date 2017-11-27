@@ -92,7 +92,7 @@ public class MainView {
         mainLayout.setTop(topBar);
         mainLayout.setCenter(splitPane);
 
-        mainStage.setTitle("LogAnalyzer v1.3.2");
+        mainStage.setTitle("LogAnalyzer");
         mainStage.setScene(scene);
         mainStage.show();
     }
@@ -242,5 +242,10 @@ public class MainView {
     public void close() {
 
         mainStage.close();
+    }
+
+    public void setTitle(String title) {
+
+        mainStage.setTitle(title);
     }
 }

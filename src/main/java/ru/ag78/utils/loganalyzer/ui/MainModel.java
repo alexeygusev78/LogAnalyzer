@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
@@ -29,9 +30,29 @@ public class MainModel {
     private Configuration config = new Configuration();
 
     private List<FilesetController> filesets = new LinkedList<>();
+    private String version;
 
     private int filesetCounter = 1;
     private int searchCounter = 1;
+
+    /**
+     * Default ctor
+     */
+    public MainModel() {
+
+        try {
+            Properties props = Utils.getManifest();
+            version = props.getProperty("Version");
+
+        } catch (Exception e) {
+            log.error("Failed to load manifest", e);
+        }
+    }
+
+    public String getVersion() {
+
+        return version;
+    }
 
     public String getNextFilesetName() {
 

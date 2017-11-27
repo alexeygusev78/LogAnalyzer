@@ -15,7 +15,8 @@
 	</padding>
 	
 	<Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-	<Text text = "LogAnalyzer tool v1.3.3" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+	<!-- Text text = "LogAnalyzer tool v1.3.3" GridPane.columnIndex="1" GridPane.rowIndex="0"/ -->
+	<Text fx:id="txtDescription" text="LogAnalyzer" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
 	<Label text="Author:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 	<Text text="Gusev Alexey" GridPane.columnIndex="1" GridPane.rowIndex="1"/>

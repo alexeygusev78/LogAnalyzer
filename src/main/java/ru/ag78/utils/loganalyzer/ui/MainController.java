@@ -29,6 +29,8 @@ public class MainController implements MainView.Events, FilesetController.Events
     private MainView view;
     private MainModel model;
 
+    private static MainController instance;
+
     private List<SearchController> searches = new LinkedList<>();
 
     /**
@@ -39,12 +41,20 @@ public class MainController implements MainView.Events, FilesetController.Events
     public MainController(MainView view) throws Exception {
 
         super();
+        this.instance = this;
         this.view = view;
         this.model = new MainModel();
 
         view.start(this);
 
         loadConfig(view);
+
+        view.setTitle("LogAnalyzer v" + model.getVersion());
+    }
+
+    public static MainController getInstance() {
+
+        return instance;
     }
 
     private void loadConfig(MainView view) throws Exception {
