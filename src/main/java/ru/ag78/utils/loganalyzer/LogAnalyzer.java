@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.cli.Options;
+import org.apache.log4j.Logger;
 
 import ru.ag78.api.utils.SafeTypes;
 import ru.ag78.useful.helpers.OptionsHelper;
@@ -23,6 +24,7 @@ import ru.ag78.utils.loganalyzer.ui.LogAnalyzerGUI;
  */
 public class LogAnalyzer implements OptionsInitializer {
 
+    private static final Logger log = Logger.getLogger(LogAnalyzer.class);
     private OptionsHelper options;
 
     public class Opts {
@@ -48,7 +50,7 @@ public class LogAnalyzer implements OptionsInitializer {
             LogAnalyzer t = new LogAnalyzer();
             t.start(args);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             System.exit(-1);
         }
 
@@ -69,7 +71,7 @@ public class LogAnalyzer implements OptionsInitializer {
 
             StringBuilder synt = new StringBuilder("loganalyzer [<option>...]");
             synt.append(" [-Dfile.encoding=<encoding_name>]");
-            options.showHelp(synt.toString(), header.toString(), "Alexey Gusev 2017");
+            options.showHelp(synt.toString(), header.toString(), "Alexey Gusev 2017, https://github.com/alexeygusev78/LogAnalyzer/");
             return;
         }
 
@@ -131,15 +133,6 @@ public class LogAnalyzer implements OptionsInitializer {
         for (Object key: System.getProperties().keySet()) {
             System.out.println(key.toString() + "=" + System.getProperty(key.toString()));
         }
-
-        //        try (InputStream in = getClass().getResourceAsStream("/main.css"); BufferedReader reader = new BufferedReader(new InputStreamReader(in));) {
-        //            String line = "";
-        //            while ((line = reader.readLine()) != null) {
-        //                System.out.println(">" + line);
-        //            }
-        //        } catch (Exception e) {
-        //            e.printStackTrace();
-        //        }
     }
 
     /**
