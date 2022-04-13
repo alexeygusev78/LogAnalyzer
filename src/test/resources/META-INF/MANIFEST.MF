@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 Title: LogAnalyzer utility
 Version: 1.3.2
 Created-By: Gradle 4.2
-Main-Class: ru.ag78.utils.loganalyzer.LogAnalyzer
+Main-Class: ru.ag78.utils.loganalyzer.Application
 
